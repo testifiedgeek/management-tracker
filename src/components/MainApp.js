@@ -5,7 +5,7 @@ import "./index.css";
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MainApp from "./components/MainApp";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login";
 import Projects from "./components/Projects";
 import ProjectOverview from "./components/ProjectOverview";
@@ -19,18 +19,22 @@ import SideBar from "../reusable/SideBar";
 export default class MainApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        title:'Dashboard'
+    };
   }
 
   render() {
     return (
-      <AppContext.Provider value={{}}>
-        <div>
+      <AppContext.Provider value={{
+        state:this.state
+      }}>
+        <div >
           <SideBar />
 
           <div>
             {/* Header */}
-            <Header title={this.state.title} />
+            <Header />
             <div className="App">
               <div>
                 <Switch>
