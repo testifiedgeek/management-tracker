@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class WorkspaceSelection extends Component {
+export default class ProjectOverview extends Component {
   render() {
     return <div></div>;
   }

@@ -17,12 +17,11 @@
   },
   "scripts": {
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "set APP_ENV=DEV&& react-scripts start",
+    "build": "set APP_ENV=PROD&&react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "precommit": "pretty-quick --staged",
-    "prepare": "husky install"
+    "precommit": "pretty-quick --staged"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +34,17 @@
     "husky": "^7.0.0",
     "prettier": "2.3.2",
     "pretty-quick": "^3.1.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

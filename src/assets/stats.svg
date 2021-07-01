@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" viewBox="0 0 169.312 169.311">
+    <defs>
+        <style>
+            .cls-4{fill:none}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_2407" fill="none" stroke-width="14px" transform="translate(-224 -414)">
+        <g id="Ellipse_450" stroke="#0281c0" stroke-dasharray="299 1000" transform="translate(224 492.736) rotate(-41)">
+            <circle cx="60.007" cy="60.007" r="60.007" class="cls-3"/>
+            <circle cx="60.007" cy="60.007" r="53.007" class="cls-4"/>
+        </g>
+        <g id="Ellipse_451" stroke="#008d05" stroke-dasharray="121 1000" transform="matrix(-0.819, -0.574, 0.574, -0.819, 323.736, 582.573)">
+            <circle cx="60.007" cy="60.007" r="60.007" class="cls-3"/>
+            <circle cx="60.007" cy="60.007" r="53.007" class="cls-4"/>
+        </g>
+    </g>
+</svg>
