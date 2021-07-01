@@ -5,7 +5,7 @@ export default class WorkspaceSelection extends Component {
         return (
             <div>
                 
-            </div>
+                    </div>
         )
     }
 }
