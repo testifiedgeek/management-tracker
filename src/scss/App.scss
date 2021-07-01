@@ -7,6 +7,8 @@ $green: #6aa600;
 $pink:#fff4f4;
 $orange: #ec7211;
 
+@import './global.scss';
+
 body {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
