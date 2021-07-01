@@ -20,16 +20,18 @@ export default class MainApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        title:'Dashboard'
+      title: "Dashboard",
     };
   }
 
   render() {
     return (
-      <AppContext.Provider value={{
-        state:this.state
-      }}>
-        <div >
+      <AppContext.Provider
+        value={{
+          state: this.state,
+        }}
+      >
+        <div>
           <SideBar />
 
           <div>
