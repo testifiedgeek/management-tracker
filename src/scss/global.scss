@@ -1,0 +1,10 @@
+$lightgreycolor: #707070;
+$mediumfontsize: 15px;
+$smallfontsize: 13px;
+$largefontsize: 18px;
+
+@mixin flexalign($align) {
+  display: flex;
+  justify-content: $align;
+  align-items: center;
+}

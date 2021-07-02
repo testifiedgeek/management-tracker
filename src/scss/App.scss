@@ -4,22 +4,24 @@ $bgColor: #f9f9f9;
 $warmGrey: #707070;
 $red: #e41e26;
 $green: #6aa600;
-$pink:#fff4f4;
+$pink: #fff4f4;
 $orange: #ec7211;
 
+@import "./global.scss";
+
 body {
-    margin: 0;
-    font-family: 'Noto Sans', sans-serif;
-    background-color: $bgColor;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  background-color: $bgColor;
 }
 
 input {
-    border: unset;
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
-    font-weight: 500;
+  border: unset;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  font-weight: 500;
 }
-   
+
 .header {
     position:fixed;
     left: 200px;
@@ -33,55 +35,63 @@ input {
 
 }
 
-// .logo{
-//     width: 64px;
-//     margin-left: 70px;
-// }
+}
+.logo {
+  width: 64px;
+  margin-left: 70px;
+}
 
-.header .rapid-logo{
-    padding: 16px 0px;
-    width:140px;
+
+.header .rapid-logo {
+  padding: 16px 0px;
+  width: 140px;
 }
 
 .logout {
-    margin: 11px;
-    font-size: 15px;
-    color: $red;
-    font-weight: 700;
-    cursor: pointer;
+  margin: 11px;
+  font-size: 15px;
+  color: $red;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.login_container{
-    width: 48%;
-    height: auto;
-    padding: 15px;
-    margin: 38px 145px;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
-    position: relative;
+.respresent_data {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
-.start_container{
-    width: 48%;
-    height: 379px;
-    padding: 15px;
-    margin: 38px auto;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
-    position: relative;
+.login_container {
+  width: 48%;
+  height: auto;
+  padding: 15px;
+  margin: 38px 145px;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+  position: relative;
+}
+
+.start_container {
+  width: 48%;
+  height: 379px;
+  padding: 15px;
+  margin: 38px auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+  position: relative;
 }
 
 .admin_container {
-    width: 80%;
-    height: auto;
-    padding: 15px;
-    margin: 38px auto;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
-    position: relative;
+  width: 80%;
+  height: auto;
+  padding: 15px;
+  margin: 38px auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+  position: relative;
 }
 
 .user_container {
@@ -100,294 +110,293 @@ input {
 }
 
 .space_between {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user_title {
-    font-size: 15px;
-    font-weight: bold;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .user_subtitle {
-    font-size: 15px;
-    color: $warmGrey;
-    font-weight: normal;
+  font-size: 15px;
+  color: $warmGrey;
+  font-weight: normal;
 }
 
 .user_table {
-    border-collapse: collapse;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-.user_table_th, .user_table_td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-.user_table_tr:hover {background-color:#f5f5f5;}
+  border-collapse: collapse;
+  width: 100%;
+  cursor: pointer;
+}
+
+.user_table_th,
+.user_table_td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user_table_tr:hover {
+  background-color: #f5f5f5;
+}
 
 .resume_container {
-    text-align: center;
-    width: 48%;
-    padding: 30px 15px;
-    margin: 38px auto;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
-    position: relative;
+  text-align: center;
+  width: 48%;
+  padding: 30px 15px;
+  margin: 38px auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+  position: relative;
 }
 
 .header_right {
     display: flex;
     justify-content: right;
     align-items: center;
-    
 }
 
 .motor_container {
-    display: flex;
-    justify-content: space-evenly;
-    width: 48%;
-    padding: 50px 37px;
-    margin: 38px auto;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  width: 48%;
+  padding: 50px 37px;
+  margin: 38px auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  position: relative;
 }
 
-
-
 .your_hold_claims {
-    // display: flex;
-    // justify-content: start;
-    text-align: left;
-    margin: auto 23%;
-    font-size: 20px;
-    font-weight: 700;
-    // position: fixed;
+  // display: flex;
+  // justify-content: start;
+  text-align: left;
+  margin: auto 23%;
+  font-size: 20px;
+  font-weight: 700;
+  // position: fixed;
 }
 
 .claims_count {
-    // display: flex;
-    // justify-content: start;
-    text-align: center;
-    margin: auto 23%;
-    font-size: 20px;
-    font-weight: 700;
-    // position: fixed;
+  // display: flex;
+  // justify-content: start;
+  text-align: center;
+  margin: auto 23%;
+  font-size: 20px;
+  font-weight: 700;
+  // position: fixed;
 }
 
 .hold_container {
-    width: 77%;
-    /* max-width: 123%; */
-    margin: auto 6%;
-    position: absolute;
+  width: 77%;
+  /* max-width: 123%; */
+  margin: auto 6%;
+  position: absolute;
 }
 
 .hold_claims_section {
-    display: flex;
-    justify-content: space-between;
-    width: 48%;
-    padding: 20px 37px;
-    margin: 38px auto;
-    background-color: $pink;
-    border-radius: 5px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 48%;
+  padding: 20px 37px;
+  margin: 38px auto;
+  background-color: $pink;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  position: relative;
 }
 
 .resume_text_container {
-    text-align: center;
-    margin: 35px 0 48px 0;
+  text-align: center;
+  margin: 35px 0 48px 0;
 }
 
 .motor_sections {
-    margin: auto 0px;
+  margin: auto 0px;
 }
 
 .motor_btns {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .admin_action_btns {
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: left;
 }
 
 .admin_red_btn {
-    height: 30px;
-    border-radius: 2px;
-    background-color: #e41e26;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 0px 15px;
-    border: unset;
-    cursor: pointer;
+  height: 30px;
+  border-radius: 2px;
+  background-color: #e41e26;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 0px 15px;
+  border: unset;
+  cursor: pointer;
 }
 
 .admin_green_btn {
-    height: 30px;
-    border-radius: 2px;
-    margin-right: 7px;
-    background-color: #6aa600;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 0px 24px;
-    border: unset;
-    cursor: pointer;
+  height: 30px;
+  border-radius: 2px;
+  margin-right: 7px;
+  background-color: #6aa600;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 0px 24px;
+  border: unset;
+  cursor: pointer;
 }
 
 .motor_heading {
-    font-size: 15px;
-    font-weight: 700;
-    color: $red;
+  font-size: 15px;
+  font-weight: 700;
+  color: $red;
 }
 
 .motor_sub_heading {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .error_heading {
-    font-size: 15px;
-    font-weight: 700;
-    color: $red;
-    text-align: center;
-    padding: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: $red;
+  text-align: center;
+  padding: 18px;
 }
 
 .success_heading {
-    font-size: 15px;
-    font-weight: 700;
-    color: $green;
-    text-align: center;
-    padding: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: $green;
+  text-align: center;
+  padding: 18px;
 }
 
 .welcome {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .welcome_subtitle {
-    color: $warmGrey;
-    font-size: 15px;
+  color: $warmGrey;
+  font-size: 15px;
 }
 
 .coworking {
-    z-index: 1;
-    position: absolute;
-    bottom: -54px;
-    right: -355px;
-    width: 100%;
-    max-width: 400px;
-    height: auto;
+  z-index: 1;
+  position: absolute;
+  bottom: -54px;
+  right: -355px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
 .team_meeting {
-    z-index: 1;
-    position: absolute;
-    bottom: -54px;
-    right: -227px;
-    width: 100%;
-    max-width: 299px;
-    height: auto;
+  z-index: 1;
+  position: absolute;
+  bottom: -54px;
+  right: -227px;
+  width: 100%;
+  max-width: 299px;
+  height: auto;
 }
 
 .login_form {
-    text-align: center;
-    margin: 15px 100px;
+  text-align: center;
+  margin: 15px 100px;
 }
 
 .login_input {
-    width: 85%;
-    padding: 17px 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+  width: 85%;
+  padding: 17px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .input_placeholder {
-    float: left;
-    background: white;
-    margin-left: 25px;
-    margin-top: -10px;
-    z-index: 1;
-    position: absolute;
-    color: $warmGrey;
-    font-size: 15px;
+  float: left;
+  background: white;
+  margin-left: 25px;
+  margin-top: -10px;
+  z-index: 1;
+  position: absolute;
+  color: $warmGrey;
+  font-size: 15px;
 }
 
 .red_submit {
-    width: 45%;
-    height: 45px;
-    border-radius: 2px;
-    background-color: $red;
-    color: $white;
-    font-size: 16px;
-    /* position: fixed; */
-    bottom: 15px;
-    border: unset;
-    cursor: pointer;
+  width: 45%;
+  height: 45px;
+  border-radius: 2px;
+  background-color: $red;
+  color: $white;
+  font-size: 16px;
+  /* position: fixed; */
+  bottom: 15px;
+  border: unset;
+  cursor: pointer;
 }
 
 .red_submit_motor {
-    /* width: 99%; */
-    height: 45px;
-    margin-right: 8px;
-    border-radius: 2px;
-    background-color: $red;
-    color: $white;
-    font-size: 15px;
-    /* position: fixed; */
-    // padding: 0px 50px;
-    padding: 0px 35px;
-    /* bottom: 15px; */
-    border: unset;
-    cursor: pointer;
+  /* width: 99%; */
+  height: 45px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background-color: $red;
+  color: $white;
+  font-size: 15px;
+  /* position: fixed; */
+  // padding: 0px 50px;
+  padding: 0px 35px;
+  /* bottom: 15px; */
+  border: unset;
+  cursor: pointer;
 }
 
 .orange_submit_motor {
-    /* width: 99%; */
-    height: 45px;
-    margin-right: 8px;
-    border-radius: 2px;
-    background-color: $orange;
-    color: $white;
-    font-size: 15px;
-    /* position: fixed; */
-    // padding: 0px 50px;
-    padding: 0px 35px;
-    /* bottom: 15px; */
-    border: unset;
-    cursor: pointer;
+  /* width: 99%; */
+  height: 45px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background-color: $orange;
+  color: $white;
+  font-size: 15px;
+  /* position: fixed; */
+  // padding: 0px 50px;
+  padding: 0px 35px;
+  /* bottom: 15px; */
+  border: unset;
+  cursor: pointer;
 }
 
 .green_submit_motor {
-    /* width: 99%; */
-    height: 45px;
-    margin-right: 8px;
-    border-radius: 2px;
-    background-color: $green;
-    color: $white;
-    font-size: 15px;
-    /* position: fixed; */
-    // padding: 0px 50px;
-    padding: 0px 35px;
-    /* bottom: 15px; */
-    border: unset;
-    cursor: pointer;
+  /* width: 99%; */
+  height: 45px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background-color: $green;
+  color: $white;
+  font-size: 15px;
+  /* position: fixed; */
+  // padding: 0px 50px;
+  padding: 0px 35px;
+  /* bottom: 15px; */
+  border: unset;
+  cursor: pointer;
 }
 
-
 .welcome_container {
-    text-align: center;
-    margin: 30px 0 70px 0;
-  }
+  text-align: center;
+  margin: 30px 0 70px 0;
+}
 
 .start_welcome_container {
     text-align: center;
@@ -404,3 +413,6 @@ input {
       flex-wrap: nowrap;
   }
 
+  text-align: center;
+  margin: 110px 0 70px 0;
+}

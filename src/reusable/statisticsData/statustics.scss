@@ -1,0 +1,30 @@
+@import "../../scss/global.scss";
+
+@mixin dot($color) {
+  color: $color;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+
+.stats_data {
+  @include flexalign(space-between);
+  margin-bottom: 8px;
+  label {
+    font-weight: 500;
+    font-size: 15px;
+  }
+}
+
+.stats_container {
+  flex-grow: 0.2;
+  width: auto;
+  max-width: 500px;
+  .stats_subcontainer {
+    @include flexalign(start);
+
+    div {
+      flex-grow: 0.02;
+    }
+  }
+}

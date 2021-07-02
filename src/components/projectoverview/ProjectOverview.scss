@@ -1,0 +1,30 @@
+@import "../../scss/global.scss";
+
+.tabs_section {
+  @include flexalign(space-between);
+  width: 22%;
+  padding: 10px;
+  margin: 10px;
+
+  span {
+    cursor: pointer;
+    font-size: $mediumfontsize;
+
+    .active_project_plan {
+      color: black;
+      font-weight: bold;
+      font-size: $mediumfontsize;
+    }
+
+    .inactive_project_plan {
+      color: lightgrey;
+      font-weight: medium;
+      font-size: $mediumfontsize;
+    }
+  }
+  :hover {
+    color: black;
+    font-weight: bold;
+    font-size: $mediumfontsize;
+  }
+}
