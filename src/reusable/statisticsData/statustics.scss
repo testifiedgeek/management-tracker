@@ -17,6 +17,9 @@
 }
 
 .stats_container {
+  flex-grow: 0.2;
+  width: auto;
+  max-width: 500px;
   .stats_subcontainer {
     @include flexalign(start);
 

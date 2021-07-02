@@ -1,0 +1,21 @@
+@import "../../scss/global.scss";
+
+.info_container {
+  width: 20%;
+  padding: 10px;
+  margin: 10px;
+
+  .info_subdata {
+    @include flexalign(space-between);
+
+    label {
+      color: $lightgreycolor;
+      font-size: $smallfontsize;
+    }
+
+    div div {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
