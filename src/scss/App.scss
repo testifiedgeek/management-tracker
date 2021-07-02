@@ -23,15 +23,24 @@ input {
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  background: $white;
-  padding: 10px;
+    position:fixed;
+    left: 200px;
+    width: 100%;
+    height: 60px;
+    justify-content: space-between;
+    background: $white;
+    padding: 10px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+}
+
 }
 .logo {
   width: 64px;
   margin-left: 70px;
 }
+
 
 .header .rapid-logo {
   padding: 16px 0px;
@@ -86,14 +95,18 @@ input {
 }
 
 .user_container {
-  width: 80%;
-  height: auto;
-  padding: 15px;
-  margin: 38px auto;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-  position: relative;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    margin: 38px auto;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
+    position: relative;
+    left: 20px;
+    top: 60px;
+    border-collapse: collapse;
+
 }
 
 .space_between {
@@ -141,8 +154,9 @@ input {
 }
 
 .header_right {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 .motor_container {
@@ -385,6 +399,20 @@ input {
 }
 
 .start_welcome_container {
+    text-align: center;
+    margin: 110px 0 70px 0;
+  }
+
+  .main-app{
+      display: flex;
+  }
+
+  .trial{
+      display: flex;
+      width: 100vw;
+      flex-wrap: nowrap;
+  }
+
   text-align: center;
   margin: 110px 0 70px 0;
 }

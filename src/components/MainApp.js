@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "../scss/App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import TableContent from '../reusable/table';
+import CreateNewTask from "../reusable/createtask";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "../components/Login";
 import Projects from "../components/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
-import CreateNewTask from "../reusable/createtask";
 import TaskDetails from "../components/TaskDetails";
 import WorkspaceSelection from "../components/WorkspaceSelection";
 import AppContext from "../context/AppContext";
@@ -26,6 +27,7 @@ export default class MainApp extends Component {
 
   render() {
     return (
+
       <div>
         <div className="App">
           <div>
