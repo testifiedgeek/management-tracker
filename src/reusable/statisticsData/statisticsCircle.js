@@ -2,7 +2,6 @@ import stats from "../../assets/stats.svg";
 import "./statustics.scss";
 const ShowStats = (props) => {
   let statsData = props.statsData;
-  console.log("statsData: ", statsData);
   let statsTitle = statsData.map((items, index) => {
     return (
       <div key={index} className="stats_data">

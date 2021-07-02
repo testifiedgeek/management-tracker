@@ -1,0 +1,24 @@
+@import "../../scss/global.scss";
+
+.boxes {
+  @include flexalign(start);
+  .box_container {
+    background-color: white;
+    border-radius: 3px;
+    width: 200px;
+    flex-grow: 0.06;
+    max-width: 200px;
+    height: 65px;
+    margin-right: 12px;
+    padding: 10px;
+    @include flexalign(start);
+    label {
+      color: $lightgreycolor;
+      font-size: $smallfontsize;
+    }
+
+    div div {
+      @include flexalign(start);
+    }
+  }
+}

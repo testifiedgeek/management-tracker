@@ -13,6 +13,8 @@ import AppContext from "../context/AppContext";
 import SideBar from "../reusable/SideBar";
 import Header from "../reusable/Header";
 import ShowStats from "../reusable/statisticsData/statisticsCircle";
+import RepresentData from "../reusable/textinfo/textdata.js";
+import Infoboxes from "../reusable/infoboxes/infoboxes";
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -25,61 +27,41 @@ export default class MainApp extends Component {
   render() {
     return (
       <div>
-        <ShowStats
-          statsData={[
-            { color: "green", title: "Active", percentage: "20%" },
-            { color: "red", title: "Inprogress", percentage: "80%" },
-          ]}
-        />
+        <div className="App">
+          <div>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/" component={Login} exact />
+                <Route path="/login" component={Login} exact />
+                <Route path="/projects" component={Projects} exact />
+                <Route
+                  path="/login/forgot-password"
+                  component={ForgotPassword}
+                  exact
+                />
+                <Route
+                  path="/project-overview"
+                  component={ProjectOverview}
+                  exact
+                />
+                <Route path="/dashboard" component={Dashboard} exact />
+                <Route
+                  path="/create-new-task"
+                  component={CreateNewTask}
+                  exact
+                />
+                <Route path="/task-details" component={TaskDetails} exact />
+                <Route
+                  path="/login/workspace-selection"
+                  component={WorkspaceSelection}
+                  exact
+                />
+                <Route component={Error} exact />
+              </Switch>
+            </BrowserRouter>
+          </div>
+        </div>
       </div>
-      //   <AppContext.Provider
-      //     value={{
-      //       state: this.state,
-      //     }}
-      //   >
-      //     <div>
-      //       <SideBar />
-
-      //       <div>
-      //         {/* Header */}
-      //         <Header />
-      //         <div className="App">
-      //           <div>
-      //             <BrowserRouter>
-      //               <Switch>
-      //                 <Route path="/" component={Login} exact />
-      //                 <Route path="/login" component={Login} exact />
-      //                 <Route path="/projects" component={Projects} exact />
-      //                 <Route
-      //                   path="/login/forgot-password"
-      //                   component={ForgotPassword}
-      //                   exact
-      //                 />
-      //                 <Route
-      //                   path="/project-overview"
-      //                   component={ProjectOverview}
-      //                   exact
-      //                 />
-      //                 <Route path="/dashboard" component={Dashboard} exact />
-      //                 <Route
-      //                   path="/create-new-task"
-      //                   component={CreateNewTask}
-      //                   exact
-      //                 />
-      //                 <Route path="/task-details" component={TaskDetails} exact />
-      //                 <Route
-      //                   path="/login/workspace-selection"
-      //                   component={WorkspaceSelection}
-      //                   exact
-      //                 />
-      //                 <Route component={Error} exact />
-      //               </Switch>
-      //             </BrowserRouter>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </AppContext.Provider>
     );
   }
 }
