@@ -3,41 +3,44 @@ import '../scss/table.scss';
 
 export default function TableContent(props) {
 
-    let TableHeadings = props.title;
     let TableData = props.content;
-
+    let TableTitle = props.title;
     
     return (
        <table className="user_container">
-
+            <caption id="table_caption">{TableTitle}</caption>
            <thead>
 
-            <tr>
-                {TableHeadings.map((val,key) => {
+           <tr className="table_row">
+                {Object.keys(TableData[0]).map((key) => {
                     return(
-                        <th key={key} className="table_heading">{val}</th>
-                    );
+
+                <th className="table_heading">
+                    {key}
+                </th>
+                );
                 })}
             </tr>
 
            </thead>
             <tbody>
 
+            
+
                 {TableData.map((val,key) => {
                     return(
-                        <tr key={key}>
+                        <tr className="table_row" key={key}>
 
-
-                        <td className="table_heading">{val.key1}</td>
-                        <td className="table_heading">{val.key2}</td>
-                        <td className="table_heading">{val.key3}</td>
-                        <td className="table_heading">{val.key4}</td>
-                        
-                        </tr>
-
-
+                        {Object.values(val).map((finalval,key) => {
+                            return(
+                            
+                            <td className="table_heading" key={key}>{finalval}</td> 
+                            );
+                        })}                        
+                        </tr>    
                     );
                 })}
+                
             
             </tbody>
        
