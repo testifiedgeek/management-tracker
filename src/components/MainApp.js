@@ -5,17 +5,19 @@ import TableContent from '../reusable/table';
 import CreateNewTask from "../reusable/createtask";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "../components/Login";
-import Projects from "../components/Projects";
+import Projects from "./Projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
 import TaskDetails from "../components/TaskDetails";
 import WorkspaceSelection from "../components/WorkspaceSelection";
 import AppContext from "../context/AppContext";
-import SideBar from "../reusable/SideBar";
-import Header from "../reusable/Header";
+import SideBar from "../reusable/Sidebar/SideBar";
+import Header from "../reusable/Header/Header";
 import ShowStats from "../reusable/statisticsData/statisticsCircle";
 import RepresentData from "../reusable/textinfo/textdata.js";
 import Infoboxes from "../reusable/infoboxes/infoboxes";
+import CommentBox from "../reusable/CommentBox/comments";
+
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -25,29 +27,37 @@ export default class MainApp extends Component {
     };
   }
 
+  
+
   render() {
     return (
 
       <div>
-        <div className="App">
+      
+       
+         <div className="App">
           <div>
+          
             <BrowserRouter>
+            <Route render={() => <SideBar />} />
+            <Route render={() => <Header title={this.state.title}/>} />
+          
               <Switch>
-                <Route path="/" component={Login} exact />
-                <Route path="/login" component={Login} exact />
+                {/* <Route path="/" component={Login} exact />
+                <Route path="/login" component={Login} exact /> */}
                 <Route path="/projects" component={Projects} exact />
-                <Route
+                {/* <Route
                   path="/login/forgot-password"
                   component={ForgotPassword}
                   exact
-                />
+                /> */}
                 <Route
                   path="/project-overview"
                   component={ProjectOverview}
                   exact
                 />
                 <Route path="/dashboard" component={Dashboard} exact />
-                <Route
+                {/* <Route
                   path="/create-new-task"
                   component={CreateNewTask}
                   exact
@@ -58,11 +68,11 @@ export default class MainApp extends Component {
                   component={WorkspaceSelection}
                   exact
                 />
-                <Route component={Error} exact />
+                <Route component={Error} exact /> */}
               </Switch>
             </BrowserRouter>
           </div>
-        </div>
+        </div> 
       </div>
     );
   }
