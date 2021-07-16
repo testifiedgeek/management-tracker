@@ -1,21 +1,57 @@
 @import "../../scss/global.scss";
 
-.info_container {
-  width: 20%;
-  padding: 10px;
-  margin: 10px;
+// web view
+@media screen and (min-width: 600px) {
+  .info_container {
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
 
-  .info_subdata {
-    @include flexalign(space-between);
+    .info_subdata {
+      @include flexalign(space-between);
+      margin-top: 14px;
 
-    label {
-      color: $lightgreycolor;
-      font-size: $smallfontsize;
+      label {
+        color: $lightgreycolor;
+        font-size: $smallfontsize;
+      }
+
+      div div {
+        font-size: 14px;
+        font-weight: 600;
+      }
     }
 
-    div div {
-      font-size: 14px;
-      font-weight: 600;
+    h3 {
+      color: $primarycolour;
+    }
+  }
+}
+
+// Mobile View
+
+@media screen and (max-width: 600px) {
+  .info_container {
+    margin: 15px;
+
+    .info_subdata {
+      @include flexalign(space-between);
+      margin-top: 6px;
+
+      label {
+        color: $lightgreycolor;
+        font-size: $smallfontsize;
+      }
+
+      div div {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    h3 {
+      color: $primarycolour;
+      font-weight: bolder;
     }
   }
 }

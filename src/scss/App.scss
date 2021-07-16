@@ -1,6 +1,6 @@
 // @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 $white: #ffffff;
-$bgColor: #f9f9f9;
+$bgColor: #f9f8ff;
 $warmGrey: #707070;
 $red: #e41e26;
 $green: #6aa600;
@@ -21,378 +21,437 @@ input {
   font-weight: 500;
 }
 
-
-
-
-.logo {
-  width: 64px;
-  margin-left: 70px;
+.main_app_container {
+  width: 100vh;
 }
 
+@media screen and (min-width: 600px) {
+  body {
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    background-color: $mobile_background;
+  }
+  .grid_container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 150px 200px 200px 200px;
+    grid-template-rows: 60px 200px 200px 200px;
+  }
 
-.header .rapid-logo {
-  padding: 16px 0px;
-  width: 140px;
+  .header {
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    position: sticky;
+    top: 0;
+  }
+
+  .main {
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    padding: 20px 10px 10px 10px;
+  }
+
+  .menu {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 8;
+  }
 }
 
-.logout {
-  margin: 11px;
-  font-size: 15px;
-  color: $red;
-  font-weight: 700;
-  cursor: pointer;
-}
+// Mobile Screen
 
-.respresent_data {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
+@media screen and (max-width: 600px) {
+  body {
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    background-color: $mobile_background;
+  }
 
-.login_container {
-  width: 48%;
-  height: auto;
-  padding: 15px;
-  margin: 38px 145px;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-  position: relative;
-}
+  .grid_container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: 45px 200px 200px 200px;
+    .header {
+      grid-column-start: 1;
+      grid-column-end: 5;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
 
-.start_container {
-  width: 48%;
-  height: 379px;
-  padding: 15px;
-  margin: 38px auto;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-  position: relative;
-}
+    .main {
+      grid-column-start: 1;
+      grid-column-end: 6;
+      grid-row-start: 2;
+    }
 
-.admin_container {
-  width: 80%;
-  height: auto;
-  padding: 15px;
-  margin: 38px auto;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-  position: relative;
-}
+    .menu {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 1;
+      grid-row-end: 8;
+    }
+  }
 
-.user_container {
-    width: auto;
+  .header .rapid-logo {
+    padding: 16px 0px;
+    width: 140px;
+  }
+
+  .logout {
+    margin: 11px;
+    font-size: 15px;
+    color: $red;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .respresent_data {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .login_container {
+    width: 48%;
+    height: auto;
+    padding: 15px;
+    margin: 38px 145px;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+    position: relative;
+  }
+
+  .start_container {
+    width: 48%;
+    height: 379px;
+    padding: 15px;
+    margin: 38px auto;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+    position: relative;
+  }
+
+  .admin_container {
+    width: 80%;
     height: auto;
     padding: 15px;
     margin: 38px auto;
     background-color: $white;
     border-radius: 5px;
-    box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
+    box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
     position: relative;
-    left: 20px;
-    top: 60px;
+  }
+
+  .user_container {
+  }
+
+  .space_between {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .user_title {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .user_subtitle {
+    font-size: 15px;
+    color: $warmGrey;
+    font-weight: normal;
+  }
+
+  .user_table {
     border-collapse: collapse;
+    width: 100%;
+    cursor: pointer;
+  }
 
-}
+  .user_table_th,
+  .user_table_td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
 
-.space_between {
-  display: flex;
-  justify-content: space-between;
-}
+  .user_table_tr:hover {
+    background-color: #f5f5f5;
+  }
 
-.user_title {
-  font-size: 15px;
-  font-weight: bold;
-}
+  .resume_container {
+    text-align: center;
+    width: 48%;
+    padding: 30px 15px;
+    margin: 38px auto;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
+    position: relative;
+  }
 
-.user_subtitle {
-  font-size: 15px;
-  color: $warmGrey;
-  font-weight: normal;
-}
+  .motor_container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 48%;
+    padding: 50px 37px;
+    margin: 38px auto;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    position: relative;
+  }
 
-.user_table {
-  border-collapse: collapse;
-  width: 100%;
-  cursor: pointer;
-}
+  .your_hold_claims {
+    // display: flex;
+    // justify-content: start;
+    text-align: left;
+    margin: auto 23%;
+    font-size: 20px;
+    font-weight: 700;
+    // position: fixed;
+  }
 
-.user_table_th,
-.user_table_td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
+  .claims_count {
+    // display: flex;
+    // justify-content: start;
+    text-align: center;
+    margin: auto 23%;
+    font-size: 20px;
+    font-weight: 700;
+    // position: fixed;
+  }
 
-.user_table_tr:hover {
-  background-color: #f5f5f5;
-}
+  .hold_container {
+    width: 77%;
+    /* max-width: 123%; */
+    margin: auto 6%;
+    position: absolute;
+  }
 
-.resume_container {
-  text-align: center;
-  width: 48%;
-  padding: 30px 15px;
-  margin: 38px auto;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-  position: relative;
-}
+  .hold_claims_section {
+    display: flex;
+    justify-content: space-between;
+    width: 48%;
+    padding: 20px 37px;
+    margin: 38px auto;
+    background-color: $pink;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    position: relative;
+  }
 
+  .resume_text_container {
+    text-align: center;
+    margin: 35px 0 48px 0;
+  }
 
-.motor_container {
-  display: flex;
-  justify-content: space-evenly;
-  width: 48%;
-  padding: 50px 37px;
-  margin: 38px auto;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  position: relative;
-}
+  .motor_sections {
+    margin: auto 0px;
+  }
 
-.your_hold_claims {
-  // display: flex;
-  // justify-content: start;
-  text-align: left;
-  margin: auto 23%;
-  font-size: 20px;
-  font-weight: 700;
-  // position: fixed;
-}
+  .motor_btns {
+    display: flex;
+    justify-content: center;
+  }
 
-.claims_count {
-  // display: flex;
-  // justify-content: start;
-  text-align: center;
-  margin: auto 23%;
-  font-size: 20px;
-  font-weight: 700;
-  // position: fixed;
-}
+  .admin_action_btns {
+    display: flex;
+    justify-content: left;
+  }
 
-.hold_container {
-  width: 77%;
-  /* max-width: 123%; */
-  margin: auto 6%;
-  position: absolute;
-}
+  .admin_red_btn {
+    height: 30px;
+    border-radius: 2px;
+    background-color: #e41e26;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 0px 15px;
+    border: unset;
+    cursor: pointer;
+  }
 
-.hold_claims_section {
-  display: flex;
-  justify-content: space-between;
-  width: 48%;
-  padding: 20px 37px;
-  margin: 38px auto;
-  background-color: $pink;
-  border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  position: relative;
-}
+  .admin_green_btn {
+    height: 30px;
+    border-radius: 2px;
+    margin-right: 7px;
+    background-color: #6aa600;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 0px 24px;
+    border: unset;
+    cursor: pointer;
+  }
 
-.resume_text_container {
-  text-align: center;
-  margin: 35px 0 48px 0;
-}
+  .motor_heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: $red;
+  }
 
-.motor_sections {
-  margin: auto 0px;
-}
+  .motor_sub_heading {
+    font-size: 12px;
+  }
 
-.motor_btns {
-  display: flex;
-  justify-content: center;
-}
+  .error_heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: $red;
+    text-align: center;
+    padding: 18px;
+  }
 
-.admin_action_btns {
-  display: flex;
-  justify-content: left;
-}
+  .success_heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: $green;
+    text-align: center;
+    padding: 18px;
+  }
 
-.admin_red_btn {
-  height: 30px;
-  border-radius: 2px;
-  background-color: #e41e26;
-  color: #ffffff;
-  font-size: 15px;
-  padding: 0px 15px;
-  border: unset;
-  cursor: pointer;
-}
+  .welcome {
+    font-size: 30px;
+    font-weight: bold;
+  }
 
-.admin_green_btn {
-  height: 30px;
-  border-radius: 2px;
-  margin-right: 7px;
-  background-color: #6aa600;
-  color: #ffffff;
-  font-size: 15px;
-  padding: 0px 24px;
-  border: unset;
-  cursor: pointer;
-}
+  .welcome_subtitle {
+    color: $warmGrey;
+    font-size: 15px;
+  }
 
-.motor_heading {
-  font-size: 15px;
-  font-weight: 700;
-  color: $red;
-}
+  .coworking {
+    z-index: 1;
+    position: absolute;
+    bottom: -54px;
+    right: -355px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
 
-.motor_sub_heading {
-  font-size: 12px;
-}
+  .team_meeting {
+    z-index: 1;
+    position: absolute;
+    bottom: -54px;
+    right: -227px;
+    width: 100%;
+    max-width: 299px;
+    height: auto;
+  }
 
-.error_heading {
-  font-size: 15px;
-  font-weight: 700;
-  color: $red;
-  text-align: center;
-  padding: 18px;
-}
+  .login_form {
+    text-align: center;
+    margin: 15px 100px;
+  }
 
-.success_heading {
-  font-size: 15px;
-  font-weight: 700;
-  color: $green;
-  text-align: center;
-  padding: 18px;
-}
+  .login_input {
+    width: 85%;
+    padding: 17px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
 
-.welcome {
-  font-size: 30px;
-  font-weight: bold;
-}
+  .input_placeholder {
+    float: left;
+    background: white;
+    margin-left: 25px;
+    margin-top: -10px;
+    z-index: 1;
+    position: absolute;
+    color: $warmGrey;
+    font-size: 15px;
+  }
 
-.welcome_subtitle {
-  color: $warmGrey;
-  font-size: 15px;
-}
+  .red_submit {
+    width: 45%;
+    height: 45px;
+    border-radius: 2px;
+    background-color: $red;
+    color: $white;
+    font-size: 16px;
+    /* position: fixed; */
+    bottom: 15px;
+    border: unset;
+    cursor: pointer;
+  }
 
-.coworking {
-  z-index: 1;
-  position: absolute;
-  bottom: -54px;
-  right: -355px;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
+  .red_submit_motor {
+    /* width: 99%; */
+    height: 45px;
+    margin-right: 8px;
+    border-radius: 2px;
+    background-color: $red;
+    color: $white;
+    font-size: 15px;
+    /* position: fixed; */
+    // padding: 0px 50px;
+    padding: 0px 35px;
+    /* bottom: 15px; */
+    border: unset;
+    cursor: pointer;
+  }
 
-.team_meeting {
-  z-index: 1;
-  position: absolute;
-  bottom: -54px;
-  right: -227px;
-  width: 100%;
-  max-width: 299px;
-  height: auto;
-}
+  .orange_submit_motor {
+    /* width: 99%; */
+    height: 45px;
+    margin-right: 8px;
+    border-radius: 2px;
+    background-color: $orange;
+    color: $white;
+    font-size: 15px;
+    /* position: fixed; */
+    // padding: 0px 50px;
+    padding: 0px 35px;
+    /* bottom: 15px; */
+    border: unset;
+    cursor: pointer;
+  }
 
-.login_form {
-  text-align: center;
-  margin: 15px 100px;
-}
+  .green_submit_motor {
+    /* width: 99%; */
+    height: 45px;
+    margin-right: 8px;
+    border-radius: 2px;
+    background-color: $green;
+    color: $white;
+    font-size: 15px;
+    /* position: fixed; */
+    // padding: 0px 50px;
+    padding: 0px 35px;
+    /* bottom: 15px; */
+    border: unset;
+    cursor: pointer;
+  }
 
-.login_input {
-  width: 85%;
-  padding: 17px 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
+  .welcome_container {
+    text-align: center;
+    margin: 30px 0 70px 0;
+  }
 
-.input_placeholder {
-  float: left;
-  background: white;
-  margin-left: 25px;
-  margin-top: -10px;
-  z-index: 1;
-  position: absolute;
-  color: $warmGrey;
-  font-size: 15px;
-}
-
-.red_submit {
-  width: 45%;
-  height: 45px;
-  border-radius: 2px;
-  background-color: $red;
-  color: $white;
-  font-size: 16px;
-  /* position: fixed; */
-  bottom: 15px;
-  border: unset;
-  cursor: pointer;
-}
-
-.red_submit_motor {
-  /* width: 99%; */
-  height: 45px;
-  margin-right: 8px;
-  border-radius: 2px;
-  background-color: $red;
-  color: $white;
-  font-size: 15px;
-  /* position: fixed; */
-  // padding: 0px 50px;
-  padding: 0px 35px;
-  /* bottom: 15px; */
-  border: unset;
-  cursor: pointer;
-}
-
-.orange_submit_motor {
-  /* width: 99%; */
-  height: 45px;
-  margin-right: 8px;
-  border-radius: 2px;
-  background-color: $orange;
-  color: $white;
-  font-size: 15px;
-  /* position: fixed; */
-  // padding: 0px 50px;
-  padding: 0px 35px;
-  /* bottom: 15px; */
-  border: unset;
-  cursor: pointer;
-}
-
-.green_submit_motor {
-  /* width: 99%; */
-  height: 45px;
-  margin-right: 8px;
-  border-radius: 2px;
-  background-color: $green;
-  color: $white;
-  font-size: 15px;
-  /* position: fixed; */
-  // padding: 0px 50px;
-  padding: 0px 35px;
-  /* bottom: 15px; */
-  border: unset;
-  cursor: pointer;
-}
-
-.welcome_container {
-  text-align: center;
-  margin: 30px 0 70px 0;
-}
-
-.start_welcome_container {
+  .start_welcome_container {
     text-align: center;
     margin: 110px 0 70px 0;
   }
 
-  .main-app{
-      display: flex;
+  .main-app {
+    display: flex;
   }
 
-  .trial{
-      display: flex;
-      width: 100vw;
-      flex-wrap: nowrap;
+  .trial {
+    display: flex;
+    width: 100vw;
+    flex-wrap: nowrap;
   }
-
+}

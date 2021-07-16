@@ -1,58 +1,117 @@
-$red: red;
-$white: white;
+@import "../../scss/global.scss";
 
-.logo{
-    width: 54px;
-    height: 40px;
-    margin: 30px;
-    margin-left: 50px;
+.logo {
+  width: 54px;
+  height: 40px;
+}
+
+// Web Screen
+@media screen and (min-width: 600px) {
+  .Sidebar_webview {
+    // position: fixed;
+    z-index: 1;
+    // top: 0;
+    // left: 0;
+    background-color: #2541b2;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: fixed;
+    width: 150px;
+  }
+  .Sidebar_mobileview {
+    display: none;
+  }
+
+  .sidebar_buttons {
+    display: flex;
+    justify-self: space-between;
     align-items: center;
-   
-    
+    padding: 10px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .sidebar_buttons:hover {
+    width: 100%;
+    background-image: linear-gradient(
+      49deg,
+      white 5%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .sidebar_top {
+    margin-top: 30px;
+  }
+
+  .sidebar_bottom {
+    margin-top: 300px;
+  }
+
+  .sidebar_items {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
 }
 
-.Sidebar{
-  height: 100vw;
-  width: 10vw;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #2541b2;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
+// Mobile Screen
+@media screen and (max-width: 600px) {
+  .Sidebar_webview {
+    display: none;
+  }
+  .Sidebar_mobileview {
+    // position: fixed;
+    z-index: 1;
+    // top: 0;
+    // left: 0;
+    background-color: #2541b2;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
 
-.sidebar_buttons{
-  margin: 11px;
-  font-size: 12px;
-  color: $white;
-  font-weight: 500;
-  cursor: pointer;
-}
+    .Sidebar_submobileview {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
 
-.sidebar_top{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
+    .sidebar_buttons {
+      color: white;
+      div {
+        @include flexalign(center);
+      }
+      ion-icon {
+        font-size: 18px;
+      }
 
-.sidebar_bottom{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
+      label {
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
 
-.sidebar_items{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 10vw;
-  height: 30vw;
-}
-
-.logo_container{
-  align-items: center;
+    .inactive_sidebar_buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35px;
+      ion-icon {
+        font-size: 22px;
+        opacity: 0.5;
+      }
+    }
+  }
 }

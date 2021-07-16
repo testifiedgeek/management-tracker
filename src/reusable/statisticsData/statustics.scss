@@ -7,24 +7,101 @@
   border-radius: 100px;
 }
 
-.stats_data {
-  @include flexalign(space-between);
-  margin-bottom: 8px;
-  label {
-    font-weight: 500;
-    font-size: 15px;
+// Mobile View
+@media screen and (max-width: 600px) {
+  .stats_data {
+    @include flexalign(space-between);
+    margin-bottom: 8px;
+    label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .stats_data2 {
+      @include flexalign(start);
+    }
+  }
+
+  .stats_container {
+    flex-grow: 0.2;
+    max-width: 500px;
+    background-color: #f1fff1;
+    border-radius: 5px;
+    margin: 15px 0 15px 0;
+    padding: 10px;
+    box-shadow: 10px 10px 25px 0 rgba(210, 223, 218, 0.61);
+    .stats_subcontainer {
+      @include flexalign(start);
+
+      div {
+        flex-grow: 0.02;
+      }
+
+      .stats_data_container {
+        width: 80%;
+      }
+    }
+
+    .stats_data_header {
+      @include flexalign(space-between);
+
+      label {
+        color: $primarycolour;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
   }
 }
 
-.stats_container {
-  flex-grow: 0.2;
-  width: auto;
-  max-width: 500px;
-  .stats_subcontainer {
-    @include flexalign(start);
+// web View
+@media screen and (min-width: 600px) {
+  .stats_data {
+    @include flexalign(space-between);
+    margin-bottom: 8px;
+    label {
+      font-weight: 600;
+      font-size: 13px;
+    }
 
-    div {
-      flex-grow: 0.02;
+    .stats_data2 {
+      @include flexalign(start);
+    }
+
+    .stats_data_header {
+      @include flexalign(space-between);
+
+      label {
+        color: $primarycolour;
+      }
+    }
+  }
+
+  .stats_container {
+    max-width: 500px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 15px 0 15px 0;
+    padding: 10px 15px 10px 10px;
+    box-shadow: 0.5px 0.5px 1px 1px lightgrey;
+    .stats_subcontainer {
+      @include flexalign(start);
+
+      .stats_data_container {
+        width: 45%;
+      }
+    }
+
+    .stats_data_header {
+      @include flexalign(space-between);
+
+      label {
+        color: $primarycolour;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
     }
   }
 }

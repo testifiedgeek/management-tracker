@@ -7,7 +7,7 @@ const Infoboxes = ({ info }) => {
       <div className="box_container">
         <div>
           <label>{items.title}</label>
-          <div>
+          <div className="box_info_container">
             <GenarateName name={items.name} />
             <h6>{items.name}</h6>
           </div>

@@ -1,35 +1,88 @@
+@import "../../scss/global.scss";
+
 $white: white;
 $black: black;
 
-.header{
-    width:100%;
-    background-color: $white;
-    top: 0;
-    height: 90px;
+// Web SCREEN
+@media screen and (min-width: 600px) {
+  .header_mobile_opt {
+    display: none;
+  }
+  .subheader {
+    width: 100%;
+    background-color: white;
     display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-    position: fixed; 
-}
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
 
-.header_left{
+  .header_left {
     display: flex;
-    flex-direction: row;
-    margin-left: 10vw;
-    margin-top: 20px;
-    padding-left: 35px;
-}
+    align-items: center;
+    padding-left: 10px;
+    .header_buttons {
+      font-size: 25px;
+    }
+  }
 
-.header_right{
-    margin-right: 25px;
-    margin-top: 25px;
-    padding-right: 35px;
-}
-
-.header_buttons{
-    margin: 11px;
-    font-size: 25px;
-    color: $black;
-    font-weight: 500;
+  ion-icon {
     cursor: pointer;
   }
+
+  .md {
+    margin-right: 10px;
+  }
+
+  .header_right {
+    padding-right: 35px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Mobile Screen
+
+@media screen and (max-width: 600px) {
+  .header_web_opt {
+    display: none;
+  }
+  .subheader {
+    width: 100%;
+    display: flex;
+    background-color: $primarycolour;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .header_left {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    .header_buttons {
+      font-size: 16px;
+      color: white;
+    }
+  }
+
+  ion-icon {
+    cursor: pointer;
+    color: white;
+  }
+
+  .md {
+    margin-right: 10px;
+  }
+
+  .header_right {
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  .add_project_icon {
+    font-size: 28px;
+  }
+}

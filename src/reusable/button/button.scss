@@ -1,0 +1,11 @@
+@import "../../scss/global.scss";
+
+.button {
+  width: 100%;
+  @include flexalign(center);
+  button {
+    color: white;
+    background-color: $primarycolour;
+    padding: 15px;
+  }
+}

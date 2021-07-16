@@ -1,0 +1,59 @@
+@import "../../scss//global.scss";
+
+.loading_container {
+  @include animations();
+  .loading_subcontainer {
+    @include flexalign(center);
+    width: 100%;
+    height: 80vh;
+    .loading_squares {
+      @include flexalign(center);
+
+      // Animation
+
+      @keyframes loading_animation {
+        from {
+          background-color: $primarycolour;
+        }
+        to {
+          background-color: lightgrey;
+        }
+      }
+      .sqaure {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        margin: 2px;
+        background-color: lightgrey;
+        animation: loading_animation 1s infinite;
+      }
+      .sqaure2 {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        margin: 2px;
+        background-color: lightgrey;
+        animation: loading_animation 1.2s infinite;
+      }
+      .sqaure3 {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        margin: 2px;
+        background-color: lightgrey;
+        animation: loading_animation 1.4s infinite;
+      }
+      .sqaure4 {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        margin: 2px;
+        background-color: lightgrey;
+        animation: loading_animation 1.6s infinite;
+      }
+    }
+    h5 {
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import "../../scss/global.scss";
+
+// Web Screen
+
+@media screen and (min-width: 600px) {
+  .card_data_mobileview {
+    display: none;
+  }
+  .dashboard_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.1fr 0.2fr;
+    grid-template-areas:
+      "stats stats stats stats"
+      "header header header header"
+      "table table table table";
+
+    .stats_data_main_container {
+      grid-area: stats;
+      margin-left: 20px;
+    }
+
+    .table_data {
+      grid-area: table;
+      grid-column-start: 1;
+      grid-row-start: 3;
+      margin-left: 20px;
+    }
+
+    h4 {
+      margin-left: 20px;
+      grid-area: header;
+    }
+  }
+}
+
+// Mobile Screen
+
+@media screen and (max-width: 600px) {
+  .table_data_webview {
+    display: none;
+  }
+  .dashboard_container {
+    // Animations
+    @include animations();
+    .stats_data_main_container {
+      padding: 10px;
+    }
+
+    h4 {
+      margin-left: 10px;
+      grid-area: header;
+    }
+  }
+}

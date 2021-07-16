@@ -1,11 +1,31 @@
 @import "../../scss/global.scss";
-.user_profile {
-  width: 14px;
-  height: 14px;
-  border-radius: 100px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: $smallfontsize;
-  margin-right: 6px;
-  @include flexalign(center);
+
+// Mobile Screen
+
+@media screen and (max-width: 600px) {
+  .user_profile {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: $smallfontsize;
+    margin-right: 6px;
+    @include flexalign(center);
+  }
+}
+
+// web Screen
+
+@media screen and (min-width: 600px) {
+  .user_profile {
+    width: 14px;
+    height: 14px;
+    border-radius: 100px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: $smallfontsize;
+    margin-right: 6px;
+    @include flexalign(center);
+  }
 }

@@ -1,0 +1,44 @@
+@import "../../scss/global.scss";
+
+// Mobile View
+@media screen and (max-width: 600px) {
+  .project_update_container {
+    padding: 10px;
+    @include animations();
+    .header_container {
+      h5 {
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+
+// Web View
+@media screen and (min-width: 600px) {
+  .project_update_container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas:
+      "input input input input"
+      "search search space space"
+      "updates updates space space";
+
+    .write_update_container {
+      margin-top: 10px;
+      grid-area: input;
+    }
+    .view_comment_cards {
+      margin-top: 20px;
+      grid-area: updates;
+    }
+    .header_container {
+      margin-top: 20px;
+      grid-area: search;
+      h5 {
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

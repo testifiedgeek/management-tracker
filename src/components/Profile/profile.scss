@@ -1,0 +1,99 @@
+@import "../../scss/global.scss";
+
+// Web screens
+@media screen and (min-width: 600px) {
+  .profile_container {
+    padding: 10px 10px 10px 50px;
+    .profile_subcontainer {
+      display: grid;
+      grid-template-columns: repeat((4, 1fr));
+      grid-template-rows: 1fr 50px 1fr;
+      grid-template-areas:
+        "header header header header"
+        "qwd qwf  qwf qwf"
+        "info info info space";
+
+      .heading_part {
+        @include flexalign(start);
+        grid-area: header;
+        div h3 {
+          font-size: 20px;
+        }
+
+        div {
+          color: #757575;
+          font-size: 14px;
+        }
+      }
+
+      .profileinfo_part {
+        grid-area: info;
+        div {
+          border-bottom: 1px solid lightblue;
+          padding: 16px;
+        }
+        h6 {
+          font-size: 14px;
+        }
+
+        span {
+          font-weight: medium;
+          font-size: 12px;
+          color: #757575;
+        }
+      }
+    }
+  }
+}
+
+// Mobile Screen
+
+@media screen and (max-width: 600px) {
+  .profile_container {
+    padding: 10px 10px 10px 20px;
+    // Animations
+    @include animations();
+    .profile_subcontainer {
+      display: grid;
+      grid-template-columns: repeat((4, 1fr));
+      grid-template-rows: 1fr 20px 1fr;
+      grid-template-areas:
+        "header header header header"
+        "qwd qwf  qwf qwf"
+        "info info info info";
+
+      .heading_part {
+        @include flexalign(start);
+        grid-area: header;
+        div h3 {
+          font-size: 20px;
+        }
+
+        div {
+          color: #757575;
+          font-size: 14px;
+        }
+        ion-icon {
+          color: #757575;
+        }
+      }
+
+      .profileinfo_part {
+        grid-area: info;
+        div {
+          border-bottom: 1px solid lightblue;
+          padding: 16px;
+        }
+        h6 {
+          font-size: 14px;
+        }
+
+        span {
+          font-weight: medium;
+          font-size: 12px;
+          color: #757575;
+        }
+      }
+    }
+  }
+}
