@@ -14,6 +14,7 @@
 
     div textarea {
       border: none;
+      border-radius: 5px;
       outline: none;
       width: 95%;
       height: 150px;
@@ -22,6 +23,25 @@
       font-size: 15px;
       resize: none;
     }
+
+    .people_tag_container {
+      position: relative;
+
+      .people_tag_subcontainer {
+        background-color: white;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        box-shadow: 1px 1px 1px 1px solid lightgrey;
+        padding: 10px;
+        width: 94%;
+        max-height: 150px;
+        overflow: scroll;
+        transform: translateY(-388px);
+        transition: 1s;
+        position: absolute;
+        margin-top: 50px;
+      }
+    }
   }
 }
 
@@ -29,6 +49,9 @@
 
 @media screen and (max-width: 600px) {
   .updates_container {
+    @include slide();
+    margin: 15px 0px 0px 0px;
+    padding: 10px;
     .update_puter {
       @include flexalign(start);
       margin-bottom: 5px;

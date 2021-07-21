@@ -19,7 +19,7 @@
     .tabs_section {
       @include flexalign(space-between);
       grid-area: tabs;
-      padding: 30px 40px 25px 40px;
+      padding: 32px 40px 25px 40px;
       background-color: $secondarycolor;
       span {
         cursor: pointer;

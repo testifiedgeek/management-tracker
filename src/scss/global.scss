@@ -12,6 +12,33 @@ $mobile_background: #f8f9fd;
   align-items: center;
 }
 
+@mixin slide() {
+  // Animation
+
+  @keyframes slide {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  animation: slide 0.5s;
+}
+
+@mixin buttonAnimation($width) {
+  @keyframes button {
+    from {
+      transform: width 0px;
+    }
+    to {
+      transform: width $width;
+    }
+  }
+
+  animation: button 0.5s;
+}
+
 @mixin animations() {
   // Animations
   @keyframes mymove {

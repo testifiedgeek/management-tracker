@@ -1,11 +1,23 @@
 @import "../../scss/global.scss";
 
-.button {
-  width: 100%;
-  @include flexalign(center);
-  button {
-    color: white;
-    background-color: $primarycolour;
-    padding: 15px;
+@media screen and (min-width: 600px) {
+  .button {
+    button {
+      color: white;
+      background-color: $primarycolour;
+      padding: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button {
+    width: 100%;
+    @include flexalign(center);
+    button {
+      color: white;
+      background-color: $primarycolour;
+      padding: 15px;
+    }
   }
 }

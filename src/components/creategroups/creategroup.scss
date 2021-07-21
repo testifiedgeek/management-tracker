@@ -26,8 +26,8 @@
     border: none;
     border-radius: 5px;
     outline: none;
-    width: 95%;
-    height: 150px;
+    width: 98%;
+    height: 60px;
     padding: 5px;
     font-weight: 500;
     font-size: 15px;
@@ -35,7 +35,7 @@
   }
   .create_project_button {
     float: right;
-    margin: 20px 45px 0px 0px;
+    margin: 20px 10px 0px 0px;
   }
 }
 
@@ -49,17 +49,6 @@
       display: grid;
       grid-template-columns: 1fr;
       grid-gap: 20px;
-      .desc {
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        width: 95%;
-        height: 150px;
-        padding: 5px;
-        font-weight: 500;
-        font-size: 15px;
-        resize: none;
-      }
     }
   }
 

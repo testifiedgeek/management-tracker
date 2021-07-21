@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import "./Projects.scss";
 import search from "../../assets/search.svg";
-import Card from "../../reusable/cardcomponent/CardComponent";
+import { Card } from "../../reusable/cardcomponent/CardComponent";
 import AppContext from "../../context/AppContext";
 import Createproject from "../createproject/Createproject";
+import Button from "../../reusable/button/button";
+import navigate from "../../helperfunctions/navigation";
 
 export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search_project: "",
+      enable_create_section: false,
       content: [
         {
           srno: 1,
@@ -45,7 +48,16 @@ export default class Projects extends Component {
   }
 
   // Create Project
-  create_project = () => {};
+  create_project = () => {
+    this.setState({ enable_create_section: true });
+    navigate(
+      "push",
+      "/projects",
+      "Create Project",
+      this.props.history,
+      this.context
+    );
+  };
 
   render() {
     let searchdata;
@@ -63,27 +75,33 @@ export default class Projects extends Component {
 
     return (
       <div>
-        <div className="main_projects_web_container">
-          <h3>All Projects types - all categories</h3>
-          <div class="search_container">
-            <div class="search_subcontainer">
-              <img src={search} />
-              <input
-                onChange={(e) =>
-                  this.setState({ search_project: e.target.value })
-                }
-                type="text"
-                className="input_search"
-                placeholder="Type to search project"
-              />
-              <span>Sort By</span>
+        <div>
+          {this.context.state.page !== "Create Project" ? (
+            <div className="main_projects_web_container">
+              <h3>All Projects types - all categories</h3>
+              <div class="search_container">
+                <div class="search_subcontainer">
+                  <img src={search} />
+                  <input
+                    onChange={(e) =>
+                      this.setState({ search_project: e.target.value })
+                    }
+                    type="text"
+                    className="input_search"
+                    placeholder="Type to search project"
+                  />
+                  <span>Sort By</span>
+                </div>
+              </div>
+              <div className="create_project_btn">
+                <Button title="Create Project" fun={this.create_project} />
+              </div>
             </div>
-          </div>
-
-          <div className="project_createsection">
-            <Createproject />
-          </div>
-
+          ) : (
+            <div className="project_createsection">
+              <Createproject />
+            </div>
+          )}
           {/* Statistics Slide */}
         </div>
 

@@ -34,7 +34,8 @@
     background-color: white;
     display: flex;
     align-items: center;
-    grid-area: search;
+    grid-column-start: 1;
+    grid-column-end: 3;
     input {
       background-color: inherit;
       border: none;
@@ -56,13 +57,6 @@
   .main_projects_mobile_container {
     display: none;
   }
-  .search_container {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
 
   .main_projects_web_container {
     padding: 15px 20px 20px 20px;
@@ -71,41 +65,50 @@
     grid-template-rows: 0.8fr 0.3fr auto auto;
     grid-template-areas:
       "header header header header"
-      "search search search search"
+      "search search search button"
       "createproject createproject createproject createproject"
       "space space button button";
-  }
 
-  h3 {
-    grid-area: header;
-  }
-
-  .search_subcontainer {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    grid-area: search;
-    input {
-      background-color: inherit;
-      border: none;
-      outline: none;
-      font-size: 15px;
-      font-weight: normal;
-      width: 80%;
-      padding: 5px 10px 5px 30px;
+    h3 {
+      grid-column-start: 1;
+      grid-column-end: 5;
+      grid-row-start: 1;
+      grid-row-end: 2;
     }
-    input::placeholder {
-      color: lightgrey;
-      font-weight: normal;
+    .create_project_btn {
+      grid-column-start: 4;
+      grid-column-end: 4;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      margin-top: 10px;
     }
-
-    span {
-      font-size: 13px;
-      color: $lightgreycolor;
+    .search_container {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      margin-top: 10px;
+    }
+    .create_group_btn {
+      grid-column-start: 4;
+      grid-column-end: 4;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      margin-top: 10px;
     }
   }
 
   .project_createsection {
-    grid-area: createproject;
+    @keyframes create_project_animation {
+      from {
+        width: 0px;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    animation: create_project_animation 0.5s;
   }
 }

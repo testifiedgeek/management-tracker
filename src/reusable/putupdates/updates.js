@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./updates.scss";
 import GenarateName from "../namecirclegenerator/criclegenrator";
 import tagname from "../../helperfunctions/tagnames.js";
+import AppContext from "../../context/AppContext";
 
-const Put_Updates = ({ person }) => {
+const Put_Updates = () => {
   let [updates, setUpdates] = useState("");
   let [tag, setTag] = useState(false);
 
+  const context = useContext(AppContext);
   const returnname = (name) => {
     let comment = updates + name + " ";
     setUpdates(comment);
@@ -34,10 +36,10 @@ const Put_Updates = ({ person }) => {
   return (
     <div className="updates_container">
       <div className="update_puter">
-        <GenarateName name={person.name} />
+        <GenarateName name={context.state.user.name} />
         <div>
-          <h5>{person.name}</h5>
-          <label>{person.profession}</label>
+          <h5>{context.state.user.name}</h5>
+          <label>{context.state.user.profession}</label>
         </div>
       </div>
 

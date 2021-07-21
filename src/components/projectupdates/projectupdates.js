@@ -5,6 +5,7 @@ import Put_Updates from "../../reusable/putupdates/updates";
 import search from "../../assets/search.svg";
 import "./projectupdates.scss";
 import Commentcard from "../../reusable/commentcard/commentcard.js";
+import AppContext from "../../context/AppContext";
 
 let testing = [
   {
@@ -52,6 +53,7 @@ export default class Projectupdates extends Component {
     super(props);
     this.state = {
       search_updates: "",
+      write_update: false,
     };
   }
   render() {
@@ -75,9 +77,13 @@ export default class Projectupdates extends Component {
       <div className="project_update_container">
         <div className="write_update_container">
           <Put_Updates
-            person={{ name: "Rahul Darekar", profession: "Software Engineer" }}
+            person={{
+              name: this.context.state.user.name,
+              profession: "Software Engineer",
+            }}
           />
         </div>
+
         <div className="header_container">
           <h5>Project Updates by Team</h5>
           <div class="search_container">
@@ -109,3 +115,5 @@ export default class Projectupdates extends Component {
     );
   }
 }
+
+Projectupdates.contextType = AppContext;

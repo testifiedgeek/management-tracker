@@ -1,0 +1,225 @@
+@import "../../scss/global.scss";
+
+// Web View
+@media screen and (min-width: 600px) {
+  .workspace_container {
+    padding: 15px;
+  }
+  .mobile_view_gropudatacontainer {
+    display: none;
+  }
+  .search_container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .main_workspace_web_container {
+    padding: 0px 20px 20px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.8fr 0.3fr auto auto;
+    grid-template-areas:
+      "header header header header"
+      "search search search button"
+      "createproject createproject createproject createproject"
+      "space space button button";
+
+    h3 {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    .search_container {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      margin-top: 10px;
+    }
+    .create_group_btn {
+      grid-column-start: 4;
+      grid-column-end: 4;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      margin-top: 10px;
+    }
+  }
+
+  .search_subcontainer {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    grid-area: search;
+    input {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-weight: normal;
+      width: 80%;
+      padding: 5px 10px 5px 30px;
+    }
+    input::placeholder {
+      color: lightgrey;
+      font-weight: normal;
+    }
+
+    span {
+      font-size: 13px;
+      color: $lightgreycolor;
+    }
+  }
+
+  .project_createsection {
+    grid-area: createproject;
+  }
+
+  .department_selection {
+    @include flexalign(space-between);
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    ion-icon {
+      color: black;
+    }
+    label {
+      font-weight: bold;
+      font-size: 13px;
+    }
+  }
+
+  .web_view_departmentdisplay {
+    width: 25%;
+
+    .depatments_display {
+      width: 100%;
+    }
+    .drop_down_departments {
+      background-color: white;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      width: 100%;
+      @keyframes display_dep {
+        from {
+          height: 0px;
+        }
+        to {
+          height: 200px;
+        }
+      }
+      max-height: 200px;
+      overflow: scroll;
+      animation: display_dep 0.5s;
+
+      P {
+        margin: 10px 5px 20px 20px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+  }
+}
+
+// Mobile View
+@media screen and (max-width: 600px) {
+  ion-icon {
+    color: black;
+  }
+  .main_workspace_web_container {
+    display: none;
+  }
+  .web_view_departmentdisplay {
+    display: none;
+  }
+
+  .search_container {
+    background-color: white;
+    padding: 7px;
+    border-radius: 5px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+
+  .main_projects_mobile_container {
+    padding: 10px;
+    display: grid;
+    @include animations();
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.8fr;
+    grid-template-areas:
+      "header header header header"
+      "search search search search";
+    background-color: $primarycolour;
+  }
+
+  h3 {
+    grid-area: header;
+  }
+
+  .search_subcontainer {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    grid-area: search;
+    input {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-weight: normal;
+      width: 80%;
+      padding: 5px 10px 5px 30px;
+    }
+    input::placeholder {
+      color: lightgrey;
+      font-weight: normal;
+    }
+  }
+
+  .mobile_view_gropudatacontainer {
+    padding: 10px;
+    .depatments_display {
+      .department_selection {
+        @include flexalign(space-between);
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+        ion-icon {
+          color: black;
+        }
+        label {
+          font-weight: bold;
+        }
+      }
+
+      .drop_down_departments {
+        background-color: white;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        @keyframes display_dep {
+          from {
+            height: 0px;
+          }
+          to {
+            height: 200px;
+          }
+        }
+        max-height: 200px;
+        overflow: scroll;
+        animation: display_dep 0.5s;
+
+        P {
+          margin: 10px 5px 20px 20px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

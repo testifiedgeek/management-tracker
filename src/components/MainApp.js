@@ -9,7 +9,7 @@ import Projects from "./projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
 import TaskDetails from "../components/TaskDetails";
-import WorkspaceSelection from "../components/WorkspaceSelection";
+import WorkspaceSelection from "./workspace/WorkspaceSelection";
 import AppContext from "../context/AppContext";
 import SideBar from "../reusable/Sidebar/SideBar";
 import Header from "../reusable/Header/Header";
@@ -20,24 +20,34 @@ import CommentBox from "../reusable/CommentBox/comments";
 import Profile from "./Profile/Profile";
 import Createproject from "./createproject/Createproject";
 import Loading from "../reusable/loading/loading";
+import Put_Updates from "../reusable/putupdates/updates";
+import Workspace from "./workspace/WorkspaceSelection";
+import Createtask from "./createtasks/createtasks";
+import Creategroups from "./creategroups/creategropus";
 
 export default class MainApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       page: "Dashboard",
+      backpage: "",
       user: {
         name: "Dwarka Tiwari",
         email: "dwarka@gmail.com",
         profession: "AVP Head",
         employeeid: "142743",
       },
-      loading: true,
+      loading: false,
     };
   }
 
   set_page = (page) => {
     this.setState({ page });
+  };
+
+  set_backpage = (page) => {
+    console.log("backpage: ", page);
+    this.setState({ backpage: page });
   };
 
   global_fun_for_loading = (state, msg) => {
@@ -52,6 +62,7 @@ export default class MainApp extends Component {
             value={{
               state: this.state,
               set_page: this.set_page,
+              set_backpage: this.set_backpage,
             }}
           >
             <BrowserRouter>
@@ -71,8 +82,20 @@ export default class MainApp extends Component {
                       <Route path="/dashboard" component={Dashboard} exact />
                       <Route path="/profile" component={Profile} exact />
                       <Route
+                        path="/write-update"
+                        component={Put_Updates}
+                        exact
+                      />
+                      <Route path="/workspace" component={Workspace} exact />
+                      <Route
                         path="/create-project"
                         component={Createproject}
+                        exact
+                      />
+                      <Route path="/create-task" component={Createtask} exact />
+                      <Route
+                        path="/create-group"
+                        component={Creategroups}
                         exact
                       />
                     </Switch>

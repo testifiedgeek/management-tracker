@@ -1,32 +1,17 @@
 import React, { Component } from "react";
-import "./createproject.scss";
+import "./createtasks.scss";
 import AppContext from "../../context/AppContext";
 import { Createsection } from "../../reusable/creationprocess/Createsection";
 import Button from "../../reusable/button/button";
 
-export default class Createproject extends Component {
+export default class Createtask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: { data: {}, length: 0 },
-      display: false,
       display_catgegories: false,
-      display_lead: false,
-      selected_lead: { data: {}, length: 0 },
+      display_assignee: false,
+      selected_assignee: { data: {}, length: 0 },
       selected_categories: { data: {}, length: 0 },
-      departments: [
-        "INNOVATION",
-        "SALES",
-        "BPR",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-      ],
       categories: [
         "Project Planning",
         "Project Design",
@@ -36,7 +21,7 @@ export default class Createproject extends Component {
         "Project Deployment",
         "Project Finalization",
       ],
-      lead: [
+      assignee: [
         "Abhisheck Badjatiya",
         "Dwarka Tiwari",
         "Anubhab",
@@ -45,7 +30,9 @@ export default class Createproject extends Component {
         "Project Deployment",
         "Project Finalization",
       ],
-      projectname: "",
+      tasktitle: "",
+      description: "",
+      targetdate: "",
     };
   }
   create_project = () => {};
@@ -56,11 +43,8 @@ export default class Createproject extends Component {
 
   selected_fun = (status, index, items) => {
     if (status === "add") {
-      this.state.selected.data = {};
-      this.state.selected.length = 0;
       this.state.selected.data[index] = items;
       this.state.selected.length++;
-      this.display_fun(false);
       this.setState({
         selected: this.state.selected,
       });
@@ -78,21 +62,13 @@ export default class Createproject extends Component {
   };
 
   selected_fun_categories = (status, index, items) => {
-    console.log("status, index,items: ", status, index, items);
     if (status === "add") {
+      this.state.selected_categories.data = {};
+      this.state.selected_categories.length = 0;
+
       this.state.selected_categories.data[index] = items;
       this.state.selected_categories.length++;
-      this.setState({
-        selected_categories: this.state.selected_categories,
-      });
-    } else if (status === "new") {
-      this.state.categories.unshift(items);
-      this.state.selected_categories.data[0] = items;
-      for (let i = 1; i < this.state.selected_categories.length; i++) {
-        this.state.selected_categories.data[i + 1] =
-          this.state.selected_categories.data[i];
-      }
-      this.state.selected_categories.length++;
+      this.display_fun_categories(false);
       this.setState({
         selected_categories: this.state.selected_categories,
       });
@@ -103,28 +79,28 @@ export default class Createproject extends Component {
     }
   };
 
-  // for Lead
+  // for Assignee
 
-  display_lead = (status) => {
-    this.setState({ display_lead: status });
+  display_assignee = (status) => {
+    this.setState({ display_assignee: status });
   };
 
-  selected_lead = (status, index, items) => {
+  selected_assignee = (status, index, items) => {
     if (status === "add") {
-      this.state.selected_lead.data[index] = items;
-      this.state.selected_lead.length++;
+      this.state.selected_assignee.data[index] = items;
+      this.state.selected_assignee.length++;
       this.setState({
-        selected_lead: this.state.selected_lead,
+        selected_assignee: this.state.selected_assignee,
       });
     } else {
-      delete this.state.selected_lead.data[index];
-      this.state.selected_lead.length--;
-      this.setState({ selected_lead: this.state.selected_lead });
+      delete this.state.selected_assignee.data[index];
+      this.state.selected_assignee.length--;
+      this.setState({ selected_assignee: this.state.selected_assignee });
     }
   };
 
   input_handle_fun = (value) => {
-    this.setState({ projectname: value });
+    this.setState({ tasktitle: value });
   };
 
   traget_date_input_handle_fun = (value) => {
@@ -138,7 +114,7 @@ export default class Createproject extends Component {
           <div className="createproject_subcontainer">
             <div className="section3">
               <Createsection
-                label="Unique Project Name"
+                label="Task Title"
                 type="input"
                 input_handle_fun={this.input_handle_fun}
               />
@@ -150,7 +126,7 @@ export default class Createproject extends Component {
                 input_handle_fun={this.traget_date_input_handle_fun}
               />
             </div>
-            <div className="section1">
+            {/* <div className="section1">
               <Createsection
                 label="Select Team"
                 searchtitle="Search Team Name Here"
@@ -161,11 +137,11 @@ export default class Createproject extends Component {
                 display_fun={this.display_fun}
                 selected_fun={this.selected_fun}
               />
-            </div>
+            </div> */}
             <div className="section4">
               <Createsection
-                label="Select Categories"
-                searchtitle="Search Team Name Here"
+                label="Select Category"
+                searchtitle="Search Categories Here"
                 data={this.state.categories}
                 type="dropdown"
                 selected={this.state.selected_categories}
@@ -177,14 +153,14 @@ export default class Createproject extends Component {
 
             <div className="section5">
               <Createsection
-                label="Select Project Lead"
+                label="Select Assignee"
                 searchtitle="Search Name Here"
-                data={this.state.lead}
+                data={this.state.assignee}
                 type="dropdown"
-                selected={this.state.selected_lead}
-                display={this.state.display_lead}
-                display_fun={this.display_lead}
-                selected_fun={this.selected_lead}
+                selected={this.state.selected_assignee}
+                display={this.state.display_assignee}
+                display_fun={this.display_assignee}
+                selected_fun={this.selected_assignee}
               />
             </div>
           </div>
@@ -194,7 +170,7 @@ export default class Createproject extends Component {
           ></textarea>
           <div className="create_project_button">
             <Button
-              title="Create Project"
+              title="Create Task"
               width={"100%"}
               fun={this.create_project}
             />
@@ -205,4 +181,4 @@ export default class Createproject extends Component {
   }
 }
 
-Createproject.contextType = AppContext;
+Createtask.contextType = AppContext;

@@ -8,12 +8,15 @@
     width: 90%;
     background-color: white;
     padding: 10px;
-    height: 90px;
     border-radius: 5px;
   }
 
   .card_top {
     @include flexalign(space-between);
+
+    ion-icon {
+      color: black;
+    }
   }
 
   .card_subcontainer2 {
@@ -51,6 +54,10 @@
 
 .card_middle {
   @include flexalign(start);
+}
+
+ion-icon {
+  color: black;
 }
 
 .card_bottom {

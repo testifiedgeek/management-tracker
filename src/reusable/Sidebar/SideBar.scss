@@ -32,6 +32,10 @@
     color: white;
     font-weight: 500;
     cursor: pointer;
+
+    ion-icon {
+      color: white;
+    }
   }
 
   .sidebar_buttons:hover {
@@ -48,7 +52,8 @@
   }
 
   .sidebar_bottom {
-    margin-top: 300px;
+    position: absolute;
+    bottom: 15px;
   }
 
   .sidebar_items {
@@ -111,6 +116,7 @@
       ion-icon {
         font-size: 22px;
         opacity: 0.5;
+        color: white;
       }
     }
   }

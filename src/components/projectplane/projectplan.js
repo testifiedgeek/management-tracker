@@ -2,12 +2,22 @@ import React, { Component } from "react";
 import ShowStats from "../../reusable/statisticsData/statisticsCircle";
 import Infoboxes from "../../reusable/infoboxes/infoboxes";
 import Button from "../../reusable/button/button";
+import Createtask from "../createtasks/createtasks";
 import "./projectplane.scss";
+import navigate from "../../helperfunctions/navigation";
+import AppContext from "../../context/AppContext";
 
 export default class Projectplan extends Component {
-  createtask = () => {
-    console.log("hello");
+  create_task = () => {
+    navigate(
+      "push",
+      "/project-overview",
+      "Create Task",
+      this.props.history,
+      this.context
+    );
   };
+
   render() {
     return (
       <div>
@@ -39,13 +49,19 @@ export default class Projectplan extends Component {
         </div>
 
         {/* Web View for categories */}
-        <div className="plane_sections">
-          <div className="plane_subsections">
-            <h5>Categories</h5>
-            <h5>Filter</h5>
+        {this.context.state.page === "Create Task" ? (
+          <div className="create_task">
+            <Createtask />
           </div>
-          <Button title="Create Task" fun={this.createtask} />
-        </div>
+        ) : (
+          <div className="plane_sections">
+            <div className="plane_subsections">
+              <h5>Categories</h5>
+              <h5>Filter</h5>
+            </div>
+            <Button title="Create Task" fun={this.create_task} />
+          </div>
+        )}
 
         {/* Mobile View for categories */}
         <div className="plane_mobile_sections">
@@ -55,3 +71,5 @@ export default class Projectplan extends Component {
     );
   }
 }
+
+Projectplan.contextType = AppContext;

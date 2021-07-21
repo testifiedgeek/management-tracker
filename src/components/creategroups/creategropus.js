@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-import "./createproject.scss";
+import "./creategroup.scss";
 import AppContext from "../../context/AppContext";
 import { Createsection } from "../../reusable/creationprocess/Createsection";
 import Button from "../../reusable/button/button";
 
-export default class Createproject extends Component {
+export default class Creategroups extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: { data: {}, length: 0 },
       display: false,
-      display_catgegories: false,
-      display_lead: false,
-      selected_lead: { data: {}, length: 0 },
-      selected_categories: { data: {}, length: 0 },
+      display_members: false,
+      selected_members: { data: {}, length: 0 },
       departments: [
         "INNOVATION",
         "SALES",
@@ -27,16 +25,7 @@ export default class Createproject extends Component {
         "AI",
         "TECHNOLOGY",
       ],
-      categories: [
-        "Project Planning",
-        "Project Design",
-        "Project Requirements",
-        "Project Development",
-        "Project Testing",
-        "Project Deployment",
-        "Project Finalization",
-      ],
-      lead: [
+      members: [
         "Abhisheck Badjatiya",
         "Dwarka Tiwari",
         "Anubhab",
@@ -45,7 +34,7 @@ export default class Createproject extends Component {
         "Project Deployment",
         "Project Finalization",
       ],
-      projectname: "",
+      groupname: "",
     };
   }
   create_project = () => {};
@@ -73,33 +62,22 @@ export default class Createproject extends Component {
 
   // for Categories
 
-  display_fun_categories = (status) => {
-    this.setState({ display_catgegories: status });
+  display_fun_members = (status) => {
+    this.setState({ display_members: status });
   };
 
-  selected_fun_categories = (status, index, items) => {
+  selected_fun_members = (status, index, items) => {
     console.log("status, index,items: ", status, index, items);
     if (status === "add") {
-      this.state.selected_categories.data[index] = items;
-      this.state.selected_categories.length++;
+      this.state.selected_members.data[index] = items;
+      this.state.selected_members.length++;
       this.setState({
-        selected_categories: this.state.selected_categories,
-      });
-    } else if (status === "new") {
-      this.state.categories.unshift(items);
-      this.state.selected_categories.data[0] = items;
-      for (let i = 1; i < this.state.selected_categories.length; i++) {
-        this.state.selected_categories.data[i + 1] =
-          this.state.selected_categories.data[i];
-      }
-      this.state.selected_categories.length++;
-      this.setState({
-        selected_categories: this.state.selected_categories,
+        selected_members: this.state.selected_members,
       });
     } else {
-      delete this.state.selected_categories.data[index];
-      this.state.selected_categories.length--;
-      this.setState({ selected_categories: this.state.selected_categories });
+      delete this.state.selected_members.data[index];
+      this.state.selected_members.length--;
+      this.setState({ selected_members: this.state.selected_members });
     }
   };
 
@@ -124,7 +102,7 @@ export default class Createproject extends Component {
   };
 
   input_handle_fun = (value) => {
-    this.setState({ projectname: value });
+    this.setState({ groupname: value });
   };
 
   traget_date_input_handle_fun = (value) => {
@@ -138,22 +116,15 @@ export default class Createproject extends Component {
           <div className="createproject_subcontainer">
             <div className="section3">
               <Createsection
-                label="Unique Project Name"
+                label="Unique Group Name"
                 type="input"
                 input_handle_fun={this.input_handle_fun}
               />
             </div>
-            <div className="section3">
-              <Createsection
-                label="Targeted Date"
-                type="input"
-                input_handle_fun={this.traget_date_input_handle_fun}
-              />
-            </div>
             <div className="section1">
               <Createsection
-                label="Select Team"
-                searchtitle="Search Team Name Here"
+                label="Select Department"
+                searchtitle="Search Department Here"
                 type="dropdown"
                 data={this.state.departments}
                 selected={this.state.selected}
@@ -164,27 +135,14 @@ export default class Createproject extends Component {
             </div>
             <div className="section4">
               <Createsection
-                label="Select Categories"
-                searchtitle="Search Team Name Here"
-                data={this.state.categories}
-                type="dropdown"
-                selected={this.state.selected_categories}
-                display={this.state.display_catgegories}
-                display_fun={this.display_fun_categories}
-                selected_fun={this.selected_fun_categories}
-              />
-            </div>
-
-            <div className="section5">
-              <Createsection
-                label="Select Project Lead"
+                label="Select Members"
                 searchtitle="Search Name Here"
-                data={this.state.lead}
+                data={this.state.members}
                 type="dropdown"
-                selected={this.state.selected_lead}
-                display={this.state.display_lead}
-                display_fun={this.display_lead}
-                selected_fun={this.selected_lead}
+                selected={this.state.selected_members}
+                display={this.state.display_members}
+                display_fun={this.display_fun_members}
+                selected_fun={this.selected_fun_members}
               />
             </div>
           </div>
@@ -194,7 +152,7 @@ export default class Createproject extends Component {
           ></textarea>
           <div className="create_project_button">
             <Button
-              title="Create Project"
+              title="Create Group"
               width={"100%"}
               fun={this.create_project}
             />
@@ -205,4 +163,4 @@ export default class Createproject extends Component {
   }
 }
 
-Createproject.contextType = AppContext;
+Creategroups.contextType = AppContext;

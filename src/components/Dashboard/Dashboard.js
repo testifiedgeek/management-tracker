@@ -3,7 +3,7 @@ import TableContent from "../../reusable/table";
 import AppContext from "../../context/AppContext";
 import ShowStats from "../../reusable/statisticsData/statisticsCircle";
 import "./dashboard.scss";
-import Card from "../../reusable/cardcomponent/CardComponent";
+import { Card } from "../../reusable/cardcomponent/CardComponent";
 
 export default class Dashboard extends Component {
   render() {
