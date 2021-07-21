@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TableContent from "../../reusable/table";
 import AppContext from "../../context/AppContext";
 import ShowStats from "../../reusable/statisticsData/statisticsCircle";
 import "./dashboard.scss";
@@ -29,14 +28,14 @@ export default class Dashboard extends Component {
         </div>
         <h4>Tasks Assign to me</h4>
         <div className="table_data_webview">
-          <TableContent
+          {/* <TableContent
             title="Project Developement"
             content={[
               { srno: 1, key1: "wow", key2: "wow", key3: "wow" },
               { srno: 1, key1: "wow", key2: "wow", key3: "wow" },
               { srno: 1, key1: "wow", key2: "wow", key3: "wow" },
             ]}
-          />
+          /> */}
         </div>
 
         <div className="card_data_mobileview">

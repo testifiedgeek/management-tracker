@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "../scss/App.scss";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import TableContent from "../reusable/table";
-import CreateNewTask from "../reusable/createtask";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "../components/Login";
 import Projects from "./projects/Projects";

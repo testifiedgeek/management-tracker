@@ -1,0 +1,43 @@
+.modal {
+  position: absolute;
+  z-index: 1;
+  width: 25%;
+  height: 50%;
+  background-color: white;
+
+  span {
+    margin-right: 10px;
+  }
+
+  label {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  input {
+    height: 25px;
+    border: 1px solid black;
+    width: 80%;
+    padding: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  #details {
+    height: 40px;
+  }
+}
+
+.close {
+  float: right;
+}
+
+.detail_input {
+  font-size: 10px;
+  color: grey;
+}
+
+td.text-center input {
+  margin: 10px;
+}
