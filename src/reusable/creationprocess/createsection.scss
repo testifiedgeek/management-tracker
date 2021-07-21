@@ -1,0 +1,21 @@
+@import "../../scss/global.scss";
+
+.section_container {
+  margin: 15px;
+  @include flexalign(center);
+
+  .section_subcontainer {
+    width: 92%;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+    background-color: #f7f7f7;
+    padding: 15px;
+    cursor: pointer;
+    @include flexalign(center);
+    label {
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+    }
+  }
+}

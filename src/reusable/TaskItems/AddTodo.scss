@@ -1,0 +1,32 @@
+.create_task{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    input{
+        width: 300px;
+        height: 50px;
+        flex: 1;
+        padding-left: 10px;
+        border-bottom: 0;
+    }
+
+    button{
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.input-group-append{
+    background-color: white;
+    padding-right: 10px;
+    
+    img{
+        
+        width: 100%;
+        margin-top: 10px;
+        
+        cursor: pointer;
+        
+    }
+}

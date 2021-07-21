@@ -1,0 +1,85 @@
+.login_container{
+  width: 48%;
+  height: auto;
+  padding: 15px;
+  margin: auto;
+  margin-top: 130px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0  rgba(194, 198, 208, 0.5);;
+  position: relative;
+  
+}
+
+.login_form {
+  text-align: center;
+  margin: 15px 100px;
+}
+
+.login_input {
+  width: 85%;
+  padding: 17px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.input_placeholder {
+  float: left;
+  background: white;
+  margin-left: 25px;
+  margin-top: -10px;
+  z-index: 1;
+  position: absolute;
+  color: grey;
+  font-size: 15px;
+}
+
+.welcome_container {
+  text-align: center;
+  margin: 30px 0 70px 0;
+}
+
+.welcome {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.welcome_subtitle {
+  color: grey;
+  font-size: 15px;
+}
+
+.blue_submit {
+  width: 45%;
+  height: 45px;
+  border-radius: 2px;
+  background-color: #2541b2;
+  color: white;
+  font-size: 16px;
+  /* position: fixed; */
+  bottom: 15px;
+  border: unset;
+  cursor: pointer;
+}
+
+
+
+@media only screen and (min-width : 280px) {
+  .login_container{ width: 100%;
+   }
+
+}
+
+@media only screen and (min-width : 480px) {
+  .login_container{ width: 85%; }
+}
+
+@media only screen and (min-width : 768px) {
+  .login_container{ width: 68% }
+}
+
+@media only screen and (min-width : 992px) {
+  .login_container{ width: 48% }
+}
+

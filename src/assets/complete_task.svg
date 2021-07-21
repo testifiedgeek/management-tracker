@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="78" height="23" viewBox="0 0 78 23">
+    <g fill="#008d05" transform="translate(-261 -302)">
+        <rect width="78" height="23" opacity="0.25" rx="4" transform="translate(261 302)"/>
+        <text font-family="Roboto-Regular, Roboto" font-size="12px" transform="translate(271 318)">
+            <tspan x="0" y="0">Completed</tspan>
+        </text>
+    </g>
+</svg>

@@ -1,0 +1,45 @@
+@import "../../scss/global.scss";
+
+// Web Screens
+@media screen and (min-width: 600px) {
+  .createproject_container {
+    .createproject_subcontainer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, auto);
+      .create_project_button {
+        grid-column-start: 4;
+        grid-column-end: 4;
+      }
+    }
+  }
+}
+
+// Mobile Screens
+@media screen and (max-width: 600px) {
+  .createproject_container {
+    width: 100%;
+    margin-top: 20px;
+    // Animation
+
+    @keyframes slide {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0%);
+      }
+    }
+    animation: slide 0.5s;
+
+    @include flexalign(center);
+    align-items: start;
+    .createproject_subcontainer {
+      width: 90%;
+
+      .create_project_button {
+        @include flexalign(center);
+      }
+    }
+  }
+}

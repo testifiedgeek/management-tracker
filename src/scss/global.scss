@@ -1,0 +1,42 @@
+$lightgreycolor: #707070;
+$mediumfontsize: 15px;
+$smallfontsize: 12px;
+$largefontsize: 18px;
+$primarycolour: #2541b2;
+$secondarycolor: #15309c;
+$mobile_background: #f8f9fd;
+
+@mixin flexalign($align) {
+  display: flex;
+  justify-content: $align;
+  align-items: center;
+}
+
+@mixin animations() {
+  // Animations
+  @keyframes mymove {
+    from {
+      transform: scaleY(1.1);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  animation: mymove 0.5s;
+}
+
+h4 {
+  margin: unset;
+  padding: unset;
+}
+
+h3,
+h2,
+h5 {
+  margin: unset;
+}
+
+h6 {
+  margin: unset;
+}
