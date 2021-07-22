@@ -4,8 +4,79 @@ import ShowStats from "../../reusable/statisticsData/statisticsCircle";
 import "./dashboard.scss";
 import { Card } from "../../reusable/cardcomponent/CardComponent";
 import TodoList from "../../reusable/createSubtask";
+import { Fetch_function } from "../../helperfunctions/fetchdata";
+import navigate from "../../helperfunctions/navigation";
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  async componentDidMount() {
+    // Fetch Tasks assign to loged in user
+
+    let api_data = {
+      path: "/tasks",
+      method: "POST",
+      body: {
+        // employeeId:employeeid,
+        // password
+      },
+    };
+    let result = await Fetch_function(api_data);
+    if (result) {
+      if (result.msg === "Login Successfull") {
+        console.log("result: ", result);
+        this.context.set_warning(
+          true,
+          "Succesfull",
+          "Successfully Loged In",
+          "green",
+          this.context
+        );
+        let user = {
+          name: "Dwarka ",
+          email: "dwarka@gmail.com",
+          profession: "AVP Head",
+          employeeid: "142743",
+        };
+        this.context.set_user_details(user);
+        navigate(
+          "push",
+          "/dashboard",
+          "Dashboard",
+          this.props.history,
+          this.context
+        );
+      } else if (result.msg === "Login failed") {
+        this.context.set_warning(
+          true,
+          "failed",
+          "Please Enter Write Credentials",
+          "red",
+          this.context
+        );
+      } else if (result.msg === "Something Went Wrong") {
+        this.context.set_warning(
+          true,
+          "failed",
+          "Something Went Wrong",
+          "red",
+          this.context
+        );
+      }
+    } else {
+      this.context.set_warning(
+        true,
+        "failed",
+        "Something Went Wrong",
+        "red",
+        this.context
+      );
+    }
+  }
+
   render() {
     return (
       <div className="dashboard_container">

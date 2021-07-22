@@ -3,6 +3,8 @@ import "./creategroup.scss";
 import AppContext from "../../context/AppContext";
 import { Createsection } from "../../reusable/creationprocess/Createsection";
 import Button from "../../reusable/button/button";
+import navigate from "../../helperfunctions/navigation";
+import { Fetch_function } from "../../helperfunctions/fetchdata";
 
 export default class Creategroups extends Component {
   constructor(props) {
@@ -37,7 +39,68 @@ export default class Creategroups extends Component {
       groupname: "",
     };
   }
-  create_project = () => {};
+  create_group = async () => {
+    // Create new Project
+
+    let api_data = {
+      path: "/tasks",
+      method: "POST",
+      body: {
+        //group name , daepartment, members object
+      },
+    };
+    let result = await Fetch_function(api_data);
+    if (result) {
+      if (result.msg === "Login Successfull") {
+        console.log("result: ", result);
+        this.context.set_warning(
+          true,
+          "Succesfull",
+          "Successfully Loged In",
+          "green",
+          this.context
+        );
+        let user = {
+          name: "Dwarka ",
+          email: "dwarka@gmail.com",
+          profession: "AVP Head",
+          employeeid: "142743",
+        };
+        this.context.set_user_details(user);
+        navigate(
+          "push",
+          "/dashboard",
+          "Dashboard",
+          this.props.history,
+          this.context
+        );
+      } else if (result.msg === "Login failed") {
+        this.context.set_warning(
+          true,
+          "failed",
+          "Please Enter Write Credentials",
+          "red",
+          this.context
+        );
+      } else if (result.msg === "Something Went Wrong") {
+        this.context.set_warning(
+          true,
+          "failed",
+          "Something Went Wrong",
+          "red",
+          this.context
+        );
+      }
+    } else {
+      this.context.set_warning(
+        true,
+        "failed",
+        "Something Went Wrong",
+        "red",
+        this.context
+      );
+    }
+  };
 
   display_fun = (status) => {
     this.setState({ display: status });
@@ -154,7 +217,7 @@ export default class Creategroups extends Component {
             <Button
               title="Create Group"
               width={"100%"}
-              fun={this.create_project}
+              fun={this.create_group}
             />
           </div>
         </div>

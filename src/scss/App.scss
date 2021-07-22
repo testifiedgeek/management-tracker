@@ -121,17 +121,6 @@ input {
     justify-content: start;
   }
 
-  .login_container {
-    width: 48%;
-    height: auto;
-    padding: 15px;
-    margin: 38px 145px;
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0 5px 30px 0 rgba(194, 198, 208, 0.5);
-    position: relative;
-  }
-
   .start_container {
     width: 48%;
     height: 379px;
@@ -348,19 +337,6 @@ input {
     width: 100%;
     max-width: 299px;
     height: auto;
-  }
-
-  .login_form {
-    text-align: center;
-    margin: 15px 100px;
-  }
-
-  .login_input {
-    width: 85%;
-    padding: 17px 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
   }
 
   .input_placeholder {

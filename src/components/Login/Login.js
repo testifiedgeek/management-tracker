@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "../Login/Login.scss";
 import officePana from "../../assets/Login.svg";
 import MainApp from "../MainApp";
+import { Fetch_function } from "../../helperfunctions/fetchdata";
+import Warning from "../../helperfunctions/warningfunction";
+import navigate from "../../helperfunctions/navigation";
 import AppContext from "../../context/AppContext";
 
 export default class Login extends Component {
@@ -17,13 +20,65 @@ export default class Login extends Component {
     this.setState({ employeeid: value });
   };
 
-  password = (value) => {
+  passwordInput = (value) => {
     this.setState({ password: value });
   };
-  handleSubmit = (e, context) => {
+
+  handleSubmit = async (e, context) => {
+    let { employeeid, password } = this.state;
     e.preventDefault();
-    console.log("Submitted!");
-    this.context.updateLoginStatus(true);
+    let api_data = {
+      path: "/login",
+      method: "POST",
+      body: {
+        employeeId: employeeid,
+        password,
+      },
+    };
+    let result = await Fetch_function(api_data);
+    if (result.msg === "Login Successfull") {
+      console.log("result: ", result);
+      window.localStorage.setItem("hdfcmanagementtracker", result.data.token);
+      this.context.set_warning(
+        true,
+        "Succesfull",
+        "Successfully Loged In",
+        "green",
+        this.context
+      );
+      let user = {
+        name: "Dwarka ",
+        email: "dwarka@gmail.com",
+        profession: "AVP Head",
+        employeeid: "142743",
+      };
+      this.context.set_user_details(user);
+      setTimeout(() => {
+        navigate(
+          "push",
+          "/dashboard",
+          "Dashboard",
+          this.props.history,
+          this.context
+        );
+      }, 2000);
+    } else if (result.msg === "Login failed") {
+      this.context.set_warning(
+        true,
+        "failed",
+        "Please Enter Write Credentials",
+        "red",
+        this.context
+      );
+    } else if (result.msg === "Something Went Wrong") {
+      this.context.set_warning(
+        true,
+        "failed",
+        "Something Went Wrong",
+        "red",
+        this.context
+      );
+    }
   };
 
   handleForgetPassword = () => {
@@ -32,11 +87,9 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div style={{ display: "flex", justifyContent: "flexStart" }}>
-        <div className="office-pana">
-          <img src={officePana} />
-        </div>
-        <div className="login_container">
+      <div className="login_container">
+        <img src={officePana} />
+        <div className="login_info_container">
           <div className="welcome_container">
             <div className="welcome">Welcome!</div>
             <div className="welcome_subtitle">Sign in to continue</div>

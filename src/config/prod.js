@@ -1,5 +1,5 @@
 const Prod = {
-  APP_URL: "localhost:3000/",
+  SERVER_URL: "",
 };
 
 export default Prod;

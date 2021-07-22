@@ -1,0 +1,34 @@
+@import "../../scss/global.scss";
+
+// web screen
+@media screen and (min-width: 600px) {
+  .warning_container {
+    .warning_sub_container {
+      h6 {
+      }
+    }
+  }
+}
+
+// mobile screen
+@media screen and (max-width: 600px) {
+  .warning_container {
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    right: 0px;
+    left: 0;
+    width: 100%;
+
+    @include flexalign(center);
+    @include slide();
+    .warning_sub_container {
+      width: 90%;
+      text-align: center;
+      border-radius: 5;
+      h6 {
+        font-size: 14px;
+      }
+    }
+  }
+}
