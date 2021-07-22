@@ -99,6 +99,16 @@ export default class Workspace extends Component {
     return 0;
   };
 
+  show_group = () => {
+    navigate(
+      "push",
+      "/group",
+      "Group",
+      this.props.history,
+      this.context
+    );
+  }
+
   render() {
     return (
       <div className="workspace_container">
@@ -247,7 +257,7 @@ export default class Workspace extends Component {
             headings={["Group Name", "Team Members", ""]}
             serial="true"
             viewButton="true"
-            handleViewButton={this.create_new_group}
+            handleViewButton={this.show_group}
           />
         </div>
 

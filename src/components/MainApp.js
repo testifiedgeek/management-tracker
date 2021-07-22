@@ -3,7 +3,7 @@ import "../scss/App.scss";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "../components/Login/Login";
-import Projects from "./projects/Projects";
+import Projects from "./Projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
 import TaskDetails from "../components/TaskDetails";
