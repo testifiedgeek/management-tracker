@@ -19,7 +19,7 @@ export default class Login extends Component {
 
     render() {
       return (
-        <div style={{ display: 'flex', justifyContent: 'flexStart' }}>
+        <div style={{ display: 'flex', justifyContent: 'flexStart'}}>
         <div className="office-pana">
           <img src={officePana}/>
         </div>
