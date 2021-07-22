@@ -3,7 +3,7 @@
 // Mobile Screen
 
 @media screen and (max-width: 600px) {
-  .project_overview_container {
+  .display_group_container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 40px auto;
@@ -64,13 +64,13 @@
       cursor: pointer;
       font-size: $mediumfontsize;
 
-      .active_project_plan {
+      .active_group_chat {
         color: black;
         font-weight: bold;
         font-size: $mediumfontsize;
       }
 
-      .inactive_project_plan {
+      .inactive_group_chat {
         color: lightgrey;
         font-weight: medium;
         font-size: $mediumfontsize;

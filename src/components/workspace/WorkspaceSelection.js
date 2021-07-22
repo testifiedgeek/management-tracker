@@ -13,6 +13,7 @@ import TableCard from "../../reusable/TableCard/TableCard";
 import Popup from "../../reusable/Popup/Popup";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import DisplayGroup from "../DisplayGroup/displayGroup";
+import ViewTeam from "../../reusable/ViewTeam/ViewTeam";
 
 export default class Workspace extends Component {
   constructor(props) {
@@ -99,6 +100,16 @@ export default class Workspace extends Component {
     this.setState({ seen: !this.state.seen });
     return 0;
   };
+
+  show_group = () => {
+    navigate(
+      "push",
+      "/group",
+      "Group",
+      this.props.history,
+      this.context
+    );
+  }
 
   async componentDidMount() {
     // Fetch All Departements in managements tracker
@@ -313,6 +324,9 @@ export default class Workspace extends Component {
             serial="true"
             viewButton="true"
             handleViewButton={this.show_group}
+            viewTeam="true"
+
+
           />
         </div>
 

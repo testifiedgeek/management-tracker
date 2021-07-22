@@ -4,6 +4,7 @@ import GenarateName from "../namecirclegenerator/criclegenrator";
 import navigate from "../../helperfunctions/navigation";
 import { withRouter } from "react-router-dom";
 import AppContext from "../../context/AppContext";
+import ViewTeam from "../ViewTeam/ViewTeam";
 
 
 export default class TableCard extends Component {
@@ -12,15 +13,13 @@ export default class TableCard extends Component {
     this.state = {};
   }
 
-  handleViewtask = () => {
-    console.log("view clicked");
-  };
+  
 
 
   renderViewTask = () => {
     if (this.props.task === "true") {
       return (
-        <td className="table_heading" onClick={this.handleViewtask}>
+        <td className="view_task" onClick={() => this.props.handleViewTask()}>
           View Task
         </td>
       );
@@ -32,7 +31,7 @@ export default class TableCard extends Component {
       
       return (
         
-        <td className="table_heading" onClick={() => this.props.handleViewButton()}>
+        <td className="view_button" onClick={() => this.props.handleViewButton()}>
           <ion-icon name="ellipsis-vertical-outline"></ion-icon>
         </td>
       )
@@ -68,14 +67,30 @@ export default class TableCard extends Component {
                 <tr className="table_row" key={key}>
                   <td className="table_heading">{key + 1}</td>
                   {TableRow.map((newVal, id) => {
-                    if (newVal === "name") {
+                    if (newVal === "name" && this.props.fullName==="true") {
                       return (
                         <td key={id} className="table_heading">
-                          {" "}
+                          
+                        <div className="box_info_container">
                           <GenarateName name={val[newVal]} />
+                          <h4>{val[newVal]}</h4>
+                         </div>
                         </td>
                       );
-                    } else {
+                    }else if (newVal === "name" && this.props.fullName==="false") {
+                      return (
+                        <td key={id} className="table_heading">
+                          <GenarateName name={val[newVal]} /> 
+                        </td>
+                      );
+                    } 
+                    else if (newVal === "name" && this.props.viewTeam==="true") {
+                      return (
+                        <td key={id} className="table_heading">
+                          <ViewTeam info={TableData} /> 
+                        </td>
+                      );
+                    } else{
                       return (
                         <td key={id} className="table_heading">
                           {val[newVal]}

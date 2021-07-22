@@ -4,18 +4,19 @@ import RepresentData from '../../reusable/textinfo/textdata';
 import Projectplan from '../projectplane/projectplan';
 import Projectupdates from '../projectupdates/projectupdates';
 import AppContext from '../../context/AppContext';
+import TodoList from '../../reusable/createSubtask';
 
 export default class DisplayGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          tab: "project_plan",
+          tab: "group_chat",
         };
       }
       render() {
         return (
           <div>
-            <div className="project_overview_container">
+            <div className="display_group_container">
               <div className="represent_data">
                 <RepresentData
                   infodata={{
@@ -29,38 +30,38 @@ export default class DisplayGroup extends Component {
               <div className="tabs_section">
                 <span
                   onClick={() =>
-                    this.setState({ tab: "project_plan" }, () =>
-                      this.context.set_page("Project Overview")
+                    this.setState({ tab: "group_chat" }, () =>
+                      this.context.set_page("Group")
                     )
                   }
                 >
-                  {this.state.tab === "project_plan" ? (
-                    <span className="active_project_plan">PROJECT PLANES</span>
+                  {this.state.tab === "group_chat" ? (
+                    <span className="active_group_chat">Chat</span>
                   ) : (
-                    <span className="inactive_project_plan">PROJECT PLANES</span>
+                    <span className="inactive_group_chat">Chat</span>
                   )}
                 </span>
                 <span
                   onClick={() =>
-                    this.setState({ tab: "project_updates" }, () =>
-                      this.context.set_page("Write Update")
+                    this.setState({ tab: "group_tasks" }, () =>
+                      this.context.set_page("View Task")
                     )
                   }
                 >
-                  {this.state.tab === "project_updates" ? (
-                    <span className="active_project_plan">PROJECT UPDATES</span>
+                  {this.state.tab === "group_tasks" ? (
+                    <span className="active_group_chat">Task</span>
                   ) : (
-                    <span className="inactive_project_plan">PROJECT UPDATES</span>
+                    <span className="inactive_group_chat">Task</span>
                   )}
                 </span>
               </div>
             </div>
             {/* Render Child Components on the basis of above conditions */}
     
-            {this.state.tab === "project_plan" ? (
-              <Projectplan history={this.props.history} />
-            ) : (
+            {this.state.tab === "group_chat" ? (
               <Projectupdates />
+            ) : (
+              <TodoList />
             )}
           </div>
         );

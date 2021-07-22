@@ -1,3 +1,6 @@
+@import "../../scss/global.scss";
+
+
 .user_container {
   // width: 390px;
   // height: auto;
@@ -22,6 +25,32 @@ th.table_heading {
   padding: 10px 30px;
   text-align: left;
   border-bottom: 4px solid #f9f8ff;
+}
+
+div .box_info_container {
+  @include flexalign(start);
+ 
+  
+}
+
+.view_task{
+  padding: 10px 30px;
+  text-align: left;
+  border-bottom: 4px solid #f9f8ff;
+  color: #2541b2;
+  font-weight: bolder;
+  cursor: pointer;
+
+}
+
+
+.view_button{
+  padding:10px 30px;
+  text-align: left;
+  width: 60%;
+  border-bottom: 4px solid #f9f8ff;
+  cursor: pointer;
+
 }
 
 tr th {

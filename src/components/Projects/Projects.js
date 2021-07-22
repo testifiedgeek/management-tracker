@@ -61,6 +61,16 @@ export default class Projects extends Component {
     );
   };
 
+  show_project_overview = () => {
+    navigate(
+      "push",
+      "/project-overview",
+      "Project Overview",
+      this.props.history,
+      this.context
+    );
+  }
+
   async componentDidMount() {
     // Fetch Projects in which loged in user is included
 
@@ -211,6 +221,8 @@ export default class Projects extends Component {
               ]}
               serial="true"
               task="true"
+              fullName="true"
+              handleViewTask={this.show_project_overview}
             />
           </div>
         </div>
