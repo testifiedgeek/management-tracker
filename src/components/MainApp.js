@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "../scss/App.scss";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
-import Login from '../components/Login/Login'
-import Projects from "./Projects/Projects";
+import Login from "../components/Login/Login";
+import Projects from "./projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
 import TaskDetails from "../components/TaskDetails";
@@ -55,8 +55,8 @@ export default class MainApp extends Component {
   };
 
   updateLoginStatus = (status) => {
-    this.setState({isLogin: status});
-  }
+    this.setState({ isLogin: status });
+  };
 
   render() {
     return (
@@ -67,67 +67,76 @@ export default class MainApp extends Component {
               state: this.state,
               set_page: this.set_page,
               set_backpage: this.set_backpage,
-              updateLoginStatus:this.updateLoginStatus
+              updateLoginStatus: this.updateLoginStatus,
             }}
           >
             <BrowserRouter>
-              <div >
-              {this.state.isLogin === false ? (<div>
-                <Switch>
-                  <Route path="" component={Login} exact />
-                </Switch>
-              </div>):(<div className="grid_container">
-                
-                <div className="header">
-                  <Header />
-                </div>
-                {this.state.loading === false ? (
-                  <div className="main">
+              <div>
+                {this.state.isLogin === false ? (
+                  <div>
                     <Switch>
-                      <Route path="/projects" component={Projects} exact />
-                      <Route
-                        path="/project-overview"
-                        component={ProjectOverview}
-                        exact
-                      />
-                      <Route path="/dashboard" component={Dashboard} exact />
-                      <Route path="/" component={Dashboard} exact />
-                      <Route path="/profile" component={Profile} exact />
-                      <Route
-                        path="/write-update"
-                        component={Put_Updates}
-                        exact
-                      />
-                      <Route path="/workspace" component={Workspace} exact />
-                      <Route
-                        path="/create-project"
-                        component={Createproject}
-                        exact
-                      />
-                      <Route path="/create-task" component={Createtask} exact />
-                      <Route
-                        path="/create-group"
-                        component={Creategroups}
-                        exact
-                      />
-                      <Route
-                      path="/group"
-                      component={DisplayGroup}
-                      exact
-                      />
+                      <Route path="" component={Login} exact />
                     </Switch>
                   </div>
                 ) : (
-                  <div className="main">
-                    <Loading />
+                  <div className="grid_container">
+                    <div className="header">
+                      <Header />
+                    </div>
+                    {this.state.loading === false ? (
+                      <div className="main">
+                        <Switch>
+                          <Route path="/projects" component={Projects} exact />
+                          <Route
+                            path="/project-overview"
+                            component={ProjectOverview}
+                            exact
+                          />
+                          <Route
+                            path="/dashboard"
+                            component={Dashboard}
+                            exact
+                          />
+                          <Route path="/" component={Dashboard} exact />
+                          <Route path="/profile" component={Profile} exact />
+                          <Route
+                            path="/write-update"
+                            component={Put_Updates}
+                            exact
+                          />
+                          <Route
+                            path="/workspace"
+                            component={Workspace}
+                            exact
+                          />
+                          <Route
+                            path="/create-project"
+                            component={Createproject}
+                            exact
+                          />
+                          <Route
+                            path="/create-task"
+                            component={Createtask}
+                            exact
+                          />
+                          <Route
+                            path="/create-group"
+                            component={Creategroups}
+                            exact
+                          />
+                          <Route path="/group" component={DisplayGroup} exact />
+                        </Switch>
+                      </div>
+                    ) : (
+                      <div className="main">
+                        <Loading />
+                      </div>
+                    )}
+                    <div className="menu">
+                      <SideBar />
+                    </div>
                   </div>
                 )}
-                <div className="menu">
-                  <SideBar />
-                </div>
-              </div>
-              )}
-              
               </div>
             </BrowserRouter>
           </AppContext.Provider>

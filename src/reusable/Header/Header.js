@@ -48,7 +48,7 @@ class Header extends Component {
                   navigate(
                     "back",
                     "/project",
-                    "Projects",
+                    this.context.state.backpage,
                     this.props.history,
                     this.context
                   )
