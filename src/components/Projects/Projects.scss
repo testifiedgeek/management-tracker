@@ -78,15 +78,15 @@
     .create_project_btn {
       grid-column-start: 4;
       grid-column-end: 4;
-      grid-row-start: 4;
-      grid-row-end: 4;
+      grid-row-start: 2;
+      grid-row-end: 2;
       margin-top: 10px;
     }
     .search_container {
       grid-column-start: 1;
       grid-column-end: 3;
-      grid-row-start: 4;
-      grid-row-end: 4;
+      grid-row-start: 2;
+      grid-row-end: 2;
       margin-top: 10px;
     }
     .create_group_btn {
@@ -95,6 +95,11 @@
       grid-row-start: 4;
       grid-row-end: 4;
       margin-top: 10px;
+    }
+    .table_container{
+      grid-column-start: 1;
+      grid-row-start: 3;
+      grid-column-end: 4;
     }
   }
 

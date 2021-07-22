@@ -13,6 +13,7 @@ class Sidebar extends Component {
 
   logoutClicked(context) {
     navigate("push", "/", "", this.props.history, this.context);
+    this.context.updateLoginStatus(false);
   }
 
   dashboardClicked() {
