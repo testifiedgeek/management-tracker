@@ -87,19 +87,17 @@ export default class Workspace extends Component {
   create_new_group = () => {
     navigate(
       "push",
-      "/group",
-      "Group",
+      "/create-group",
+      "Create Group",
       this.props.history,
       this.context
     );
   };
 
   create_new_group_popup = () => {
-    this.setState({seen: !this.state.seen});
+    this.setState({ seen: !this.state.seen });
     return 0;
-  }
-
-
+  };
 
   render() {
     return (
@@ -107,7 +105,7 @@ export default class Workspace extends Component {
         {/* Work space Web container */}
 
         <div>
-          {this.context.state.page !== "Group" ? (
+          {this.context.state.page !== "Create Group" ? (
             <div className="main_workspace_web_container">
               <h3>All Groups</h3>
               <div class="search_container">
@@ -125,15 +123,18 @@ export default class Workspace extends Component {
                 </div>
               </div>
               <div className="create_group_btn">
-                <Button title="Create Group" fun={this.create_new_group_popup} />
+                <Button title="Create Group" fun={this.create_new_group} />
               </div>
             </div>
           ) : (
             <div className="project_createsection">
-              <DisplayGroup />
+              <Creategroups />
             </div>
           )}
           {/* Statistics Slide */}
+          {/* <div className='gropu_table_container'>
+             <DisplayGroup />
+          </div> */}
         </div>
 
         {/* Workspace Mobile container */}
@@ -201,27 +202,53 @@ export default class Workspace extends Component {
         ) : (
           <div></div>
         )}
-        
-        <div>
+
+        {/* <div>
           {this.state.seen ? <Popup 
             content={(
             <div><Creategroups /></div>
           )}
           handleClose={this.create_new_group_popup}
           /> : null}
-        </div>
-        
+        </div> */}
 
         {/* Workspace Web view tables */}
         <div className="web_view_gropudatacontainer">
-        <TableCard title="" 
-                           content={[{pr_name:"Sampoorn Suraksha", team:"Innovation", status:"Completed", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"Super Topup", team:"Innovation", status:"Incomplete", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"PYP Journey", key2:"wow", status:"incompleted", team:"Innovation", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}]} 
-                           rows={["pr_name","name"]}
-                           headings={["Group Name", "Team Members", ""]}
-                           serial="true"
-                           viewButton="true" 
-                           handleViewButton={this.create_new_group}               
-                />
+          <TableCard
+            title=""
+            content={[
+              {
+                pr_name: "Sampoorn Suraksha",
+                team: "Innovation",
+                status: "Completed",
+                name: "Mayur Dere",
+                st_date: "22/07/2021",
+                tg_date: "27/07/2021",
+              },
+              {
+                pr_name: "Super Topup",
+                team: "Innovation",
+                status: "Incomplete",
+                name: "Mayur Dere",
+                st_date: "22/07/2021",
+                tg_date: "27/07/2021",
+              },
+              {
+                pr_name: "PYP Journey",
+                key2: "wow",
+                status: "incompleted",
+                team: "Innovation",
+                name: "Mayur Dere",
+                st_date: "22/07/2021",
+                tg_date: "27/07/2021",
+              },
+            ]}
+            rows={["pr_name", "name"]}
+            headings={["Group Name", "Team Members", ""]}
+            serial="true"
+            viewButton="true"
+            handleViewButton={this.create_new_group}
+          />
         </div>
 
         {/* Workspace mobile card view */}

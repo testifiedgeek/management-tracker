@@ -6,6 +6,10 @@
     display: none;
   }
 
+  .table_container {
+    display: none;
+  }
+
   .search_container {
     background-color: white;
     padding: 7px;
@@ -96,7 +100,7 @@
       grid-row-end: 4;
       margin-top: 10px;
     }
-    .table_container{
+    .table_container {
       grid-column-start: 1;
       grid-row-start: 3;
       grid-column-end: 4;

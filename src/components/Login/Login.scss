@@ -1,22 +1,16 @@
-.office-pana{
-  background-color: #E5F6F5;
+.office-pana {
+  background-color: #e5f6f5;
   object-fit: contain;
-
 }
 
-.login_container{
+.login_container {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 45px;
   background-color: white;
   border-radius: 5px;
-
- 
-  
 }
-
-
 
 .login_input {
   width: 55%;
@@ -54,7 +48,7 @@
   font-weight: bold;
 }
 
-.forgot_password{
+.forgot_password {
   margin-left: 275px;
   font-size: 15px;
   font-weight: bold;
@@ -78,23 +72,26 @@
   margin-top: 100px;
 }
 
-
-
-@media only screen and (min-width : 280px) {
-  .login_container{ width: 100%;
-   }
-
+@media only screen and (min-width: 280px) {
+  .login_container {
+    width: 100%;
+  }
 }
 
-@media only screen and (min-width : 480px) {
-  .login_container{ width: 85%; }
+@media only screen and (min-width: 480px) {
+  .login_container {
+    width: 85%;
+  }
 }
 
-@media only screen and (min-width : 768px) {
-  .login_container{ width: 68% }
+@media only screen and (min-width: 768px) {
+  .login_container {
+    width: 68%;
+  }
 }
 
-@media only screen and (min-width : 992px) {
-  .login_container{ width: 100% }
+@media only screen and (min-width: 992px) {
+  .login_container {
+    width: 100%;
+  }
 }
-

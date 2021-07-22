@@ -6,7 +6,7 @@ import AppContext from "../../context/AppContext";
 import Createproject from "../createproject/Createproject";
 import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
-import TableCard from '../../reusable/TableCard/TableCard'
+import TableCard from "../../reusable/TableCard/TableCard";
 
 export default class Projects extends Component {
   constructor(props) {
@@ -77,10 +77,8 @@ export default class Projects extends Component {
     return (
       <div>
         <div>
-        {console.log(this.context)}
           {this.context.state.page !== "Create Project" ? (
             <div className="main_projects_web_container">
-            
               <h3>All Projects types - all categories</h3>
               <div class="search_container">
                 <div class="search_subcontainer">
@@ -96,21 +94,10 @@ export default class Projects extends Component {
                   <span>Sort By</span>
                 </div>
               </div>
-             
+
               <div className="create_project_btn">
                 <Button title="Create Project" fun={this.create_project} />
               </div>
-              <div className="table_container">
-              <TableCard title="" 
-                           content={[{pr_name:"Sampoorn Suraksha", team:"Innovation", status:"Completed", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"Super Topup", team:"Innovation", status:"Incomplete", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"PYP Journey", key2:"wow", status:"incompleted", team:"Innovation", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}]} 
-                           rows={["pr_name", "team","name", "st_date", "tg_date"]}
-                           headings={["Project Name", "Team","Project Lead", "Start Date", "Target Date", ""]}
-                           serial="true"
-                           task="true"
-                
-                />
-              </div>
-              
             </div>
           ) : (
             <div className="project_createsection">
@@ -118,6 +105,49 @@ export default class Projects extends Component {
             </div>
           )}
           {/* Statistics Slide */}
+          <div className="table_container">
+            <TableCard
+              title=""
+              content={[
+                {
+                  pr_name: "Sampoorn Suraksha",
+                  team: "Innovation",
+                  status: "Completed",
+                  name: "Mayur Dere",
+                  st_date: "22/07/2021",
+                  tg_date: "27/07/2021",
+                },
+                {
+                  pr_name: "Super Topup",
+                  team: "Innovation",
+                  status: "Incomplete",
+                  name: "Mayur Dere",
+                  st_date: "22/07/2021",
+                  tg_date: "27/07/2021",
+                },
+                {
+                  pr_name: "PYP Journey",
+                  key2: "wow",
+                  status: "incompleted",
+                  team: "Innovation",
+                  name: "Mayur Dere",
+                  st_date: "22/07/2021",
+                  tg_date: "27/07/2021",
+                },
+              ]}
+              rows={["pr_name", "team", "name", "st_date", "tg_date"]}
+              headings={[
+                "Project Name",
+                "Team",
+                "Project Lead",
+                "Start Date",
+                "Target Date",
+                "",
+              ]}
+              serial="true"
+              task="true"
+            />
+          </div>
         </div>
 
         {/* Mobile View of project screens */}
