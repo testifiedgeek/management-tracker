@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "../TaskItems/TodoItem.scss";
+import Popup from "../Popup/Popup";
+import "../TaskItems/Todoitems.scss";
 
 export default class TodoItem extends Component {
   state = {
@@ -53,11 +54,10 @@ export default class TodoItem extends Component {
           <button onClick={this.handleEditing}>:</button>
         </td>
         <div>
-          {this.state.seen ? (
+          {this.state.seen ? <Popup 
+            content={(
             <div className="modal" style={editMode}>
-              <span className="close" onClick={this.handleEditing}>
-                &times;
-              </span>
+              
               <br />
 
               <label htmlFor="title">Task Title</label>
@@ -88,7 +88,9 @@ export default class TodoItem extends Component {
                 onKeyDown={this.handleUpdatedDone}
               />
             </div>
-          ) : null}
+          )}
+          handleClose={this.handleEditing}
+          /> : null}
         </div>
       </React.Fragment>
     );

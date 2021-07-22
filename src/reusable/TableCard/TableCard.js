@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "../TableCard/TableCard.scss";
 import GenarateName from "../namecirclegenerator/criclegenrator";
-
+import navigate from "../../helperfunctions/navigation";
 import { withRouter } from "react-router-dom";
+import AppContext from "../../context/AppContext";
+
 
 export default class TableCard extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class TableCard extends Component {
     console.log("view clicked");
   };
 
+
   renderViewTask = () => {
     if (this.props.task === "true") {
       return (
@@ -23,6 +26,18 @@ export default class TableCard extends Component {
       );
     }
   };
+
+  renderViewButton = () => {
+    if(this.props.viewButton === "true") {
+      
+      return (
+        
+        <td className="table_heading" onClick={() => this.props.handleViewButton()}>
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </td>
+      )
+    }
+  }
 
   render() {
     let TableData = this.props.content;
@@ -69,6 +84,7 @@ export default class TableCard extends Component {
                     }
                   })}
                   {this.renderViewTask()}
+                  {this.renderViewButton()}
                 </tr>
               );
             })}

@@ -9,6 +9,9 @@ import "./workspace.scss";
 import Creategroups from "../creategroups/creategropus";
 import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
+import TableCard from "../../reusable/TableCard/TableCard";
+import Popup from "../../reusable/Popup/Popup";
+import DisplayGroup from "../DisplayGroup/displayGroup";
 
 export default class Workspace extends Component {
   constructor(props) {
@@ -61,6 +64,7 @@ export default class Workspace extends Component {
           endDate: "20/02/2021",
         },
       ],
+      seen: false,
     };
   }
 
@@ -83,12 +87,19 @@ export default class Workspace extends Component {
   create_new_group = () => {
     navigate(
       "push",
-      "/workspace",
-      "Create Group",
+      "/group",
+      "Group",
       this.props.history,
       this.context
     );
   };
+
+  create_new_group_popup = () => {
+    this.setState({seen: !this.state.seen});
+    return 0;
+  }
+
+
 
   render() {
     return (
@@ -96,7 +107,7 @@ export default class Workspace extends Component {
         {/* Work space Web container */}
 
         <div>
-          {this.context.state.page !== "Create Group" ? (
+          {this.context.state.page !== "Group" ? (
             <div className="main_workspace_web_container">
               <h3>All Groups</h3>
               <div class="search_container">
@@ -114,12 +125,12 @@ export default class Workspace extends Component {
                 </div>
               </div>
               <div className="create_group_btn">
-                <Button title="Create Group" fun={this.create_new_group} />
+                <Button title="Create Group" fun={this.create_new_group_popup} />
               </div>
             </div>
           ) : (
             <div className="project_createsection">
-              <Creategroups />
+              <DisplayGroup />
             </div>
           )}
           {/* Statistics Slide */}
@@ -190,9 +201,28 @@ export default class Workspace extends Component {
         ) : (
           <div></div>
         )}
+        
+        <div>
+          {this.state.seen ? <Popup 
+            content={(
+            <div><Creategroups /></div>
+          )}
+          handleClose={this.create_new_group_popup}
+          /> : null}
+        </div>
+        
 
         {/* Workspace Web view tables */}
-        <div className="web_view_gropudatacontainer"></div>
+        <div className="web_view_gropudatacontainer">
+        <TableCard title="" 
+                           content={[{pr_name:"Sampoorn Suraksha", team:"Innovation", status:"Completed", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"Super Topup", team:"Innovation", status:"Incomplete", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}, {pr_name:"PYP Journey", key2:"wow", status:"incompleted", team:"Innovation", name:"Mayur Dere", st_date:"22/07/2021", tg_date:"27/07/2021"}]} 
+                           rows={["pr_name","name"]}
+                           headings={["Group Name", "Team Members", ""]}
+                           serial="true"
+                           viewButton="true" 
+                           handleViewButton={this.create_new_group}               
+                />
+        </div>
 
         {/* Workspace mobile card view */}
 

@@ -3,7 +3,7 @@ import "../scss/App.scss";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "../components/Login";
-import Projects from "./projects/Projects";
+import Projects from "./Projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
 import TaskDetails from "../components/TaskDetails";
@@ -22,6 +22,7 @@ import Put_Updates from "../reusable/putupdates/updates";
 import Workspace from "./workspace/WorkspaceSelection";
 import Createtask from "./createtasks/createtasks";
 import Creategroups from "./creategroups/creategropus";
+import DisplayGroup from "./DisplayGroup/displayGroup";
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -95,6 +96,11 @@ export default class MainApp extends Component {
                         path="/create-group"
                         component={Creategroups}
                         exact
+                      />
+                      <Route
+                      path="/group"
+                      component={DisplayGroup}
+                      exact
                       />
                     </Switch>
                   </div>
