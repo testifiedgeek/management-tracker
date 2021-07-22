@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../scss/App.scss";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
-import Login from "../components/Login";
+import Login from '../components/Login/Login'
 import Projects from "./Projects/Projects";
 import ProjectOverview from "./projectoverview/ProjectOverview";
 import ForgotPassword from "../components/ForgotPassword";
@@ -37,6 +37,7 @@ export default class MainApp extends Component {
         employeeid: "142743",
       },
       loading: false,
+      isLogin: false,
     };
   }
 
@@ -53,6 +54,10 @@ export default class MainApp extends Component {
     this.setState({ loading: state });
   };
 
+  updateLoginStatus = (status) => {
+    this.setState({isLogin: status});
+  }
+
   render() {
     return (
       <div>
@@ -62,10 +67,17 @@ export default class MainApp extends Component {
               state: this.state,
               set_page: this.set_page,
               set_backpage: this.set_backpage,
+              updateLoginStatus:this.updateLoginStatus
             }}
           >
             <BrowserRouter>
-              <div className="grid_container">
+              <div >
+              {this.state.isLogin === false ? (<div>
+                <Switch>
+                  <Route path="" component={Login} exact />
+                </Switch>
+              </div>):(<div className="grid_container">
+                
                 <div className="header">
                   <Header />
                 </div>
@@ -79,6 +91,7 @@ export default class MainApp extends Component {
                         exact
                       />
                       <Route path="/dashboard" component={Dashboard} exact />
+                      <Route path="/" component={Dashboard} exact />
                       <Route path="/profile" component={Profile} exact />
                       <Route
                         path="/write-update"
@@ -112,6 +125,9 @@ export default class MainApp extends Component {
                 <div className="menu">
                   <SideBar />
                 </div>
+              </div>
+              )}
+              
               </div>
             </BrowserRouter>
           </AppContext.Provider>
