@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../Login/Login.scss";
-import officePana from "../../assets/Login.svg";
+import login from "../../assets/login.webp";
 import MainApp from "../MainApp";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import Warning from "../../helperfunctions/warningfunction";
@@ -83,7 +83,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="login_container">
-        <img src="login.png" />
+        <img src={login} />
         <div className="login_info_container">
           <div className="welcome_container">
             <div className="welcome">Welcome!</div>

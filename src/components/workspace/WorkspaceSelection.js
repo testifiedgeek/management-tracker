@@ -4,6 +4,7 @@ import {
   Card,
   Workspacecard,
 } from "../../reusable/cardcomponent/CardComponent";
+import WorkspaceCard from "../../reusable/workspacecard/workspacecard";
 import AppContext from "../../context/AppContext";
 import "./workspace.scss";
 import Creategroups from "../creategroups/creategropus";
@@ -218,7 +219,15 @@ export default class Workspace extends Component {
           </div>
         </div>
 
-        {this.context.state.page !== "Create Group" ? (
+        <div className="workspace_grid_system">
+          {this.context.state.departments.map((items) => {
+            return (
+              <WorkspaceCard img="" name={items.work_place_name} members={32} />
+            );
+          })}
+        </div>
+
+        {/* {this.context.state.page !== "Create Group" ? (
           <div className="web_view_departmentdisplay">
             <div className="depatments_display">
               <div
@@ -272,7 +281,7 @@ export default class Workspace extends Component {
           </div>
         ) : (
           <div></div>
-        )}
+        )} */}
 
         {/* <div>
           {this.state.seen ? <Popup 

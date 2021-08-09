@@ -39,7 +39,7 @@ export default class MainApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "Login",
+      page: "Workspace",
       backpage: "",
       user: {
         name: "Dwarka Tiwari",
