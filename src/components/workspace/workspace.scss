@@ -49,6 +49,12 @@
     }
   }
 
+  .workspace_grid_system {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+
   .search_subcontainer {
     background-color: white;
     display: flex;

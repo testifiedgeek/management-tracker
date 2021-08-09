@@ -12,12 +12,13 @@
     z-index: 1;
     // top: 0;
     // left: 0;
-    background-color: #2541b2;
+    background-color: white;
     height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
     position: fixed;
     width: 150px;
+    box-shadow: 8px 8px 18px 0 rgba(112, 112, 112, 0.09);
   }
   .Sidebar_mobileview {
     display: none;
@@ -29,12 +30,12 @@
     align-items: center;
     padding: 10px;
     font-size: 12px;
-    color: white;
+    color: #e41e26;
     font-weight: 500;
     cursor: pointer;
 
     ion-icon {
-      color: white;
+      color: #e41e26;
     }
   }
 

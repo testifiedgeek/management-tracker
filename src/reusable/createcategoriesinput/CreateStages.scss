@@ -1,0 +1,30 @@
+@import "../../scss/global.scss";
+
+.stages_input_fileds {
+  width: 40%;
+  margin: 20px 0px 20px 0px;
+  @include flexalign(start);
+  .name_input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .percentage_input {
+    width: 20%;
+    padding: 10px;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+    float: right;
+  }
+
+  .percentage_input::placeholder {
+    text-align: right;
+  }
+
+  label {
+    color: red;
+    margin-left: 20px;
+    font-weight: bold;
+  }
+}

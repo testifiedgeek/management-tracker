@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import navigate from "../../helperfunctions/navigation";
 import "../Header/Header.scss";
-import GenarateName from "../namecirclegenerator/criclegenrator";
+import { GenarateName } from "../namecirclegenerator/criclegenrator";
 import Createprocess_icon from "../../reusable/createprocess_icons/createprocessicon";
 
 class Header extends Component {
@@ -26,7 +26,7 @@ class Header extends Component {
               this.context.state.page === "Create Project" ||
               this.context.state.page === "Create Task" ||
               this.context.state.page === "Write Update" ||
-              this.context.state.page === "Create Group" ? (
+              this.context.state.page === "Create Workspace" ? (
                 <ion-icon
                   onClick={() =>
                     navigate(
@@ -64,41 +64,49 @@ class Header extends Component {
               this.context.state.page !== "Write Update" &&
               this.context.state.page !== "Workspace" ? (
                 <div class="header_web_opt">
-                  {GenarateName({ name: this.context.state.user.name })}
+                  <GenarateName name={this.context.state.user.name} />
                 </div>
               ) : (
                 <div>
-                  {this.context.state.page === "Projects"
-                    ? Createprocess_icon("Create Project", {
-                        state: "push",
-                        path: "/create-project",
-                        page: "Create Project",
-                        history: this.props.history,
-                        context: this.context,
-                      })
-                    : this.context.state.page === "Project Overview"
-                    ? Createprocess_icon("Create Task", {
-                        state: "push",
-                        path: "/create-task",
-                        page: "Create Task",
-                        history: this.props.history,
-                        context: this.context,
-                      })
-                    : this.context.state.page === "Write Update"
-                    ? Createprocess_icon("Write Update", {
-                        state: "push",
-                        path: "/write-update",
-                        page: "Write Update",
-                        history: this.props.history,
-                        context: this.context,
-                      })
-                    : Createprocess_icon("Create Group", {
-                        state: "push",
-                        path: "/create-group",
-                        page: "Create Group",
-                        history: this.props.history,
-                        context: this.context,
-                      })}
+                  {this.context.state.page === "Projects" ? (
+                    Createprocess_icon("Create Project", {
+                      state: "push",
+                      path: "/create-project",
+                      page: "Create Project",
+                      history: this.props.history,
+                      context: this.context,
+                    })
+                  ) : this.context.state.page === "Project Overview" &&
+                    parseInt(this.context.state.user.employeeid) ===
+                      parseInt(
+                        this.context.state.project_overview_details.created_by
+                      ) ? (
+                    Createprocess_icon("Create Task", {
+                      state: "push",
+                      path: "/create-task",
+                      page: "Create Task",
+                      history: this.props.history,
+                      context: this.context,
+                    })
+                  ) : this.context.state.page === "Write Update" ? (
+                    Createprocess_icon("Write Update", {
+                      state: "push",
+                      path: "/write-update",
+                      page: "Write Update",
+                      history: this.props.history,
+                      context: this.context,
+                    })
+                  ) : this.context.state.page === "Workspace" ? (
+                    Createprocess_icon("Create Workspace", {
+                      state: "push",
+                      path: "/create-group",
+                      page: "Create Workspace",
+                      history: this.props.history,
+                      context: this.context,
+                    })
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               )}
               {/* <h6>{this.context.state.user.name}</h6> */}

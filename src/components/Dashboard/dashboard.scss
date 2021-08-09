@@ -9,7 +9,7 @@
   .dashboard_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.1fr 0.2fr;
+    grid-template-rows: 0.1fr 0fr;
     grid-template-areas:
       "stats stats stats stats"
       "header header header header"
@@ -20,14 +20,14 @@
       margin-left: 20px;
     }
 
-    .table_data {
+    .table_data_webview {
       grid-area: table;
       grid-column-start: 1;
       grid-row-start: 3;
-      margin-left: 20px;
     }
 
     h4 {
+      @include flexalign(start);
       margin-left: 20px;
       grid-area: header;
     }

@@ -1,5 +1,5 @@
 import '../ViewTeam/ViewTeam.scss';
-import GenarateName from '../namecirclegenerator/criclegenrator';
+import {GenarateName} from '../namecirclegenerator/criclegenrator';
 
 const ViewTeam = ({info}) => {
     let content = info.map((items) => {

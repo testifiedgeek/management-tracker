@@ -6,6 +6,7 @@ import search from "../../assets/search.svg";
 import "./projectupdates.scss";
 import Commentcard from "../../reusable/commentcard/commentcard.js";
 import AppContext from "../../context/AppContext";
+import { Fetch_function } from "../../helperfunctions/fetchdata";
 
 let testing = [
   {
@@ -56,15 +57,43 @@ export default class Projectupdates extends Component {
       write_update: false,
     };
   }
+
+  async componentDidMount() {
+    let token = await window.localStorage.getItem("hdfcmanagementtracker");
+    if (this.props.project_update_data.length === 0) {
+      let api_data = {
+        path: `/employee/createComment/NA/${this.context.state.project_overview_details.project_id}`,
+        method: "GET",
+        user_token: token,
+      };
+      let result = await Fetch_function(api_data);
+      if (result.status) {
+        if (result.data.msg === "successful") {
+          this.props.set_project_update_data(
+            result.data.data[0].commentDetails
+          );
+        }
+      } else {
+        this.context.set_warning(
+          true,
+          "failed",
+          result.data,
+          "red",
+          this.context
+        );
+      }
+    }
+  }
+
   render() {
     let searchdata;
     if (this.state.search_update !== "") {
-      searchdata = testing.filter((items) => {
+      searchdata = this.props.project_update_data.filter((items) => {
         if (
-          items.author
+          items.first_name
             .toLowerCase()
             .includes(this.state.search_updates.toLowerCase()) ||
-          items.comment
+          items.content
             .toLowerCase()
             .includes(this.state.search_updates.toLowerCase())
         ) {
@@ -77,13 +106,15 @@ export default class Projectupdates extends Component {
       <div className="project_update_container">
         <div className="write_update_container">
           <Put_Updates
+            add_new_comment={this.props.set_project_update_data}
+            commentfor="Project"
             person={{
               name: this.context.state.user.name,
               profession: "Software Engineer",
             }}
           />
         </div>
-
+        <br />
         <div className="header_container">
           <h5>Project Updates by Team</h5>
           <div class="search_container">
@@ -104,7 +135,7 @@ export default class Projectupdates extends Component {
         {/* Mobile View Comments card rendering */}
         <div class="view_comment_cards">
           {this.state.search_updates === ""
-            ? testing.map((items) => {
+            ? this.props.project_update_data.map((items) => {
                 return <Commentcard commentdata={items} />;
               })
             : searchdata.map((items) => {

@@ -1,6 +1,7 @@
 @import "../../scss/global.scss";
-
-
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 .user_container {
   // width: 390px;
   // height: auto;
@@ -13,8 +14,9 @@
   // left: 20px;
   // top: 60px;
   border-collapse: collapse;
-  width: auto;
-  box-shadow: 2px 2px 2px 1px #f7f7f7;
+  width: 95%;
+  margin: 10px 0px 0px 20px;
+  box-shadow: 8px 8px 18px 0 rgba(0, 0, 0, 0.06);
 }
 
 th.table_heading {
@@ -23,34 +25,32 @@ th.table_heading {
 
 .table_heading {
   padding: 10px 30px;
-  text-align: left;
   border-bottom: 4px solid #f9f8ff;
 }
 
-div .box_info_container {
-  @include flexalign(start);
- 
-  
-}
-
-.view_task{
-  padding: 10px 30px;
-  text-align: left;
-  border-bottom: 4px solid #f9f8ff;
-  color: #2541b2;
-  font-weight: bolder;
+.table_heading_button {
+  padding: 10px 0px;
+  color: $primarycolour;
+  font-weight: bold;
   cursor: pointer;
-
 }
 
+.accept_btn {
+  background-color: maroon;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-.view_button{
-  padding:10px 30px;
-  text-align: left;
-  width: 60%;
-  border-bottom: 4px solid #f9f8ff;
-  cursor: pointer;
+.inp_btn {
+  background-color: orange;
+  padding: 10px;
+  border-radius: 5px;
+}
 
+.complete_btn {
+  background-color: green;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 tr th {
@@ -60,10 +60,19 @@ tr th {
 
 #table_caption {
   text-align: left;
+  font-weight: bold;
+  font-size: 18px;
   padding: 10px;
 }
 
 .table_row {
   background-color: white;
   font-size: 12px;
+  td {
+    text-align: center;
+
+    td {
+      text-align: center;
+    }
+  }
 }

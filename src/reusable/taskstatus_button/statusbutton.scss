@@ -1,0 +1,30 @@
+@import "../../scss/global.scss";
+
+.accept_task_button {
+  button {
+    background-color: $status_start;
+    color: red;
+  }
+}
+
+.complete_task_button {
+  button {
+    background-color: $status_complete;
+    color: green;
+  }
+}
+
+.accept_task_status {
+  font-weight: medium;
+  color: $status_start_word;
+}
+
+.progress_task_status {
+  font-weight: medium;
+  color: $status_progress;
+}
+
+.complete_task_status {
+  font-weight: medium;
+  color: $status_complete_word;
+}

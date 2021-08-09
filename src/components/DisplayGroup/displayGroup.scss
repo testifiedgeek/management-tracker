@@ -12,6 +12,7 @@
       "data data data data";
     .represent_data {
       @include animations();
+      @include flexalign(space-between);
       grid-area: data;
       margin-top: 10px;
     }
@@ -30,7 +31,7 @@
           font-weight: bold;
           font-size: $mediumfontsize;
           cursor: pointer;
-          font-size: 15px;
+          font-size: 13px;
           @include flexalign(center);
           height: 50px;
           border-bottom: 4px solid white;
@@ -39,7 +40,7 @@
         .inactive_project_plan {
           color: grey;
           font-weight: bold;
-          font-size: $mediumfontsize;
+          font-size: 13px;
         }
       }
       :hover {

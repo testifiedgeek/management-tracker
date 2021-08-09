@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./createsection.scss";
+import AppContext from "../../context/AppContext";
 
 const Createsection = ({
   type,
@@ -13,7 +14,7 @@ const Createsection = ({
   selected,
 }) => {
   console.log("selected: ", selected);
-
+  const context = useContext(AppContext);
   const [query, setQuery] = useState("");
   const [addcategory, setaddcategory] = useState(false);
   const [newcategory, setNewcategory] = useState("");
@@ -113,7 +114,13 @@ const Createsection = ({
                               onClick={() => selected_fun("remove", index)}
                               className="selected_or_not"
                             >
-                              <p>{items}</p>
+                              <p>
+                                {items.first_name
+                                  ? items.first_name
+                                  : items.work_place_name
+                                  ? items.work_place_name
+                                  : items.category_name}
+                              </p>
 
                               <ion-icon
                                 style={{ color: "green", fontSize: 25 }}
@@ -125,7 +132,28 @@ const Createsection = ({
                               onClick={() => selected_fun("add", index, items)}
                               className="selected_or_not"
                             >
-                              <p>{items}</p>
+                              {items.emp_id ? (
+                                items.emp_id !==
+                                parseInt(context.state.user.employeeid) ? (
+                                  <p>
+                                    {items.first_name
+                                      ? items.first_name
+                                      : items.work_place_name
+                                      ? items.work_place_name
+                                      : items.category_name}
+                                  </p>
+                                ) : (
+                                  <div></div>
+                                )
+                              ) : (
+                                <p>
+                                  {items.first_name
+                                    ? items.first_name
+                                    : items.work_place_name
+                                    ? items.work_place_name
+                                    : items.category_name}
+                                </p>
+                              )}
                             </div>
                           )}
                         </div>
@@ -133,9 +161,13 @@ const Createsection = ({
                     })
                   : data.filter((items, index) => {
                       if (
-                        items
-                          .toLocaleLowerCase()
-                          .includes(query.toLocaleLowerCase())
+                        items.first_name
+                          ? items.first_name
+                          : items.work_place_name
+                          ? items.work_place_name
+                          : items.category_name
+                              .toLocaleLowerCase()
+                              .includes(query.toLocaleLowerCase())
                       ) {
                         return (
                           <div>
@@ -144,7 +176,13 @@ const Createsection = ({
                                 onClick={() => selected_fun("remove", index)}
                                 className="selected_or_not"
                               >
-                                <p>{items}</p>
+                                <p>
+                                  {items.first_name
+                                    ? items.first_name
+                                    : items.work_place_name
+                                    ? items.work_place_name
+                                    : items.category_name}
+                                </p>
                                 <ion-icon
                                   style={{ color: "green", fontSize: 25 }}
                                   name="checkmark-done-circle"
@@ -157,7 +195,13 @@ const Createsection = ({
                                 }
                                 className="selected_or_not"
                               >
-                                <p>{items}</p>
+                                <p>
+                                  {items.first_name
+                                    ? items.first_name
+                                    : items.work_place_name
+                                    ? items.work_place_name
+                                    : items.category_name}
+                                </p>
                               </div>
                             )}
                           </div>

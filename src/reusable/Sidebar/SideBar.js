@@ -3,7 +3,7 @@ import "../Sidebar/SideBar.scss";
 import AppContext from "../../context/AppContext";
 import { withRouter } from "react-router-dom";
 import navigate from "../../helperfunctions/navigation";
-import GenarateName from "../namecirclegenerator/criclegenrator";
+import { GenarateName } from "../namecirclegenerator/criclegenrator";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ class Sidebar extends Component {
   }
 
   logoutClicked(context) {
-    navigate("push", "/", "", this.props.history, this.context);
-    this.context.updateLoginStatus(false);
+    this.context.logoutClicked();
+    navigate("push", "/login", "Login", this.props.history, this.context);
   }
 
   dashboardClicked() {

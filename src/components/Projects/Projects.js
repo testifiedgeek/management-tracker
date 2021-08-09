@@ -15,6 +15,7 @@ export default class Projects extends Component {
     this.state = {
       search_project: "",
       enable_create_section: false,
+      firsttime: true,
       content: [
         {
           srno: 1,
@@ -61,7 +62,8 @@ export default class Projects extends Component {
     );
   };
 
-  show_project_overview = () => {
+  handleProject = (project) => {
+    this.context.setproject_overview(project);
     navigate(
       "push",
       "/project-overview",
@@ -69,78 +71,50 @@ export default class Projects extends Component {
       this.props.history,
       this.context
     );
-  }
+  };
 
   async componentDidMount() {
     // Fetch Projects in which loged in user is included
-
-    let api_data = {
-      path: "/tasks",
-      method: "POST",
-      body: {
-        // employeeId:employeeid,
-        // password
-      },
-    };
-    let result = await Fetch_function(api_data);
-    if (result) {
-      if (result.msg === "Login Successfull") {
-        console.log("result: ", result);
-        this.context.set_warning(
-          true,
-          "Succesfull",
-          "Successfully Loged In",
-          "green",
-          this.context
-        );
-        let user = {
-          name: "Dwarka ",
-          email: "dwarka@gmail.com",
-          profession: "AVP Head",
-          employeeid: "142743",
-        };
-        this.context.set_user_details(user);
-        navigate(
-          "push",
-          "/dashboard",
-          "Dashboard",
-          this.props.history,
-          this.context
-        );
-      } else if (result.msg === "Login failed") {
+    if (
+      this.context.state.projects.length === 0 &&
+      this.state.firsttime === true
+    ) {
+      let token = await window.localStorage.getItem("hdfcmanagementtracker");
+      let api_data = {
+        path: "/employee/createProject",
+        method: "GET",
+        user_token: token,
+      };
+      let result = await Fetch_function(api_data);
+      if (result.status) {
+        if (result.data.msg === "successful" && result.data.data) {
+          if (result.data.data.length !== 0) {
+            this.context.set_projects(result.data.data);
+            this.setState({ firsttime: false });
+          }
+        }
+      } else {
         this.context.set_warning(
           true,
           "failed",
-          "Please Enter Write Credentials",
-          "red",
-          this.context
-        );
-      } else if (result.msg === "Something Went Wrong") {
-        this.context.set_warning(
-          true,
-          "failed",
-          "Something Went Wrong",
+          result.data,
           "red",
           this.context
         );
       }
-    } else {
-      this.context.set_warning(
-        true,
-        "failed",
-        "Something Went Wrong",
-        "red",
-        this.context
-      );
     }
   }
+
+  add_new_created_project = (data) => {
+    this.context.set_projects(data);
+  };
 
   render() {
     let searchdata;
     if (this.state.search_project !== "") {
-      searchdata = this.state.content.filter((items) => {
+      searchdata = this.context.state.projects.filter((items) => {
         if (
-          items.name
+          items.project_name
             .toLowerCase()
             .includes(this.state.search_project.toLowerCase())
         ) {
@@ -176,55 +150,45 @@ export default class Projects extends Component {
             </div>
           ) : (
             <div className="project_createsection">
-              <Createproject />
+              <Createproject
+                add_new_created_project={this.add_new_created_project}
+                history={this.props.history}
+              />
             </div>
           )}
+
           {/* Statistics Slide */}
-          <div className="table_container">
-            <TableCard
-              title=""
-              content={[
-                {
-                  pr_name: "Sampoorn Suraksha",
-                  team: "Innovation",
-                  status: "Completed",
-                  name: "Mayur Dere",
-                  st_date: "22/07/2021",
-                  tg_date: "27/07/2021",
-                },
-                {
-                  pr_name: "Super Topup",
-                  team: "Innovation",
-                  status: "Incomplete",
-                  name: "Mayur Dere",
-                  st_date: "22/07/2021",
-                  tg_date: "27/07/2021",
-                },
-                {
-                  pr_name: "PYP Journey",
-                  key2: "wow",
-                  status: "incompleted",
-                  team: "Innovation",
-                  name: "Mayur Dere",
-                  st_date: "22/07/2021",
-                  tg_date: "27/07/2021",
-                },
-              ]}
-              rows={["pr_name", "team", "name", "st_date", "tg_date"]}
-              headings={[
-                "Project Name",
-                "Team",
-                "Project Lead",
-                "Start Date",
-                "Target Date",
-                "",
-              ]}
-              serial="true"
-              task="true"
-              fullName="true"
-              handleViewTask={this.show_project_overview}
-            />
-          </div>
+          {this.context.state.projects.length !== 0 ? (
+            <div className="table_container">
+              <TableCard
+                title=""
+                content={
+                  this.state.search_project === ""
+                    ? this.context.state.projects
+                    : searchdata
+                }
+                rows={[
+                  "project_name",
+                  "work_place_id",
+                  "created_by",
+                  "start_date",
+                  "completion_date",
+                ]}
+                handleViewTask={this.handleProject}
+                headings={[
+                  "Project Name",
+                  "Team",
+                  "Project Lead",
+                  "Start Date",
+                  "Target Date",
+                  "",
+                ]}
+                serial="true"
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
 
         {/* Mobile View of project screens */}
@@ -246,7 +210,7 @@ export default class Projects extends Component {
 
         {/* All Projects data in particular workplace */}
         <div className="card_data_mobileview">
-          {this.state.content.length !== 0 ? (
+          {this.context.state.projects.length !== 0 ? (
             <Card
               title="Project Developement"
               navigation={{
@@ -258,7 +222,7 @@ export default class Projects extends Component {
               }}
               content={
                 this.state.search_project === ""
-                  ? this.state.content
+                  ? this.context.state.projects
                   : searchdata
               }
             />
