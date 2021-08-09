@@ -36,9 +36,11 @@ export default class Login extends Component {
       },
     };
     let result = await Fetch_function(api_data);
-    if (result.msg === "Login Successfull") {
-      console.log("result: ", result);
-      window.localStorage.setItem("hdfcmanagementtracker", result.data.token);
+    if (result.status) {
+      window.localStorage.setItem(
+        "hdfcmanagementtracker",
+        result.data.data.token
+      );
       this.context.set_warning(
         true,
         "Succesfull",
@@ -47,10 +49,10 @@ export default class Login extends Component {
         this.context
       );
       let user = {
-        name: "Dwarka ",
+        name: "Dwarka",
         email: "dwarka@gmail.com",
         profession: "AVP Head",
-        employeeid: "142743",
+        employeeid: this.state.employeeid,
       };
       this.context.set_user_details(user);
       setTimeout(() => {
@@ -62,22 +64,15 @@ export default class Login extends Component {
           this.context
         );
       }, 2000);
-    } else if (result.msg === "Login failed") {
+    } else {
       this.context.set_warning(
         true,
         "failed",
-        "Please Enter Write Credentials",
+        result.data,
         "red",
         this.context
       );
-    } else if (result.msg === "Something Went Wrong") {
-      this.context.set_warning(
-        true,
-        "failed",
-        "Something Went Wrong",
-        "red",
-        this.context
-      );
+      this.setState({ employeeid: "", password: "" });
     }
   };
 
@@ -88,7 +83,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="login_container">
-        <img src={officePana} />
+        <img src="login.png" />
         <div className="login_info_container">
           <div className="welcome_container">
             <div className="welcome">Welcome!</div>

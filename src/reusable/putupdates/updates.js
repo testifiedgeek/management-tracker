@@ -1,12 +1,22 @@
 import React, { useState, useContext } from "react";
 import "./updates.scss";
-import GenarateName from "../namecirclegenerator/criclegenrator";
+import { GenarateName } from "../namecirclegenerator/criclegenrator";
 import tagname from "../../helperfunctions/tagnames.js";
 import AppContext from "../../context/AppContext";
+import navigate from "../../helperfunctions/navigation";
+import { Fetch_function } from "../../helperfunctions/fetchdata";
 
-const Put_Updates = () => {
+const tagData = {
+  "@Anubhab Goel": "100019319843986",
+  "@Dwarka Tiwari": "100020261664054",
+  "@Yogendra Pednekar": "100054938640475",
+  "@Rahuld": "100068986641675",
+};
+
+const Put_Updates = ({ commentfor, add_new_comment }) => {
   let [updates, setUpdates] = useState("");
   let [tag, setTag] = useState(false);
+  let [psid, setPsid] = useState([]);
 
   const context = useContext(AppContext);
   const returnname = (name) => {
@@ -18,7 +28,6 @@ const Put_Updates = () => {
 
   const update_value = (updates) => {
     let { nativeEvent, target } = updates;
-    console.log("updates: ", updates);
     if (nativeEvent.data) {
       if (nativeEvent.data.includes("@")) {
         setUpdates(target.value);
@@ -31,6 +40,142 @@ const Put_Updates = () => {
       setUpdates(target.value);
       setTag(false);
     }
+  };
+
+  const putUpdate = async () => {
+    let token = await window.localStorage.getItem("hdfcmanagementtracker");
+    context.set_creating_warning(
+      true,
+      "Succesfull",
+      `Sending Your Update In ${context.state.project_overview_details.project_name}`,
+      "dodgerblue",
+      context
+    );
+
+    let bot_data = {
+      sender: {
+        id: "100068986641675",
+      },
+      payload_data: "Heloo iugwef wefiugweiufw fiuwgfuiwefwe",
+    };
+    let api_data2 = {
+      path: "/employee/createComment",
+      method: "POST",
+      user_token: token,
+      body: {
+        // bot_data,
+        content: updates,
+        project_id: context.state.project_overview_details.project_id,
+      },
+    };
+
+    Fetch_function(api_data2).then((result) => {
+      if (result.status) {
+        if (result.data.msg === "comment added successfully") {
+          context.set_warning(
+            true,
+            "successfully",
+            "Your Update Added Successfully",
+            "green",
+            context
+          );
+          add_new_comment(result.data.data);
+          setUpdates("");
+          for (let items in tagData) {
+            if (updates.includes(items)) {
+              console.log("tagData[update_input[i]: ", tagData[items]);
+              psid.push(tagData[items]);
+            }
+          }
+
+          if (psid.length !== 0) {
+            psid.forEach((items) => {
+              fetch("https://stormy-ridge-52108.herokuapp.com/send_message", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                  id: items,
+                  message: updates,
+                }),
+              }).then((result) => {
+                setUpdates("");
+              });
+            });
+            // setPsid([])
+          }
+        }
+      } else {
+        context.set_warning(true, "failed", result.data, "red", context);
+        setUpdates("");
+      }
+    });
+  };
+
+  const putTaskUpdate = async () => {
+    let token = await window.localStorage.getItem("hdfcmanagementtracker");
+    context.set_creating_warning(
+      true,
+      "Succesfull",
+      `Sending Your Update In ${context.state.project_overview_details.project_name}`,
+      "dodgerblue",
+      context
+    );
+
+    let bot_data = {
+      sender: {
+        id: "100068986641675",
+      },
+      payload_data: "Heloo iugwef wefiugweiufw fiuwgfuiwefwe",
+    };
+    let api_data2 = {
+      path: "/employee/createComment",
+      method: "POST",
+      user_token: token,
+      body: {
+        content: updates,
+        project_id: context.state.task_overview_details.project_id,
+        task_id: context.state.task_overview_details.task_id,
+      },
+    };
+
+    Fetch_function(api_data2).then((result) => {
+      if (result.status) {
+        if (result.data.msg === "comment added successfully") {
+          context.set_warning(
+            true,
+            "successfully",
+            "Your Update Added Successfully",
+            "green",
+            context
+          );
+          add_new_comment(result.data.data);
+          for (let items in tagData) {
+            if (updates.includes(items)) {
+              psid.push(tagData[items]);
+            }
+          }
+
+          if (psid.length !== 0) {
+            psid.forEach((items) => {
+              fetch("https://stormy-ridge-52108.herokuapp.com/send_message", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                  id: items,
+                  message: updates,
+                }),
+              }).then((result) => {
+                setUpdates("");
+              });
+            });
+            // setPsid([])
+          }
+        }
+      } else {
+        context.set_warning(true, "failed", result.data, "red", context);
+        setUpdates("");
+      }
+    });
   };
 
   return (
@@ -54,6 +199,17 @@ const Put_Updates = () => {
           <div className="people_tag_subcontainer">{tagname(returnname)}</div>
         ) : (
           <div></div>
+        )}
+      </div>
+      <div className="update_btn">
+        {updates !== "" ? (
+          commentfor === "Project" ? (
+            <button onClick={() => putUpdate()}>Send Update</button>
+          ) : (
+            <button onClick={() => putTaskUpdate()}>Send Update</button>
+          )
+        ) : (
+          <button style={{ backgroundColor: "lightgrey" }}>Send Update</button>
         )}
       </div>
     </div>

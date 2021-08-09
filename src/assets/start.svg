@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="47" viewBox="0 0 160 47">
+    <defs>
+        <style>
+            .cls-3{fill:none;stroke:#cd113b;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="Group_2722" transform="translate(-914 -157)">
+        <g id="Rectangle_12263" fill="none" stroke="#c46d6d" transform="translate(914 157)">
+            <rect width="160" height="47" stroke="none" rx="4"/>
+            <rect width="159" height="46" x=".5" y=".5" rx="3.5"/>
+        </g>
+        <g id="Group_2719" transform="translate(-0.25 -1)">
+            <text id="Start" fill="#cd113b" font-family="Nunito-SemiBold, Nunito" font-size="14px" font-weight="600" transform="translate(995.75 186)">
+                <tspan x="0" y="0">Start</tspan>
+            </text>
+            <g id="check-circle_1_" transform="translate(960.25 169.006)">
+                <path id="Path_24606" d="M22 11.08V12a10 10 0 1 1-5.93-9.14" class="cls-3"/>
+                <path id="Path_24607" d="M22 4L12 14.01l-3-3" class="cls-3"/>
+            </g>
+        </g>
+    </g>
+</svg>

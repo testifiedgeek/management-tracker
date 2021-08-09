@@ -20,20 +20,7 @@ export default class Workspace extends Component {
     this.state = {
       search_group: "",
       display_departments: false,
-      departments: [
-        "INNOVATION",
-        "SALES",
-        "BPR",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-      ],
-      selected_department: "",
+      selected_department: { name: "", id: "" },
       content: [
         {
           srno: 1,
@@ -85,63 +72,28 @@ export default class Workspace extends Component {
     return searched_result;
   };
 
-  create_new_group = () => {
+  create_new_group = async () => {
     navigate(
       "push",
       "/create-group",
-      "Create Group",
+      "Create Workspace",
       this.props.history,
       this.context
     );
-  };
-
-  create_new_group_popup = () => {
-    this.setState({ seen: !this.state.seen });
-    return 0;
-  };
-
-  async componentDidMount() {
-    // Fetch All Departements in managements tracker
 
     let api_data = {
-      path: "/tasks",
+      path: "/admin/createWorkSpace",
       method: "POST",
-      body: {
-        // employeeId:employeeid,
-        // password
-      },
+      body: {},
     };
     let result = await Fetch_function(api_data);
     if (result) {
-      if (result.msg === "Login Successfull") {
-        console.log("result: ", result);
+      if (result.msg === "work space created successfully") {
         this.context.set_warning(
           true,
           "Succesfull",
-          "Successfully Loged In",
+          `Work Space ${this.state.groupname} Created Successfully1`,
           "green",
-          this.context
-        );
-        let user = {
-          name: "Dwarka ",
-          email: "dwarka@gmail.com",
-          profession: "AVP Head",
-          employeeid: "142743",
-        };
-        this.context.set_user_details(user);
-        navigate(
-          "push",
-          "/dashboard",
-          "Dashboard",
-          this.props.history,
-          this.context
-        );
-      } else if (result.msg === "Login failed") {
-        this.context.set_warning(
-          true,
-          "failed",
-          "Please Enter Write Credentials",
-          "red",
           this.context
         );
       } else if (result.msg === "Something Went Wrong") {
@@ -162,7 +114,53 @@ export default class Workspace extends Component {
         this.context
       );
     }
-  }
+  };
+
+  create_new_group_popup = () => {
+    this.setState({ seen: !this.state.seen });
+    return 0;
+  };
+
+  // async componentDidMount() {
+  //   // Fetch All Departements in managements tracker
+
+  //   let api_data = {
+  //     path: "/tasks",
+  //     method: "POST",
+  //     body: {
+  //       // employeeId:employeeid,
+  //       // password
+  //     },
+  //   };
+  //   let result = await Fetch_function(api_data);
+  //   if (result) {
+  //     if (result.msg === "work space created successfully") {
+  //       this.context.set_warning(
+  //         true,
+  //         "Succesfull",
+  //         `Work Space ${this.state.groupname} Created Successfully1`,
+  //         "green",
+  //         this.context
+  //       );
+  //     }  else if (result.msg === "Something Went Wrong") {
+  //       this.context.set_warning(
+  //         true,
+  //         "failed",
+  //         "Something Went Wrong",
+  //         "red",
+  //         this.context
+  //       );
+  //     }
+  //   } else {
+  //     this.context.set_warning(
+  //       true,
+  //       "failed",
+  //       "Something Went Wrong",
+  //       "red",
+  //       this.context
+  //     );
+  //   }
+  // }
 
   render() {
     return (
@@ -188,7 +186,7 @@ export default class Workspace extends Component {
                 </div>
               </div>
               <div className="create_group_btn">
-                <Button title="Create Group" fun={this.create_new_group} />
+                <Button title="Create Workspace" fun={this.create_new_group} />
               </div>
             </div>
           ) : (
@@ -232,9 +230,9 @@ export default class Workspace extends Component {
                 className="department_selection"
               >
                 <label>
-                  {this.state.selected_department === ""
+                  {this.state.selected_department.name === ""
                     ? "Select Department"
-                    : this.state.selected_department}
+                    : this.state.selected_department.name}
                 </label>
                 {this.state.display_departments ? (
                   <ion-icon name="caret-up"></ion-icon>
@@ -244,17 +242,25 @@ export default class Workspace extends Component {
               </div>
               {this.state.display_departments ? (
                 <div className="drop_down_departments">
-                  {this.state.departments.map((items) => {
+                  {this.context.state.departments.map((items) => {
                     return (
                       <p
                         onClick={() =>
-                          this.setState({
-                            selected_department: items,
-                            display_departments: false,
-                          })
+                          this.setState(
+                            {
+                              selected_department: {
+                                name: items.work_place_name,
+                                id: items.work_place_id,
+                              },
+                              display_departments: false,
+                            },
+                            () => {
+                              this.context.setDept(items.work_place_id);
+                            }
+                          )
                         }
                       >
-                        {items}
+                        {items.work_place_name}
                       </p>
                     );
                   })}
@@ -278,7 +284,7 @@ export default class Workspace extends Component {
         </div> */}
 
         {/* Workspace Web view tables */}
-        <div className="web_view_gropudatacontainer">
+        {/* <div className="web_view_gropudatacontainer">
           <TableCard
             title=""
             content={[
@@ -314,7 +320,7 @@ export default class Workspace extends Component {
             viewButton="true"
             handleViewButton={this.create_new_group}
           />
-        </div>
+        </div> */}
 
         {/* Workspace mobile card view */}
 
@@ -329,9 +335,9 @@ export default class Workspace extends Component {
               className="department_selection"
             >
               <label>
-                {this.state.selected_department === ""
+                {this.state.selected_department.name === ""
                   ? "Select Department"
-                  : this.state.selected_department}
+                  : this.state.selected_department.name}
               </label>
               {this.state.display_departments ? (
                 <ion-icon name="caret-up"></ion-icon>
@@ -341,17 +347,20 @@ export default class Workspace extends Component {
             </div>
             {this.state.display_departments ? (
               <div className="drop_down_departments">
-                {this.state.departments.map((items) => {
+                {this.context.state.departments.map((items) => {
                   return (
                     <p
                       onClick={() =>
                         this.setState({
-                          selected_department: items,
+                          selected_department: {
+                            name: items.work_place_name,
+                            id: items.work_place_id,
+                          },
                           display_departments: false,
                         })
                       }
                     >
-                      {items}
+                      {items.work_place_name}
                     </p>
                   );
                 })}

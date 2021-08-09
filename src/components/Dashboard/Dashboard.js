@@ -2,80 +2,153 @@ import React, { Component } from "react";
 import AppContext from "../../context/AppContext";
 import ShowStats from "../../reusable/statisticsData/statisticsCircle";
 import "./dashboard.scss";
-import { Card } from "../../reusable/cardcomponent/CardComponent";
+import { TaskCard } from "../../reusable/cardcomponent/CardComponent";
 import TodoList from "../../reusable/createSubtask";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import navigate from "../../helperfunctions/navigation";
+import TableCard from "../../reusable/TableCard/TableCard";
+import { fi } from "date-fns/locale";
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      tasks_work_status: {
+        completed: 0,
+        notaccepted: 0,
+        inprogress: 0,
+      },
+    };
   }
+
+  calculate_task_statistics = (data) => {
+    let percent_per_task = 100 / data.length;
+    data.forEach((task) => {
+      if (task.final_status === 0) {
+        // Not Accepted
+        this.setState((state) => ({
+          tasks_work_status: {
+            completed: state.tasks_work_status.completed,
+            notaccepted: state.tasks_work_status.notaccepted + percent_per_task,
+            inprogress: state.tasks_work_status.inprogress,
+          },
+        }));
+      } else if (task.final_status === 1) {
+        // In Progress
+        this.setState((state) => ({
+          tasks_work_status: {
+            completed: state.tasks_work_status.completed,
+            notaccepted: state.tasks_work_status.notaccepted,
+            inprogress: state.tasks_work_status.inprogress + percent_per_task,
+          },
+        }));
+      } else if (task.final_status === 2) {
+        // In Progress
+        this.setState((state) => ({
+          tasks_work_status: {
+            completed: state.tasks_work_status.completed + percent_per_task,
+            notaccepted: state.tasks_work_status.notaccepted,
+            inprogress: state.tasks_work_status.inprogress,
+          },
+        }));
+      }
+    });
+  };
 
   async componentDidMount() {
     // Fetch Tasks assign to loged in user
 
-    let api_data = {
-      path: "/tasks",
-      method: "POST",
-      body: {
-        // employeeId:employeeid,
-        // password
-      },
-    };
-    let result = await Fetch_function(api_data);
-    if (result) {
-      if (result.msg === "Login Successfull") {
-        console.log("result: ", result);
-        this.context.set_warning(
-          true,
-          "Succesfull",
-          "Successfully Loged In",
-          "green",
-          this.context
-        );
-        let user = {
-          name: "Dwarka ",
-          email: "dwarka@gmail.com",
-          profession: "AVP Head",
-          employeeid: "142743",
-        };
-        this.context.set_user_details(user);
-        navigate(
-          "push",
-          "/dashboard",
-          "Dashboard",
-          this.props.history,
-          this.context
-        );
-      } else if (result.msg === "Login failed") {
+    let token = await window.localStorage.getItem("hdfcmanagementtracker");
+    if (this.context.state.tasks.length === 0) {
+      let api_data = {
+        path: "/employee/createTask/",
+        method: "GET",
+        user_token: token,
+      };
+      let result = await Fetch_function(api_data);
+      if (result.status) {
+        this.context.set_tasks(result.data.data);
+      } else {
         this.context.set_warning(
           true,
           "failed",
-          "Please Enter Write Credentials",
-          "red",
-          this.context
-        );
-      } else if (result.msg === "Something Went Wrong") {
-        this.context.set_warning(
-          true,
-          "failed",
-          "Something Went Wrong",
+          result.data,
           "red",
           this.context
         );
       }
-    } else {
-      this.context.set_warning(
-        true,
-        "failed",
-        "Something Went Wrong",
-        "red",
-        this.context
-      );
     }
+
+    this.calculate_task_statistics(this.context.state.tasks);
+
+    if (this.context.state.categories.length === 0) {
+      let api_data2 = {
+        path: "/employee/createCategory/",
+        method: "GET",
+        user_token: token,
+      };
+      Fetch_function(api_data2).then((result2) => {
+        if (result2.status) {
+          if (result2.data.data.length !== 0) {
+            this.context.set_categories(result2.data.data);
+          }
+        }
+      });
+    }
+
+    if (this.context.state.departments.length === 0) {
+      let api_data3 = {
+        path: "/employee/getWorkSpace",
+        method: "GET",
+        user_token: token,
+      };
+      let result3 = await Fetch_function(api_data3);
+      if (result3.status) {
+        if (result3.data.data.length !== 0) {
+          this.context.set_departments(result3.data.data);
+        }
+      }
+    }
+
+    //   if (this.context.state.members.length === 0) {
+    //     let api_data4 = {
+    //       path: "/employee/getUser/",
+    //       method: "GET",
+    //       user_token: token,
+    //     };
+    //     let result4 = await Fetch_function(api_data4);
+    //     if (result4.status) {
+    //       if (result4.data.data.length !== 0) {
+    //         this.context.set_members(result4.data.data);
+    //       }
+    //     }
+    //   }
   }
+
+  handleTask = (task) => {
+    this.context.settask_overview(task);
+    navigate("push", "/task", "Task Details", this.props.history, this.context);
+  };
+
+  handleClickTaskStatus = (task, status) => {
+    this.context.state.tasks.some((task_items) => {
+      if (
+        task.task_id === task_items.task_id &&
+        task.category_id === task_items.category_id
+      ) {
+        task_items.final_status = status;
+      }
+    });
+    this.context.set_tasks(this.context.state.tasks);
+    this.setState({
+      tasks_work_status: {
+        completed: 0,
+        notaccepted: 0,
+        inprogress: 0,
+      },
+    });
+    this.calculate_task_statistics(this.context.state.tasks);
+  };
 
   render() {
     return (
@@ -92,19 +165,56 @@ export default class Dashboard extends Component {
             title="Total Projects"
             component="Dashboard"
             statsData={[
-              { color: "green", title: "Testing just", percentage: "70%" },
-              { color: "red", title: "Completed", percentage: "70%" },
-              { color: "red", title: "Completed", percentage: "70%" },
+              {
+                color: "green",
+                title: "Completed",
+                percentage:
+                  window.parseInt(this.state.tasks_work_status.completed) + "%",
+              },
+              {
+                color: "orange",
+                title: "In Progress",
+                percentage:
+                  window.parseInt(this.state.tasks_work_status.inprogress) +
+                  "%",
+              },
+              {
+                color: "red",
+                title: "Not Accepted",
+                percentage:
+                  window.parseInt(this.state.tasks_work_status.notaccepted) +
+                  "%",
+              },
             ]}
           />
         </div>
-        <h4>Tasks Assign to me</h4>
+        <br />
+        {/* <h4 >Tasks Assign to me</h4> */}
+
+        {/* Statistics Slide */}
         <div className="table_data_webview">
-          <TodoList />
+          <TableCard
+            title="Task Assign To Me"
+            content={this.context.state.tasks}
+            rows={[
+              "task_name",
+              "start_date",
+              "completion_date",
+              "final_status",
+            ]}
+            handleViewTask={this.handleTask}
+            handleClickTaskStatus={this.handleClickTaskStatus}
+            headings={["Task", "Start Date", "Target Date", "Status"]}
+            serial="true"
+            // task="true"
+          />
         </div>
+        {/* <div className="table_data_webview">
+          <TodoList />
+        </div> */}
 
         <div className="card_data_mobileview">
-          <Card
+          <TaskCard
             title="Project Developement"
             navigation={{
               state: "push",
@@ -113,44 +223,7 @@ export default class Dashboard extends Component {
               history: this.props.history,
               context: this.context,
             }}
-            content={[
-              {
-                srno: 1,
-                title: "wow ",
-                name: "Design Profile",
-                startDate: "12/02/2021",
-                endDate: "20/02/2021",
-                task_status: "complete",
-              },
-              {
-                srno: 1,
-                title: "wow",
-                name: "Develop login",
-                startDate: "12/02/2021",
-                endDate: "20/02/2021",
-              },
-              {
-                srno: 1,
-                title: "wow",
-                name: "Major React combinations",
-                startDate: "12/02/2021",
-                endDate: "20/02/2021",
-              },
-              {
-                srno: 1,
-                title: "wow",
-                name: "implemente testings",
-                startDate: "12/02/2021",
-                endDate: "20/02/2021",
-              },
-              {
-                srno: 1,
-                title: "wow",
-                name: "Ensure functionality",
-                startDate: "12/02/2021",
-                endDate: "20/02/2021",
-              },
-            ]}
+            content={this.context.state.tasks}
           />
         </div>
       </div>

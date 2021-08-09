@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AppContext from "../../context/AppContext";
-import GenarateName from "../../reusable/namecirclegenerator/criclegenrator";
+import { GenarateName } from "../../reusable/namecirclegenerator/criclegenrator";
 import "./profile.scss";
 
 export default class Profile extends Component {

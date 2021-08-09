@@ -17,11 +17,19 @@
     ion-icon {
       color: black;
     }
+
+    .project_creator {
+      @include flexalign(start);
+      span {
+        font-weight: bold;
+        font-size: 12px;
+      }
+    }
   }
 
   .card_subcontainer2 {
     @include flexalign(space-between);
-    width: 65%;
+    width: 60%;
     margin-top: 5px;
     label {
       color: #656565;

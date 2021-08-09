@@ -1,6 +1,14 @@
-import GenarateName from "../reusable/namecirclegenerator/criclegenrator";
+import { GenarateName } from "../reusable/namecirclegenerator/criclegenrator";
 
-let tagto = ["Rahuld", "mayur dere", "purvi"];
+let tagto = [
+  "Rahuld",
+  "mayur dere",
+  "purvi",
+  "Anubhab Goel",
+  "Yogendra Pednekar",
+  "Abhisheck Badjatiya",
+  "Dwarka Tiwari",
+];
 
 const tagname = (namecallback) => {
   let people_available = tagto.map((items) => {
@@ -15,7 +23,7 @@ const tagname = (namecallback) => {
       >
         <GenarateName name={items} />
         <p
-          style={{ marginLeft: 10, fontWeight: "medium" }}
+          style={{ marginLeft: 10, fontWeight: "medium", cursor: "pointer" }}
           onClick={() => namecallback(items)}
         >
           {items}

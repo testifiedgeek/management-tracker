@@ -37,56 +37,50 @@ export default class Creategroups extends Component {
         "Project Finalization",
       ],
       groupname: "",
+      description: "",
     };
   }
-  create_group = async () => {
+  create_workspace = async () => {
     // Create new Project
-
+    let token = await window.localStorage.getItem("hdfcmanagementtracker");
+    this.context.set_creating_warning(
+      true,
+      "Succesfull",
+      `Creating New Workspace ${this.state.groupname}`,
+      "lightblue",
+      this.context
+    );
+    navigate(
+      "push",
+      "/workspace",
+      "Workspace",
+      this.props.history,
+      this.context
+    );
     let api_data = {
-      path: "/tasks",
+      path: "/admin/createWorkSpace",
       method: "POST",
+      user_token: token,
       body: {
-        //group name , daepartment, members object
+        work_place_name: this.state.groupname,
+        work_place_description: this.state.description,
       },
     };
     let result = await Fetch_function(api_data);
-    if (result) {
-      if (result.msg === "Login Successfull") {
-        console.log("result: ", result);
+    if (result.status) {
+      if (result.data.msg === "work space created successfully") {
         this.context.set_warning(
           true,
           "Succesfull",
-          "Successfully Loged In",
+          `Work Space ${this.state.groupname} Created Successfully1`,
           "green",
           this.context
         );
-        let user = {
-          name: "Dwarka ",
-          email: "dwarka@gmail.com",
-          profession: "AVP Head",
-          employeeid: "142743",
-        };
-        this.context.set_user_details(user);
-        navigate(
-          "push",
-          "/dashboard",
-          "Dashboard",
-          this.props.history,
-          this.context
-        );
-      } else if (result.msg === "Login failed") {
+      } else if (result.data.msg === "This work space already exist") {
         this.context.set_warning(
           true,
           "failed",
-          "Please Enter Write Credentials",
-          "red",
-          this.context
-        );
-      } else if (result.msg === "Something Went Wrong") {
-        this.context.set_warning(
-          true,
-          "failed",
-          "Something Went Wrong",
+          "This work space already exist",
           "red",
           this.context
         );
@@ -95,7 +89,7 @@ export default class Creategroups extends Component {
       this.context.set_warning(
         true,
         "failed",
-        "Something Went Wrong",
+        result.data,
         "red",
         this.context
       );
@@ -179,12 +173,12 @@ export default class Creategroups extends Component {
           <div className="createproject_subcontainer">
             <div className="section3">
               <Createsection
-                label="Unique Group Name"
+                label="Unique Workspace Name"
                 type="input"
                 input_handle_fun={this.input_handle_fun}
               />
             </div>
-            <div className="section1">
+            {/* <div className="section1">
               <Createsection
                 label="Select Department"
                 searchtitle="Search Department Here"
@@ -195,8 +189,8 @@ export default class Creategroups extends Component {
                 display_fun={this.display_fun}
                 selected_fun={this.selected_fun}
               />
-            </div>
-            <div className="section4">
+            </div> */}
+            {/* <div className="section4">
               <Createsection
                 label="Select Members"
                 searchtitle="Search Name Here"
@@ -207,17 +201,18 @@ export default class Creategroups extends Component {
                 display_fun={this.display_fun_members}
                 selected_fun={this.selected_fun_members}
               />
-            </div>
+            </div> */}
           </div>
           <textarea
-            placeholder="Write Something Here..."
+            onChange={(e) => this.setState({ description: e.target.value })}
+            placeholder="Write Something Here About Workspace..."
             className="desc"
           ></textarea>
           <div className="create_project_button">
             <Button
-              title="Create Group"
+              title="Create Workspace"
               width={"100%"}
-              fun={this.create_group}
+              fun={this.create_workspace}
             />
           </div>
         </div>

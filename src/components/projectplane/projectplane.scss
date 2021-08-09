@@ -5,6 +5,10 @@
   .info_represantation {
     display: none;
   }
+
+  .plane_table_data_webview {
+    display: none;
+  }
   .respersent_data_container {
     @include animations();
     padding: 10px;
@@ -44,9 +48,15 @@
     }
   }
 
+  .plane_table_data_webview {
+    .project_table_subcontainer {
+      margin-top: 50px;
+    }
+  }
+
   .plane_sections {
     @include flexalign(space-between);
-    margin: 0px 20px 0px 20px;
+    margin: 15px 20px 0px 20px;
     .plane_subsections {
       @include flexalign(space-between);
       flex-grow: 0.1;

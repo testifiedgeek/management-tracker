@@ -9,7 +9,6 @@ $black: black;
     display: none;
   }
   .subheader {
-    width: 100%;
     background-color: white;
     display: flex;
     align-items: center;
@@ -54,7 +53,7 @@ $black: black;
     background-color: $primarycolour;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 12px;
   }
 
   .header_left {

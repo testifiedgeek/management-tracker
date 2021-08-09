@@ -1,0 +1,23 @@
+@import "../../scss//global.scss";
+
+.alert_container {
+  @include flexalign(center);
+  position: fixed;
+  top: 70px;
+  right: 0px;
+  left: 0px;
+  z-index: 1;
+  @include slide();
+  .alert_subcontainer {
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px solid grey;
+    border-radius: 5px;
+    padding: 20px;
+    .alert_header {
+    }
+    .alert_msg {
+    }
+    .alert_btn {
+    }
+  }
+}
