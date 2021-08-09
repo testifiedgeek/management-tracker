@@ -8,6 +8,7 @@ import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import TableCard from "../../reusable/TableCard/TableCard";
+import ProjectCard from "../../reusable/projectscard/projectsCard";
 
 export default class Projects extends Component {
   constructor(props) {
@@ -18,34 +19,45 @@ export default class Projects extends Component {
       firsttime: true,
       content: [
         {
-          srno: 1,
-          title: "Policy maker",
-          name: "Policy maker",
-          startDate: "12/02/2021",
-          endDate: "20/02/2021",
-          task_status: "complete",
+        project_name: "Sampoorna Suraksha",
+        work_place_id: "Innovation",
+        start_date: "09/08/2021",
+        end_date: "10/08/2021",
+        project_lead: "Mayur Dere",
+        status: "In Progress"
         },
         {
-          srno: 1,
-          title: "Kompass",
-          name: "Kompass ",
-          startDate: "12/02/2021",
-          endDate: "20/02/2021",
+        project_name: "PYP Journey",
+        work_place_id: "BPR",
+        start_date: "09/08/2021",
+        end_date: "10/08/2021",
+        project_lead: "Mayur Dere",
+        status: "In Progress"
         },
         {
-          srno: 1,
-          title: "sampoorna Suraksha",
-          name: "sampoorna Suraksha",
-          startDate: "12/02/2021",
-          endDate: "20/02/2021",
+          project_name: "Rapid Insure",
+          work_place_id: "Innovation",
+          start_date: "09/08/2021",
+          end_date: "10/08/2021",
+          project_lead: "Mayur Dere",
+          status: "Completed"
         },
         {
-          srno: 1,
-          title: "BPR Inovation",
-          name: "BPR Inovation ",
-          startDate: "12/02/2021",
-          endDate: "20/02/2021",
+          project_name: "Sampoorna Suraksha",
+          work_place_id: "Innovation",
+          start_date: "09/08/2021",
+          end_date: "10/08/2021",
+          project_lead: "Mayur Dere",
+          status: "In Progress"
         },
+        {
+        project_name: "Sampoorna Suraksha",
+        work_place_id: "BPR",
+        start_date: "09/08/2021",
+        end_date: "10/08/2021",
+        project_lead: "Mayur Dere",
+        status: "In Progress"
+        }
       ],
     };
   }
@@ -156,7 +168,13 @@ export default class Projects extends Component {
               />
             </div>
           )}
-
+            <div className="projects_grid_system">
+              {this.state.content.map((items) => {
+                return (
+                  <ProjectCard content={items}/>
+                );
+              })}
+            </div>
           {/* Statistics Slide */}
           {this.context.state.projects.length !== 0 ? (
             <div className="table_container">

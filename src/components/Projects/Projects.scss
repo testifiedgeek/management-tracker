@@ -108,6 +108,12 @@
     }
   }
 
+  .projects_grid_system {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(3, 330px);
+  }
+
   .project_createsection {
     @keyframes create_project_animation {
       from {
