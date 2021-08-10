@@ -37,25 +37,13 @@ class Header extends Component {
                       this.context
                     )
                   }
-                  class="header_mobile_opt"
+                  class="header_web_opt"
                   name="arrow-back"
                 ></ion-icon>
               ) : (
                 <div></div>
               )}
-              <ion-icon
-                onClick={() =>
-                  navigate(
-                    "back",
-                    "/project",
-                    this.context.state.backpage,
-                    this.props.history,
-                    this.context
-                  )
-                }
-                class="header_web_opt"
-                name="arrow-back"
-              ></ion-icon>
+
               <h3 className="header_buttons"> {this.context.state.page}</h3>
             </div>
             <div className="header_right">

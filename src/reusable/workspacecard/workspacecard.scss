@@ -3,33 +3,40 @@
 .workspace_card_container {
   width: 100%;
   height: auto;
-
   box-shadow: 8px 8px 18px 0 rgba(0, 0, 0, 0.06);
   .workspace_card_subcontainer {
     position: relative;
     .upper_design {
+      border-radius: 8px;
       height: 85px;
+      opacity: 0.28;
       box-shadow: 2px 3px 6px #00000029;
       background: transparent linear-gradient(90deg, #f4c5f4 0%, #c5c1f6 100%)
         0% 0% no-repeat padding-box;
     }
-    .bottom_part_card {
-      background-color: white;
-      .card_icon {
-        width: 76px;
-        height: 76px;
-        box-shadow: 2px 10px 25px #0000000f;
-        background-color: #f7f4f4;
-        @include flexalign(center);
-      }
-      .lower_info_design {
-        background-color: white;
 
-        h3 {
-          font-size: 22px;
-        }
-        span {
-          font-size: 14px;
+    .card_icon {
+      @include flexalign(center);
+      position: absolute;
+      top: 20px;
+      right: 0px;
+      left: 0px;
+    }
+    .lower_info_design {
+      background-color: white;
+      border-radius: 8px;
+      padding: 70px 0px 40px 0px;
+      .workspace_name {
+        font-size: 15px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .workspace_data {
+        font-size: 13px;
+        text-align: center;
+        @include flexalign(center);
+        img {
+          margin-right: 10px;
         }
       }
     }

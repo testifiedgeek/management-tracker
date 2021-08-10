@@ -267,23 +267,7 @@ export default class Projectplan extends Component {
               return (
                 <div className="project_table_subcontainer">
                   <TableCard
-                    title={
-                      items.cat_name +
-                      " " +
-                      "(" +
-                      items.cat_percentage +
-                      "%)" +
-                      " " +
-                      "-" +
-                      " " +
-                      "completed" +
-                      items.cat_work_status["completed"] +
-                      " " +
-                      "and" +
-                      " " +
-                      "incompleted" +
-                      items.cat_work_status["incomplete"]
-                    }
+                    title={items.cat_name}
                     content={items.tasks}
                     rows={[
                       "task_name",

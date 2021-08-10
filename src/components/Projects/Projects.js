@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Projects.scss";
 import search from "../../assets/search.svg";
+import innovation from "../../assets/innovation.svg";
 import { Card } from "../../reusable/cardcomponent/CardComponent";
 import AppContext from "../../context/AppContext";
 import Createproject from "../createproject/Createproject";
@@ -8,57 +9,20 @@ import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import TableCard from "../../reusable/TableCard/TableCard";
-import ProjectCard from "../../reusable/projectscard/projectsCard";
+import ProjectCard from "../../reusable/projectcard/projectcard";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search_project: "",
+      filter: 0,
       enable_create_section: false,
       firsttime: true,
-      content: [
-        {
-        project_name: "Sampoorna Suraksha",
-        work_place_id: "Innovation",
-        start_date: "09/08/2021",
-        end_date: "10/08/2021",
-        project_lead: "Mayur Dere",
-        status: "In Progress"
-        },
-        {
-        project_name: "PYP Journey",
-        work_place_id: "BPR",
-        start_date: "09/08/2021",
-        end_date: "10/08/2021",
-        project_lead: "Mayur Dere",
-        status: "In Progress"
-        },
-        {
-          project_name: "Rapid Insure",
-          work_place_id: "Innovation",
-          start_date: "09/08/2021",
-          end_date: "10/08/2021",
-          project_lead: "Mayur Dere",
-          status: "Completed"
-        },
-        {
-          project_name: "Sampoorna Suraksha",
-          work_place_id: "Innovation",
-          start_date: "09/08/2021",
-          end_date: "10/08/2021",
-          project_lead: "Mayur Dere",
-          status: "In Progress"
-        },
-        {
-        project_name: "Sampoorna Suraksha",
-        work_place_id: "BPR",
-        start_date: "09/08/2021",
-        end_date: "10/08/2021",
-        project_lead: "Mayur Dere",
-        status: "In Progress"
-        }
-      ],
+      content: [],
     };
   }
 
@@ -140,9 +104,9 @@ export default class Projects extends Component {
         <div>
           {this.context.state.page !== "Create Project" ? (
             <div className="main_projects_web_container">
-              <h3>All Projects types - all categories</h3>
-              <div class="search_container">
-                <div class="search_subcontainer">
+              {/* <h3>All Projects types - all categories</h3> */}
+              <div className="search_container">
+                {/* <div class="search_subcontainer">
                   <img src={search} />
                   <input
                     onChange={(e) =>
@@ -153,12 +117,38 @@ export default class Projects extends Component {
                     placeholder="Type to search project"
                   />
                   <span>Sort By</span>
-                </div>
-              </div>
+                </div> */}
 
+                <Paper square>
+                  <Tabs
+                    value={this.state.filter}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={(e, value) => this.setState({ filter: value })}
+                    aria-label="disabled tabs example"
+                  >
+                    <Tab label="All" />
+                    <Tab label="In Progress" />
+                    <Tab label="Completed" />
+                  </Tabs>
+                </Paper>
+                {/* <div className="filter_section">
+                  <span onClick={() => this.setState({ filter: "ALL" })}>
+                    All
+                  </span>
+                  <span onClick={() => this.setState({ filter: "INPROGRESS" })}>
+                    In Progress
+                  </span>
+                  <span onClick={() => this.setState({ filter: "COMPLETED" })}>
+                    Completed
+                  </span>
+                  <span></span>
+                </div> */}
+              </div>
+              {/* 
               <div className="create_project_btn">
                 <Button title="Create Project" fun={this.create_project} />
-              </div>
+              </div> */}
             </div>
           ) : (
             <div className="project_createsection">
@@ -177,8 +167,38 @@ export default class Projects extends Component {
             </div>
           {/* Statistics Slide */}
           {this.context.state.projects.length !== 0 ? (
-            <div className="table_container">
-              <TableCard
+            <div className="project_grid_container">
+              {this.state.filter === 0
+                ? this.context.state.projects.map((items) => {
+                    return (
+                      <ProjectCard
+                        handleViewTask={this.handleProject}
+                        content={items}
+                      />
+                    );
+                  })
+                : this.state.filter === 1
+                ? this.context.state.projects.map((items) => {
+                    if (items.final_status == 0) {
+                      return (
+                        <ProjectCard
+                          handleViewTask={this.handleProject}
+                          content={items}
+                        />
+                      );
+                    }
+                  })
+                : this.context.state.projects.map((items) => {
+                    if (items.final_status == 1) {
+                      return (
+                        <ProjectCard
+                          handleViewTask={this.handleProject}
+                          content={items}
+                        />
+                      );
+                    }
+                  })}
+              {/* <TableCard
                 title=""
                 content={
                   this.state.search_project === ""
@@ -202,7 +222,7 @@ export default class Projects extends Component {
                   "",
                 ]}
                 serial="true"
-              />
+              /> */}
             </div>
           ) : (
             <div></div>
@@ -211,8 +231,8 @@ export default class Projects extends Component {
 
         {/* Mobile View of project screens */}
         <div className="main_projects_mobile_container">
-          <div class="search_container">
-            <div class="search_subcontainer">
+          <div className="search_container">
+            <div className="search_subcontainer">
               <img src={search} />
               <input
                 onChange={(e) =>
