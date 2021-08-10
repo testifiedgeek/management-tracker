@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import RepresentData from "../../reusable/textinfo/textdata.js";
 import Projectplan from "../projectplane/projectplan";
 import Projectupdates from "../projectupdates/projectupdates";
 import AppContext from "../../context/AppContext";
@@ -56,24 +55,7 @@ export default class ProjectOverview extends Component {
     return (
       <div>
         <div className="project_overview_container">
-          <div className="represent_data">
-            {this.context.state.project_overview_details ? (
-              <RepresentData
-                infodata={{
-                  title:
-                    this.context.state.project_overview_details.project_name,
-                  desc: this.context.state.project_overview_details
-                    .project_decription,
-                  startDate:
-                    this.context.state.project_overview_details.start_date,
-                  endDate:
-                    this.context.state.project_overview_details.completion_date,
-                }}
-              />
-            ) : (
-              <div></div>
-            )}
-          </div>
+          
 
           <div className="tabs_section">
             <span

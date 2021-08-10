@@ -8,6 +8,12 @@ import navigate from "../../helperfunctions/navigation";
 import AppContext from "../../context/AppContext";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
 import TableCard from "../../reusable/TableCard/TableCard";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import RepresentData from "../../reusable/textinfo/textdata.js";
+import DescriptionCard from "../../reusable/projectdesc/projectdesc";
+
 
 let divide = {};
 
@@ -19,6 +25,7 @@ export default class Projectplan extends Component {
       admin: [],
       update: false,
       projectStatus: { complete: 0, incomplet: 0 },
+      filter: 0,
     };
   }
   create_task = () => {
@@ -215,24 +222,7 @@ export default class Projectplan extends Component {
               ]}
             />
           </div>
-          <div className="info_represantation">
-            <Infoboxes
-              info={[
-                {
-                  title: "Project Lead",
-                  name: this.state.admin ? this.state.admin : "Rahul",
-                },
-                {
-                  title: "Status",
-                  name:
-                    this.context.state.project_overview_details.final_status ===
-                    "0"
-                      ? "In Progress"
-                      : "Completed",
-                },
-              ]}
-            />
-          </div>
+          <DescriptionCard />
         </div>
 
         {/* Web View for categories */}
@@ -248,8 +238,20 @@ export default class Projectplan extends Component {
         ) : (
           <div className="plane_sections">
             <div className="plane_subsections">
-              <h5>Categories</h5>
-              <h5>Filter</h5>
+            <Paper square>
+                  <Tabs
+                    value={this.state.filter}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={(e, value) => this.setState({ filter: value })}
+                    aria-label="disabled tabs example"
+                  >
+                    <Tab label="All" />
+                    <Tab label="In Progress" />
+                    <Tab label="Completed" />
+                    <Tab label="Yet To Start" />
+                  </Tabs>
+                </Paper>
             </div>
             {this.checkAdminStatus() ? (
               <Button title="Create Task" fun={this.create_task} />

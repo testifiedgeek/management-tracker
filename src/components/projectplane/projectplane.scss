@@ -12,8 +12,7 @@
   .respersent_data_container {
     @include animations();
     padding: 10px;
-    .stats_represantation {
-    }
+    
   }
 
   .plane_sections {
@@ -41,6 +40,7 @@
 
     .stats_represantation {
       grid-area: stats;
+      
     }
 
     .info_represantation {
@@ -60,6 +60,23 @@
     .plane_subsections {
       @include flexalign(space-between);
       flex-grow: 0.1;
+      background-color: #F8F9FD;
+
+      .MuiPaper-elevation1 {
+        box-shadow: unset;
+      }
+      .MuiPaper-root {
+        background-color: inherit;
+      }
+
+      .MuiTab-textColorPrimary.Mui-selected {
+        color: #e41e26;
+        font-weight: bold;
+      }
+
+      .PrivateTabIndicator-colorPrimary-2 {
+        background-color: #e41e26;
+      }
 
       h5 {
         cursor: pointer;
