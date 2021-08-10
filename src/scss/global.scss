@@ -11,6 +11,10 @@ $status_start_word: red;
 $status_complete: #16e0383b;
 $status_complete_word: green;
 
+* {
+  font-family: "Nunito", sans-serif;
+}
+
 @mixin flexalign($align) {
   display: flex;
   justify-content: $align;

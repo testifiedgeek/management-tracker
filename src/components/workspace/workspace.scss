@@ -9,7 +9,6 @@
     display: none;
   }
   .search_container {
-    background-color: white;
     padding: 10px;
     border-radius: 5px;
     grid-column-start: 1;
@@ -56,7 +55,6 @@
   }
 
   .search_subcontainer {
-    background-color: white;
     display: flex;
     align-items: center;
     grid-area: search;

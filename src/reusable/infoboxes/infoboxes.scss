@@ -21,7 +21,6 @@
 
     div .box_info_container {
       @include flexalign(start);
-      margin-top: 10px;
     }
   }
 }

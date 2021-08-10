@@ -79,7 +79,8 @@ const Put_Updates = ({ commentfor, add_new_comment }) => {
             "green",
             context
           );
-          add_new_comment(result.data.data);
+          console.log("uhuih", result.data.data[0].commentDetails);
+          add_new_comment(result.data.data[0].commentDetails);
           setUpdates("");
           for (let items in tagData) {
             if (updates.includes(items)) {
@@ -148,7 +149,7 @@ const Put_Updates = ({ commentfor, add_new_comment }) => {
             "green",
             context
           );
-          add_new_comment(result.data.data);
+          add_new_comment(result.data.data[0].commentDetails);
           for (let items in tagData) {
             if (updates.includes(items)) {
               psid.push(tagData[items]);

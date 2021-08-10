@@ -63,7 +63,7 @@
   }
 
   .main_projects_web_container {
-    padding: 15px 20px 20px 20px;
+    padding: 0px 20px 0px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 0.8fr 0.3fr auto auto;
@@ -89,9 +89,35 @@
     .search_container {
       grid-column-start: 1;
       grid-column-end: 3;
-      grid-row-start: 2;
-      grid-row-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
       margin-top: 10px;
+
+      .filter_section {
+        @include flexalign(space-between);
+        span {
+          cursor: pointer;
+          opacity: 0.4;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+
+      .MuiPaper-elevation1 {
+        box-shadow: unset;
+      }
+      .MuiPaper-root {
+        background-color: inherit;
+      }
+
+      .MuiTab-textColorPrimary.Mui-selected {
+        color: #e41e26;
+        font-weight: bold;
+      }
+
+      .PrivateTabIndicator-colorPrimary-2 {
+        background-color: #e41e26;
+      }
     }
     .create_group_btn {
       grid-column-start: 4;
@@ -102,10 +128,17 @@
     }
     .table_container {
       grid-column-start: 1;
-      grid-row-start: 3;
+      grid-row-start: 2;
       grid-column-end: 4;
       margin-left: 20px;
     }
+  }
+
+  .project_grid_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-gap: 20px;
+    margin: 0px 20px 20px 20px;
   }
 
   .project_createsection {
@@ -120,5 +153,12 @@
     }
 
     animation: create_project_animation 0.5s;
+  }
+
+  .MuiPaper-elevation1 {
+    box-shadow: unset;
+  }
+  .MuiPaper-root {
+    background-color: inherit;
   }
 }

@@ -39,7 +39,7 @@ export default class MainApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "Workspace",
+      page: "Login",
       backpage: "",
       user: {
         name: "Dwarka Tiwari",
@@ -300,6 +300,11 @@ export default class MainApp extends Component {
   };
 
   async componentDidMount() {
+    let sessiondata = await window.localStorage.getItem("sessiondata");
+    if (sessiondata) {
+      this.setState(JSON.parse(sessiondata));
+    }
+
     let token = await window.localStorage.getItem("hdfcmanagementtracker");
     if (token) {
       let api_data4 = {
@@ -311,16 +316,20 @@ export default class MainApp extends Component {
       if (result4.status) {
         if (result4.data.data.length !== 0) {
           this.set_members(result4.data.data);
-          <Switch>
-            <Route path="/login" component={Login} exact />
-          </Switch>;
+          this.setState({ page: this.state.page });
         }
       }
+    } else {
+      this.setState({ page: "Login" });
     }
+  }
 
-    <Switch>
-      <Route path="/projects" component={Projects} exact />
-    </Switch>;
+  async componentDidUpdate() {
+    console.log("updated");
+    await window.localStorage.setItem(
+      "sessiondata",
+      JSON.stringify(this.state)
+    );
   }
 
   render() {

@@ -110,19 +110,19 @@ export default class Dashboard extends Component {
       }
     }
 
-    //   if (this.context.state.members.length === 0) {
-    //     let api_data4 = {
-    //       path: "/employee/getUser/",
-    //       method: "GET",
-    //       user_token: token,
-    //     };
-    //     let result4 = await Fetch_function(api_data4);
-    //     if (result4.status) {
-    //       if (result4.data.data.length !== 0) {
-    //         this.context.set_members(result4.data.data);
-    //       }
+    // if (this.context.state.members.length === 0) {
+    //   let api_data4 = {
+    //     path: "/employee/getUser/",
+    //     method: "GET",
+    //     user_token: token,
+    //   };
+    //   let result4 = await Fetch_function(api_data4);
+    //   if (result4.status) {
+    //     if (result4.data.data.length !== 0) {
+    //       this.context.set_members(result4.data.data);
     //     }
     //   }
+    // }
   }
 
   handleTask = (task) => {

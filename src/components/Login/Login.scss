@@ -10,11 +10,12 @@
 
     img {
       grid-area: banner;
+      width: 100%;
+      height: 100vh;
     }
     .login_info_container {
       grid-area: form;
       background-color: white;
-      height: 100vh;
       padding: 10px 0px 0px 60px;
     }
 

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+    <defs>
+        <style>
+            .cls-2{fill:#e41e26}
+        </style>
+    </defs>
+    <g id="Group_3187" transform="translate(-311 -368)">
+        <circle id="Ellipse_521" cx="13" cy="13" r="13" fill="#f7f4f4" transform="translate(311 368)"/>
+        <g id="reshot-icon-users-A8Q925MDBK" transform="translate(318 376.133)">
+            <path id="Path_25237" d="M36.148 64.867a1.537 1.537 0 0 0-1.537-1.537h-3.074A1.537 1.537 0 0 0 30 64.867V66.4h6.148v-1.533z" class="cls-2" transform="translate(-26.926 -55.788)"/>
+            <ellipse id="Ellipse_518" cx="1.554" cy="1.165" class="cls-2" rx="1.554" ry="1.165" transform="translate(4.393 3.884)"/>
+            <ellipse id="Ellipse_519" cx="1.554" cy="1.942" class="cls-2" rx="1.554" ry="1.942" transform="translate(7.5 0)"/>
+            <ellipse id="Ellipse_520" cx="1.554" cy="1.942" class="cls-2" rx="1.554" ry="1.942" transform="translate(1.286 0)"/>
+            <path id="Path_25238" d="M70.253 44.867a1.537 1.537 0 0 0-1.537-1.537h-2.049v2.27a2.567 2.567 0 0 1 1.014.809h2.573v-1.541z" class="cls-2" transform="translate(-57.958 -38.862)"/>
+            <path id="Path_25239" d="M10 44.867a1.537 1.537 0 0 1 1.537-1.537h2.049v2.27a2.567 2.567 0 0 0-1.014.809H10v-1.541z" class="cls-2" transform="translate(-10 -38.862)"/>
+        </g>
+    </g>
+</svg>

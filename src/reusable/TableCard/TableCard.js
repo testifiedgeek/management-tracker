@@ -97,11 +97,14 @@ export default class TableCard extends Component {
     let TableRow = this.props.rows;
     let TableHeading = this.props.headings;
     let Numbers = this.props.serial;
+    let table_status = this.props.table_status;
 
     if (Numbers === "true") {
       return (
         <table className="user_container">
-          <caption id="table_caption">{TableTitle}</caption>
+          <caption id="table_caption">
+            {TableTitle} {table_status ? table_status : ""}
+          </caption>
           <thead>
             <tr className="table_row" id="heading">
               <th className="table_heading">Sl.No</th>

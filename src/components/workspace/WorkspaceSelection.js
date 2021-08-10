@@ -171,8 +171,8 @@ export default class Workspace extends Component {
         <div>
           {this.context.state.page !== "Create Group" ? (
             <div className="main_workspace_web_container">
-              <h3>All Groups</h3>
-              <div class="search_container">
+              <h3>Spaces</h3>
+              {/* <div class="search_container">
                 <div class="search_subcontainer">
                   <img src={search} />
                   <input
@@ -188,7 +188,7 @@ export default class Workspace extends Component {
               </div>
               <div className="create_group_btn">
                 <Button title="Create Workspace" fun={this.create_new_group} />
-              </div>
+              </div> */}
             </div>
           ) : (
             <div className="project_createsection">
