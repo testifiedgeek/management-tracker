@@ -34,6 +34,7 @@ import Alert from "../reusable/alert/alert";
 import { Fetch_function } from "../helperfunctions/fetchdata";
 import Taskplan from "./taskoverview/taskoverveiw";
 import current_date from "../helperfunctions/datemodule";
+import Departements from "./displayDepartment/displaydepartment";
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -132,7 +133,7 @@ export default class MainApp extends Component {
   //set projects fetch for loged user
 
   set_projects = (projects) => {
-    this.setState({ projects: [...this.state.projects, ...projects] });
+    this.setState({ projects: [...projects, ...this.state.projects] });
   };
 
   //set Departments fetch for loged user
@@ -150,7 +151,7 @@ export default class MainApp extends Component {
   //set members fetch for loged user
 
   set_members = (members) => {
-    this.setState({ members: [...this.state.members, ...members] });
+    this.setState({ members: members });
   };
 
   //set categories fetch for loged user
@@ -169,8 +170,8 @@ export default class MainApp extends Component {
     this.setState({ task_overview_details: task });
   };
 
-  setDept = (id) => {
-    this.setState({ selected_department: id });
+  setDept = (data) => {
+    this.setState({ selected_department: data });
   };
 
   accept_task = async (userId, task, fun) => {
@@ -332,6 +333,11 @@ export default class MainApp extends Component {
     );
   }
 
+  add_new_created_project = (project) => {
+    this.state.projects.unshift(project);
+    this.setState({ projects: this.state.projects });
+  };
+
   render() {
     return (
       <div>
@@ -380,6 +386,7 @@ export default class MainApp extends Component {
               displayAlert: this.displayAlert,
               accept_task: this.accept_task,
               complete_task: this.complete_task,
+              add_new_created_project: this.add_new_created_project,
             }}
           >
             <BrowserRouter>
@@ -420,6 +427,21 @@ export default class MainApp extends Component {
                           <Route
                             path="/display-group"
                             component={DisplayGroup}
+                            exact
+                          />
+                          <Route
+                            path="/departments"
+                            component={Departements}
+                            exact
+                          />
+                          <Route
+                            path="/create-project"
+                            component={Createproject}
+                            exact
+                          />
+                          <Route
+                            path="/create-space"
+                            component={Creategroups}
                             exact
                           />
                           <Route

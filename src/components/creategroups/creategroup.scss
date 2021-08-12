@@ -3,43 +3,26 @@
 // Web Screens
 @media screen and (min-width: 600px) {
   .createproject_container {
-    .createproject_subcontainer {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto auto auto;
-      grid-gap: 10px;
-      .desc {
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        width: 95%;
-        height: 150px;
-        padding: 5px;
-        font-weight: 500;
-        font-size: 15px;
-        resize: none;
-        margin: 30px 0px 20px 0px;
+    .createproject_subontainer {
+      .space_title {
+        margin-bottom: 25px;
+      }
+      .space_members_and_lead {
+        width: 70%;
+        @include flexalign(space-between);
+        .members_input {
+          width: 40%;
+        }
+        margin-bottom: 45px;
+      }
+
+      .create_project_btn {
+        width: 98%;
+        @include flexalign(flex-end);
       }
     }
   }
-
-  .desc {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    width: 98%;
-    height: 60px;
-    padding: 5px;
-    font-weight: 500;
-    font-size: 15px;
-    resize: none;
-    margin: 30px 0px 20px 0px;
-  }
-  .create_project_button {
-    float: right;
-  }
 }
-
 // Mobile Screens
 @media screen and (max-width: 600px) {
   .createproject_container {

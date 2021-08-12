@@ -4,6 +4,7 @@ import AppContext from "../../context/AppContext";
 import navigate from "../../helperfunctions/navigation";
 import "../Header/Header.scss";
 import { GenarateName } from "../namecirclegenerator/criclegenrator";
+import Button from "../../reusable/button/button";
 import Createprocess_icon from "../../reusable/createprocess_icons/createprocessicon";
 
 class Header extends Component {
@@ -24,6 +25,7 @@ class Header extends Component {
               {this.context.state.page === "Project Overview" ||
               this.context.state.page === "Profile" ||
               this.context.state.page === "Create Project" ||
+              this.context.state.page === "Create Space" ||
               this.context.state.page === "Create Task" ||
               this.context.state.page === "Write Update" ||
               this.context.state.page === "Create Workspace" ? (
@@ -44,13 +46,50 @@ class Header extends Component {
                 <div></div>
               )}
 
-              <h3 className="header_buttons"> {this.context.state.page}</h3>
+              <h3 className="header_buttons">
+                {" "}
+                {this.context.state.page === "Departments"
+                  ? this.context.state.selected_department.work_place_name
+                  : this.context.state.page}
+              </h3>
             </div>
             <div className="header_right">
+              {this.context.state.page === "Departments" ? (
+                <Button
+                  fun={() =>
+                    navigate(
+                      "push",
+                      "/create-project",
+                      "Create Project",
+                      this.props.history,
+                      this.context
+                    )
+                  }
+                  title="Create Project"
+                  color="inherit"
+                  width="100%"
+                />
+              ) : this.context.state.page === "Workspace" ? (
+                <Button
+                  fun={() =>
+                    navigate(
+                      "push",
+                      "/create-space",
+                      "Create Space",
+                      this.props.history,
+                      this.context
+                    )
+                  }
+                  title="Create Space"
+                  color="inherit"
+                  width="100%"
+                />
+              ) : (
+                <div></div>
+              )}
               {this.context.state.page !== "Projects" &&
               this.context.state.page !== "Project Overview" &&
-              this.context.state.page !== "Write Update" &&
-              this.context.state.page !== "Workspace" ? (
+              this.context.state.page !== "Write Update" ? (
                 <div class="header_web_opt">
                   <GenarateName name={this.context.state.user.name} />
                 </div>

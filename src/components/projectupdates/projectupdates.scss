@@ -21,26 +21,67 @@
   .project_update_container {
     padding: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr auto auto;
-    grid-template-areas:
-      "input input input input"
-      "search search space space"
-      "updates updates space space";
+    grid-template-columns: 0.5fr 2fr;
+    grid-template-areas: "tag timeline";
 
-    .write_update_container {
-      margin-top: 10px;
-      grid-area: input;
+    .tag_section {
+      margin-top: 20px;
+      grid-area: tag;
+      .tags {
+        margin-left: 10px;
+        @include flexalign(start);
+        cursor: pointer;
+        p {
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          color: #222;
+        }
+      }
+
+      .tags_close {
+        padding-left: 10px;
+        @include flexalign(start);
+        border-radius: 50px;
+        width: 70%;
+        cursor: pointer;
+        background: #fdeff0;
+        p {
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          color: #222;
+        }
+      }
     }
     .view_comment_cards {
       margin-top: 20px;
       grid-area: updates;
     }
-    .header_container {
-      margin-top: 35px;
-      grid-area: search;
-      h5 {
-        padding-bottom: 10px;
+    .timeline_section {
+      .header_container {
+        @include flexalign(start);
+        .search_container {
+          width: 70%;
+          background: white;
+          border-radius: 50px;
+          box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        .timeline_btn {
+          margin-left: 30px;
+        }
+        h5 {
+          padding-bottom: 10px;
+        }
+      }
+
+      .main_timeline {
+        margin-top: 30px;
+        padding: 20px;
+        width: 85%;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.06);
       }
     }
   }

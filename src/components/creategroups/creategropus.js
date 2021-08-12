@@ -5,6 +5,11 @@ import { Createsection } from "../../reusable/creationprocess/Createsection";
 import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
+import {
+  CreateElementTeamInput,
+  CreateElementTitle,
+  CreateElementProjectLeadInput,
+} from "../../reusable/CreateProcessElemets/CreateProcessElements";
 
 export default class Creategroups extends Component {
   constructor(props) {
@@ -14,28 +19,8 @@ export default class Creategroups extends Component {
       display: false,
       display_members: false,
       selected_members: { data: {}, length: 0 },
-      departments: [
-        "INNOVATION",
-        "SALES",
-        "BPR",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-        "CALLERS",
-        "NETWORK",
-        "AI",
-        "TECHNOLOGY",
-      ],
-      members: [
-        "Abhisheck Badjatiya",
-        "Dwarka Tiwari",
-        "Anubhab",
-        "Next manager",
-        "Kiran Hulavle",
-        "Project Deployment",
-        "Project Finalization",
-      ],
+      departments: [],
+      members: [],
       groupname: "",
       description: "",
     };
@@ -68,7 +53,7 @@ export default class Creategroups extends Component {
     };
     let result = await Fetch_function(api_data);
     if (result.status) {
-      if (result.data.msg === "work space created successfully") {
+      if (result.data.data.msg === "work space created successfully") {
         this.context.set_warning(
           true,
           "Succesfull",
@@ -76,7 +61,7 @@ export default class Creategroups extends Component {
           "green",
           this.context
         );
-      } else if (result.data.msg === "This work space already exist") {
+      } else if (result.data.data.msg === "This work space already exist") {
         this.context.set_warning(
           true,
           "failed",
@@ -123,19 +108,14 @@ export default class Creategroups extends Component {
     this.setState({ display_members: status });
   };
 
-  selected_fun_members = (status, index, items) => {
-    console.log("status, index,items: ", status, index, items);
-    if (status === "add") {
-      this.state.selected_members.data[index] = items;
-      this.state.selected_members.length++;
-      this.setState({
-        selected_members: this.state.selected_members,
-      });
-    } else {
-      delete this.state.selected_members.data[index];
-      this.state.selected_members.length--;
-      this.setState({ selected_members: this.state.selected_members });
+  selected_fun_members = (members) => {
+    this.state.selected_members.data = {};
+    for (let i = 0; i < members.length; i++) {
+      this.state.selected_members.data[i] = members[i].emp_id;
     }
+    this.setState({
+      selected_members: this.state.selected_members,
+    });
   };
 
   // for Lead
@@ -169,50 +149,38 @@ export default class Creategroups extends Component {
   render() {
     return (
       <div className="createproject_container">
-        <div>
-          <div className="createproject_subcontainer">
-            <div className="section3">
-              <Createsection
-                label="Unique Workspace Name"
-                type="input"
-                input_handle_fun={this.input_handle_fun}
+        <div className="createproject_subontainer">
+          <div className="space_title">
+            <CreateElementTitle
+              title="Add Element Name"
+              fun={() => this.input_handle_fun}
+            />
+          </div>
+
+          <div className="space_members_and_lead">
+            <div className="members_input">
+              <h4>Select Team</h4>
+              <CreateElementTeamInput
+                fun={this.selected_fun_members}
+                data={this.context.state.members}
               />
             </div>
-            {/* <div className="section1">
-              <Createsection
-                label="Select Department"
-                searchtitle="Search Department Here"
-                type="dropdown"
-                data={this.state.departments}
-                selected={this.state.selected}
-                display={this.state.display}
-                display_fun={this.display_fun}
-                selected_fun={this.selected_fun}
+            <div className="members_input">
+              <h4>Add Person</h4>
+              <CreateElementProjectLeadInput
+                data={this.context.state.members}
+                fun={this.selected_fun_members}
               />
-            </div> */}
-            {/* <div className="section4">
-              <Createsection
-                label="Select Members"
-                searchtitle="Search Name Here"
-                data={this.state.members}
-                type="dropdown"
-                selected={this.state.selected_members}
-                display={this.state.display_members}
-                display_fun={this.display_fun_members}
-                selected_fun={this.selected_fun_members}
-              />
-            </div> */}
+            </div>
           </div>
-          <textarea
-            onChange={(e) => this.setState({ description: e.target.value })}
-            placeholder="Write Something Here About Workspace..."
-            className="desc"
-          ></textarea>
-          <div className="create_project_button">
+
+          <div className="create_project_btn">
             <Button
-              title="Create Workspace"
-              width={"100%"}
-              fun={this.create_workspace}
+              fun={this.create_project}
+              title="Create Space"
+              textcolor="white"
+              width="105%"
+              color="#e41e26"
             />
           </div>
         </div>

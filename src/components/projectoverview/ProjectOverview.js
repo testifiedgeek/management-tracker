@@ -56,7 +56,7 @@ export default class ProjectOverview extends Component {
     return (
       <div>
         <div className="project_overview_container">
-          <div className="represent_data">
+          {/* <div className="represent_data">
             {this.context.state.project_overview_details ? (
               <RepresentData
                 infodata={{
@@ -73,7 +73,7 @@ export default class ProjectOverview extends Component {
             ) : (
               <div></div>
             )}
-          </div>
+          </div> */}
 
           <div className="tabs_section">
             <span
@@ -83,11 +83,11 @@ export default class ProjectOverview extends Component {
                 )
               }
             >
-              {this.state.tab === "project_plan" ? (
+              {/* {this.state.tab === "project_plan" ? (
                 <span className="active_project_plan">PROJECT PLANES</span>
               ) : (
                 <span className="inactive_project_plan">PROJECT PLANES</span>
-              )}
+              )} */}
             </span>
             <span
               onClick={() =>
@@ -96,11 +96,11 @@ export default class ProjectOverview extends Component {
                 )
               }
             >
-              {this.state.tab === "project_updates" ? (
+              {/* {this.state.tab === "project_updates" ? (
                 <span className="active_project_plan">PROJECT UPDATES</span>
               ) : (
                 <span className="inactive_project_plan">PROJECT UPDATES</span>
-              )}
+              )} */}
             </span>
           </div>
         </div>

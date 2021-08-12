@@ -10,7 +10,7 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+// import DateFnsUtils from "@date-io/date-fns";
 
 export default class Createtask extends Component {
   constructor(props) {
@@ -181,7 +181,7 @@ export default class Createtask extends Component {
               />
             </div>
             <div className="section3">
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <MuiPickersUtilsProvider>
                 <KeyboardDatePicker
                   format="dd/mm/yyyy"
                   value={this.state.targetdate}

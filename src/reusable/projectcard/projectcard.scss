@@ -3,8 +3,8 @@
 .projects_card_container {
   width: 100%;
   height: auto;
-
   box-shadow: 8px 8px 18px 0 rgba(0, 0, 0, 0.06);
+  @include slide();
   .projects_card_subcontainer {
     display: flex;
     flex-direction: column;
@@ -64,6 +64,9 @@
           padding-right: 15px;
         }
       }
+      :hover {
+        transform: unset;
+      }
 
       .bottom_middle {
         display: flex;
@@ -82,6 +85,9 @@
         .date {
           font-size: 12px;
         }
+      }
+      :hover {
+        transform: unset;
       }
 
       .bottom_bottom {
@@ -102,6 +108,13 @@
           }
         }
       }
+      :hover {
+        transform: unset;
+      }
+    }
+    :hover {
+      transition: 0.5s;
+      transform: scale(1.1);
     }
   }
 }

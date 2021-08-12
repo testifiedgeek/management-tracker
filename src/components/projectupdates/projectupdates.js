@@ -7,53 +7,15 @@ import "./projectupdates.scss";
 import Commentcard from "../../reusable/commentcard/commentcard.js";
 import AppContext from "../../context/AppContext";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
+import Button from "../../reusable/button/button";
+import TimelinePart from "../../reusable/Timeline/Timeline";
 
-let testing = [
-  {
-    author: "Abhisheck",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment: "@Rahuld Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-  {
-    author: "Mayur Dere",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment:
-      "@mayur dere Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-  {
-    author: "priya d",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment: "@Rahuld Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-  {
-    author: "Mayur Dere",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment:
-      "@mayur dere Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-  {
-    author: "Abhisheck",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment: "@Rahuld Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-  {
-    author: "Mayur Dere",
-    date: "12/09/2021",
-    time: "12.48 pm",
-    comment:
-      "@mayur dere Hey Rahul We Need To Intergrate this as soon as possible",
-  },
-];
 export default class Projectupdates extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search_updates: "",
+      tag_container: ["API", "UI BUGS", "DISCUSSION", "fowfhowe"],
       write_update: false,
     };
   }
@@ -85,6 +47,8 @@ export default class Projectupdates extends Component {
     }
   }
 
+  activateModal = () => {};
+
   render() {
     let searchdata;
     if (this.state.search_update !== "") {
@@ -104,7 +68,7 @@ export default class Projectupdates extends Component {
 
     return (
       <div className="project_update_container">
-        <div className="write_update_container">
+        {/* <div className="write_update_container">
           <Put_Updates
             add_new_comment={this.props.set_project_update_data}
             commentfor="Project"
@@ -113,34 +77,75 @@ export default class Projectupdates extends Component {
               profession: "Software Engineer",
             }}
           />
+        </div> */}
+        <div className="tag_section">
+          {this.state.tag_container.map((items) => {
+            return (
+              <div>
+                {items !== this.state.search_updates ? (
+                  <div className="tags">
+                    <ion-icon name="pricetag-outline"></ion-icon>
+                    <p onClick={() => this.setState({ search_updates: items })}>
+                      {items}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="tags_close">
+                    <ion-icon name="pricetag-outline"></ion-icon>
+                    <p onClick={() => this.setState({ search_updates: "" })}>
+                      {items}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-        <br />
-        <div className="header_container">
-          <h5>Project Updates by Team</h5>
-          <div class="search_container">
-            <div class="search_subcontainer">
-              <img src={search} />
-              <input
-                onChange={(e) =>
-                  this.setState({ search_updates: e.target.value })
-                }
-                type="text"
-                className="input_search"
-                placeholder="Type to search tags and updates"
+        <div className="timeline_section">
+          <div className="header_container">
+            <div class="search_container">
+              <div class="search_subcontainer">
+                <img src={search} />
+                <input
+                  onChange={(e) =>
+                    this.setState({ search_updates: e.target.value })
+                  }
+                  type="text"
+                  className="input_search"
+                  placeholder="Type to search tags and updates"
+                />
+              </div>
+            </div>
+            <div className="timeline_btn">
+              <Button
+                title="Add Note"
+                width="150%"
+                fun={this.activateModal}
+                color="inherit"
               />
             </div>
           </div>
-        </div>
 
-        {/* Mobile View Comments card rendering */}
-        <div class="view_comment_cards">
-          {this.state.search_updates === ""
-            ? this.props.project_update_data.map((items) => {
-                return <Commentcard commentdata={items} />;
-              })
-            : searchdata.map((items) => {
-                return <Commentcard commentdata={items} />;
-              })}
+          <div className="main_timeline">
+            <TimelinePart
+              data={
+                this.state.search_updates !== ""
+                  ? searchdata
+                  : this.props.project_update_data
+              }
+            />
+          </div>
+
+          {/* Mobile View Comments card rendering */}
+          {/* <div class="view_comment_cards">
+            {this.state.search_updates === ""
+              ? this.props.project_update_data.map((items) => {
+                  return <Commentcard commentdata={items} />;
+                })
+              : searchdata.map((items) => {
+                  return <Commentcard commentdata={items} />;
+                })}
+          </div> */}
         </div>
       </div>
     );

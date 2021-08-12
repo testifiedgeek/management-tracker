@@ -221,7 +221,7 @@ export default class Taskplan extends Component {
           <h5>Categories</h5>
         </div>
 
-        {this.context.state.page === "Create Task" ? (
+        {/* {this.context.state.page === "Create Task" ? (
           <div className="create_task">
             <Createsubtask
               categories={this.props.project_plane_data_cats}
@@ -241,7 +241,7 @@ export default class Taskplan extends Component {
               <div></div>
             )}
           </div>
-        )}
+        )} */}
       </div>
     );
   }

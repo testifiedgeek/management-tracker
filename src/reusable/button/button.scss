@@ -3,9 +3,11 @@
 @media screen and (min-width: 600px) {
   .button {
     button {
-      color: white;
+      color: #e41e26;
       background-color: $primarycolour;
-      padding: 15px;
+      border: 1px solid #e41e26;
+      padding: 13px;
+      font-weight: bold;
     }
   }
 }
@@ -15,8 +17,9 @@
     width: 100%;
     @include flexalign(center);
     button {
-      color: white;
+      color: #e41e26;
       background-color: $primarycolour;
+      border: 0.5px solid #e41e26;
       padding: 15px;
     }
   }

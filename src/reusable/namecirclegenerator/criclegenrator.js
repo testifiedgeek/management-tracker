@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./circlegenerator.scss";
 import AppContext from "../../context/AppContext";
-import Tooltip from "@material-ui/core/Tooltip";
 
 const GenarateName = ({ id, name, width, height }) => {
   if (name) {
@@ -12,7 +11,7 @@ const GenarateName = ({ id, name, width, height }) => {
       let colors = ["#edfffa", "#e4fcfa", "#f8e4fc", "#fcebe4"];
 
       return (
-        <Tooltip title="Add" enterDelay={500} leaveDelay={200}>
+        <div>
           <div
             className="user_profile"
             style={{
@@ -24,7 +23,7 @@ const GenarateName = ({ id, name, width, height }) => {
           >
             {shorname.toUpperCase()}
           </div>
-        </Tooltip>
+        </div>
       );
     } else if (split_name[0]) {
       let shorname = split_name[0].split("")[0];
@@ -64,10 +63,7 @@ const GenarateNameForId = ({ id, width, height }) => {
 
         return (
           <div>
-            <Tooltip
-              title="Add"
-              enterDelay={500}
-              leaveDelay={200}
+            <div
               className="user_profile"
               style={{
                 backgroundColor:
@@ -77,19 +73,14 @@ const GenarateNameForId = ({ id, width, height }) => {
               }}
             >
               {shorname.toUpperCase()}
-            </Tooltip>
+            </div>
           </div>
         );
       } else if (split_name[0]) {
         let shorname = split_name[0].split("")[0];
         let colors = ["#edfffa", "#e4fcfa", "#f8e4fc", "#fcebe4"];
         return (
-          <Tooltip
-            title="Add"
-            enterDelay={500}
-            leaveDelay={200}
-            style={{ display: "flex", alignItems: "center" }}
-          >
+          <div style={{ display: "flex", alignItems: "center" }}>
             <div
               className="user_profile"
               style={{
@@ -100,7 +91,7 @@ const GenarateNameForId = ({ id, width, height }) => {
               {shorname.toUpperCase()}
             </div>
             <span>{split_name[0]}</span>
-          </Tooltip>
+          </div>
         );
       }
     }

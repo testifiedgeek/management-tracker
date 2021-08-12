@@ -122,6 +122,17 @@ export default class Workspace extends Component {
     return 0;
   };
 
+  displayDepartment = (items) => {
+    this.context.setDept(items);
+    navigate(
+      "push",
+      "/departments",
+      "Departments",
+      this.props.history,
+      this.context
+    );
+  };
+
   // async componentDidMount() {
   //   // Fetch All Departements in managements tracker
 
@@ -222,7 +233,13 @@ export default class Workspace extends Component {
         <div className="workspace_grid_system">
           {this.context.state.departments.map((items) => {
             return (
-              <WorkspaceCard img="" name={items.work_place_name} members={32} />
+              <div onClick={() => this.displayDepartment(items)}>
+                <WorkspaceCard
+                  img=""
+                  name={items.work_place_name}
+                  members={32}
+                />
+              </div>
             );
           })}
         </div>

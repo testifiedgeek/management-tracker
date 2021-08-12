@@ -58,6 +58,11 @@ tr th {
   font-size: 13px;
 }
 
+tr:hover {
+  transition: 0.3s;
+  transform: translateY(-5px);
+}
+
 #table_caption {
   text-align: left;
   font-weight: bold;

@@ -1,0 +1,56 @@
+@import "../../scss/global.scss";
+
+@mixin dot($color) {
+  color: $color;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+
+@media screen and (min-width: 600px) {
+  .statscard_data {
+    @include flexalign(space-between);
+    margin-bottom: 8px;
+    label {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .statscard_data2 {
+      @include flexalign(start);
+    }
+
+    .statscard_data_header {
+      @include flexalign(space-between);
+
+      label {
+        color: $primarycolour;
+      }
+    }
+  }
+
+  .statscard_container {
+    max-width: 330px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 15px 0 15px 0;
+    padding: 10px 15px 10px 10px;
+    box-shadow: 0.5px 0.5px 1px 1px lightgrey;
+    height: 300px;
+
+    .statscard_subcontainer {
+      @include flexalign(start);
+      flex-direction: column;
+      margin-top: 50px;
+
+      .dynamic_progress {
+        width: 30%;
+      }
+
+      .statscard_data_container {
+        width: 45%;
+        margin-top: 40px;
+      }
+    }
+  }
+}

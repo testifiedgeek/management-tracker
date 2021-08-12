@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import "./createproject.scss";
 import AppContext from "../../context/AppContext";
-import { Createsection } from "../../reusable/creationprocess/Createsection";
+import {
+  CreateElementTeamInput,
+  CreateElementTitle,
+  CreateElementProjectLeadInput,
+  CreateElementDesc,
+  CreateElementDate,
+} from "../../reusable/CreateProcessElemets/CreateProcessElements";
 import Button from "../../reusable/button/button";
 import navigate from "../../helperfunctions/navigation";
 import { Fetch_function } from "../../helperfunctions/fetchdata";
@@ -66,7 +72,7 @@ export default class Createproject extends Component {
           completion_date: this.state.targetdate,
           start_date: this.state.startdate,
           project_description: this.state.description,
-          work_place_id: this.context.state.selected_department,
+          work_place_id: this.context.state.selected_department.work_place_id,
           other_data: {
             categories: this.state.categories,
             team_members: this.state.selected_members.data,
@@ -76,7 +82,7 @@ export default class Createproject extends Component {
       };
       let result = await Fetch_function(api_data);
       if (result.status) {
-        this.props.add_new_created_project(result.data.data);
+        this.context.set_projects(result.data.data);
         this.context.set_warning(
           true,
           "Succesfull",
@@ -168,19 +174,14 @@ export default class Createproject extends Component {
     this.setState({ display_members: status });
   };
 
-  selected_fun_members = (status, index, items) => {
-    console.log("status, index,items: ", status, index, items);
-    if (status === "add") {
-      this.state.selected_members.data[index] = items.emp_id;
-      this.state.selected_members.length++;
-      this.setState({
-        selected_members: this.state.selected_members,
-      });
-    } else {
-      delete this.state.selected_members.data[index];
-      this.state.selected_members.length--;
-      this.setState({ selected_members: this.state.selected_members });
+  selected_fun_members = (members) => {
+    this.state.selected_members.data = {};
+    for (let i = 0; i < members.length; i++) {
+      this.state.selected_members.data[i] = members[i].emp_id;
     }
+    this.setState({
+      selected_members: this.state.selected_members,
+    });
   };
 
   // for Lead
@@ -189,22 +190,22 @@ export default class Createproject extends Component {
     this.setState({ display_lead: status });
   };
 
-  selected_lead = (status, index, items) => {
-    if (status === "add") {
-      this.state.selected_lead.data[index] = items.emp_id;
-      this.state.selected_lead.length++;
-      this.setState({
-        selected_lead: this.state.selected_lead,
-      });
-    } else {
-      delete this.state.selected_lead.data[index];
-      this.state.selected_lead.length--;
-      this.setState({ selected_lead: this.state.selected_lead });
+  selected_lead = (members) => {
+    this.state.selected_lead.data = {};
+    for (let i = 0; i < members.length; i++) {
+      this.state.selected_lead.data[i] = members[i].emp_id;
     }
+    this.setState({
+      selected_lead: this.state.selected_lead,
+    });
   };
 
   input_handle_fun = (value) => {
     this.setState({ projectname: value });
+  };
+
+  handleDesc = (value) => {
+    this.setState({ description: value });
   };
 
   handleStageName = (value) => {
@@ -262,128 +263,68 @@ export default class Createproject extends Component {
 
     return (
       <div className="createproject_container">
-        <div>
-          <div className="createproject_subcontainer">
-            <div className="section3">
-              <Createsection
-                label="Unique Project Name"
-                type="input"
-                input_handle_fun={this.input_handle_fun}
+        <div className="createproject_subcontainer">
+          <div className="project_title">
+            <CreateElementTitle
+              title="Add Project Title"
+              fun={this.input_handle_fun}
+            />
+          </div>
+          <div className="project_dates">
+            <div className="members_input">
+              <h4>Select Start Date</h4>
+              <CreateElementDate
+                fun={this.select_start_date}
+                date={this.state.startdate}
               />
             </div>
-            <div className="section3">
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  format="MM/dd/yyyy"
-                  value={this.state.startdate}
-                  onChange={this.select_start_date}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-            <div className="section3">
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  format="MM/dd/yyyy"
-                  value={this.state.targetdate}
-                  onChange={this.select_target_date}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-            {/* <div className="section1">
-              <Createsection
-                label="Select Department"
-                searchtitle="Search Team Name Here"
-                type="dropdown"
-                data={this.context.state.departments}
-                selected={this.state.selected}
-                display={this.state.display}
-                display_fun={this.display_fun}
-                selected_fun={this.selected_fun}
+            <div className="members_input">
+              <h4>Select End Date</h4>
+              <CreateElementDate
+                fun={this.select_target_date}
+                date={this.state.targetdate}
               />
-            </div> */}
-            <div className="section1">
-              <Createsection
-                label="Select Members"
-                searchtitle="Search Team Name Here"
-                type="dropdown"
+            </div>
+          </div>
+          <div className="project_members_and_lead">
+            <div className="members_input">
+              <h4>Select Team</h4>
+              <CreateElementTeamInput
+                fun={this.selected_fun_members}
                 data={this.context.state.members}
-                selected={this.state.selected_members}
-                display={this.state.display_members}
-                display_fun={this.display_fun_members}
-                selected_fun={this.selected_fun_members}
               />
             </div>
-            {/* <div className="section4">
-              <Createsection
-                label="Select Categories"
-                searchtitle="Search Team Name Here"
-                data={this.context.state.categories}
-                type="dropdown"
-                selected={this.state.selected_categories}
-                display={this.state.display_catgegories}
-                display_fun={this.display_fun_categories}
-                selected_fun={this.selected_fun_categories}
-              />
-            </div> */}
-
-            <div className="section5">
-              <Createsection
-                label="Select Project Lead"
-                searchtitle="Search Name Here"
+            <div className="members_input">
+              <h4>Select Project Lead</h4>
+              <CreateElementProjectLeadInput
                 data={this.context.state.members}
-                type="dropdown"
-                selected={this.state.selected_lead}
-                display={this.state.display_lead}
-                display_fun={this.display_lead}
-                selected_fun={this.selected_lead}
+                fun={this.selected_lead}
               />
             </div>
           </div>
 
-          {/* Create Categories section */}
-          <div className="create_categories">
-            <h3 className="stage_label">Stages</h3>
-            <div className="create_subcategories">
-              {/* <ReturnInput title='Enter Stage Name' fun={this.handleStageName} perfun={this.handlePercentage} />
-                <ReturnInput title='Enter Stage Name' fun={this.handleStageName} perfun={this.handlePercentage} />
-                <ReturnInput title='Enter Stage Name' fun={this.handleStageName} perfun={this.handlePercentage} /> */}
-              {Fields}
-            </div>
-            {this.state.stageName !== "" &&
-            this.state.stagePercentage !== "" ? (
-              <h3 onClick={() => this.addField()} style={{ color: "#2541b2" }}>
-                Add Stages
-              </h3>
-            ) : (
-              <div></div>
-            )}
+          <div className="project_stages_container">
+            <h4>Add Stages</h4>
+            {this.state.fields.map((items) => {
+              return items;
+            })}
+            <span onClick={() => this.addField()}>Add Stages</span>
           </div>
 
-          <textarea
-            onChange={(e) => this.setState({ description: e.target.value })}
-            placeholder="Write Something Here..."
-            className="desc"
-          ></textarea>
-          <div className="create_project_button">
-            {this.state.projectname !== "" &&
-            this.state.targetdate !== "" &&
-            this.state.description !== "" &&
-            this.state.selected_members[0] &&
-            this.state.selected_categories[0] &&
-            this.state.selected_lead[0] &&
-            this.state.selected[0] ? (
-              <Button
-                title="Create Project"
-                width={"100%"}
-                fun={this.create_project}
-              />
-            ) : (
-              <Button
-                title="Create Project"
-                width={"100%"}
-                fun={this.create_project}
-              />
-            )}
+          <div>
+            <CreateElementDesc
+              title="Add Description About Project"
+              fun={this.handleDesc}
+            />
+          </div>
+          <div className="create_project_btn">
+            <Button
+              fun={this.create_project}
+              title="Create Project"
+              textcolor="white"
+              width="105%"
+              color="#e41e26"
+            />
           </div>
         </div>
       </div>

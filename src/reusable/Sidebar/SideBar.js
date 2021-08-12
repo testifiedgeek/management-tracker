@@ -59,40 +59,38 @@ class Sidebar extends Component {
                   />
                 </div>
                 <div className="sidebar_items">
-                  <div>
-                    <div className="sidebar_top">
-                      <div
-                        className="sidebar_buttons"
-                        onClick={() => this.dashboardClicked()}
-                      >
-                        <ion-icon name="home"></ion-icon> Dashboard
-                      </div>
-                      <div
-                        className="sidebar_buttons"
-                        onClick={() => this.projectsClicked()}
-                      >
-                        <ion-icon name="copy"></ion-icon> Projects
-                      </div>
-                      <div
-                        className="sidebar_buttons"
-                        onClick={() => this.workspaceClicked()}
-                      >
-                        <ion-icon name="mail"></ion-icon> Workspace
-                      </div>
+                  <div className="sidebar_top">
+                    <div
+                      className="sidebar_buttons"
+                      onClick={() => this.dashboardClicked()}
+                    >
+                      <ion-icon name="home"></ion-icon> Dashboard
                     </div>
-                    <div className="sidebar_bottom">
-                      <div
-                        className="sidebar_buttons"
-                        onClick={() => this.logoutClicked(context)}
-                      >
-                        <ion-icon name="log-out"></ion-icon> Logout
-                      </div>
-                      <div
-                        className="sidebar_buttons"
-                        onClick={() => this.settingClicked()}
-                      >
-                        <ion-icon name="settings"></ion-icon> Settings
-                      </div>
+                    <div
+                      className="sidebar_buttons"
+                      onClick={() => this.projectsClicked()}
+                    >
+                      <ion-icon name="copy"></ion-icon> Projects
+                    </div>
+                    <div
+                      className="sidebar_buttons"
+                      onClick={() => this.workspaceClicked()}
+                    >
+                      <ion-icon name="mail"></ion-icon> Workspace
+                    </div>
+                  </div>
+                  <div className="sidebar_bottom">
+                    <div
+                      className="sidebar_buttons"
+                      onClick={() => this.logoutClicked(context)}
+                    >
+                      <ion-icon name="log-out"></ion-icon> Logout
+                    </div>
+                    <div
+                      className="sidebar_buttons"
+                      onClick={() => this.settingClicked()}
+                    >
+                      <ion-icon name="settings"></ion-icon> Settings
                     </div>
                   </div>
                 </div>

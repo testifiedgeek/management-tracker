@@ -9,7 +9,6 @@
 @media screen and (min-width: 600px) {
   .Sidebar_webview {
     // position: fixed;
-    z-index: 1;
     // top: 0;
     // left: 0;
     background-color: white;
@@ -25,9 +24,6 @@
   }
 
   .sidebar_buttons {
-    display: flex;
-    justify-self: space-between;
-    align-items: center;
     padding: 10px;
     font-size: 12px;
     color: #e41e26;
@@ -40,11 +36,12 @@
   }
 
   .sidebar_buttons:hover {
-    width: 100%;
+    opacity: 0.4;
+    color: red;
     background-image: linear-gradient(
-      49deg,
-      white 5%,
-      rgba(255, 255, 255, 0) 100%
+      to right,
+      #e41e26 2%,
+      rgba(255, 255, 255, 0)
     );
   }
 
@@ -53,6 +50,7 @@
   }
 
   .sidebar_bottom {
+    width: 100%;
     position: absolute;
     bottom: 15px;
   }

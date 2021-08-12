@@ -139,6 +139,7 @@
     grid-template-columns: repeat(auto-fill, 250px);
     grid-gap: 20px;
     margin: 0px 20px 20px 20px;
+    @include slide();
   }
 
   .project_createsection {

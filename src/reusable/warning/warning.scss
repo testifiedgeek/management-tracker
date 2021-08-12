@@ -3,10 +3,12 @@
 // web screen
 @media screen and (min-width: 600px) {
   .warning_container {
-    .warning_sub_container {
-      h6 {
-      }
-    }
+    @include slide();
+    width: 30%;
+    position: fixed;
+    bottom: 10px;
+    z-index: 1;
+    left: 20px;
   }
 }
 
@@ -15,7 +17,7 @@
   .warning_container {
     position: fixed;
     z-index: 1;
-    top: 60px;
+    bottom: 60px;
     right: 0px;
     left: 0;
     width: 100%;
