@@ -55,9 +55,6 @@ export default class Projectplan extends Component {
           this.props.set_project_plane_data_cats(
             result.data.data[0].categoriesDetails
           );
-          this.context.set_categories(
-            result.data.data[0].categoriesDetails
-            );
           this.props.set_project_plane_data_admin(
             result.data.data[0].projectAdminDetails
           );
@@ -88,7 +85,6 @@ export default class Projectplan extends Component {
       if (result2.status) {
         if (result2.data.msg === "successful") {
           this.props.set_project_plane_data(result2.data.data);
-          this.context.setall_tasks(result2.data.data);
         }
       } else {
         this.context.set_warning(

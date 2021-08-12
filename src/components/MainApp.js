@@ -70,7 +70,6 @@ export default class MainApp extends Component {
       members: [],
       categories: [],
       selected_department: null,
-      all_tasks: [],
     };
   }
 
@@ -157,7 +156,7 @@ export default class MainApp extends Component {
   //set categories fetch for loged user
 
   set_categories = (categories) => {
-    this.setState({ categories: categories });
+    this.setState({ categories: [...this.state.categories, ...categories] });
   };
 
   //set projet overview
@@ -174,9 +173,6 @@ export default class MainApp extends Component {
     this.setState({ selected_department: id });
   };
 
-  setall_tasks = (tasks) => {
-    this.setState({all_tasks: tasks});
-  };
 
   accept_task = async (userId, task, fun) => {
     let token = await window.localStorage.getItem("hdfcmanagementtracker");
