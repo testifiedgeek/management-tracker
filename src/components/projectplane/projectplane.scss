@@ -60,7 +60,7 @@
     .plane_subsections {
       @include flexalign(space-between);
       flex-grow: 0.1;
-      background-color: #F8F9FD;
+      background-color: #fff9f9;
 
       .MuiPaper-elevation1 {
         box-shadow: unset;

@@ -3,6 +3,7 @@ import Projectplan from "../projectplane/projectplan";
 import Projectupdates from "../projectupdates/projectupdates";
 import AppContext from "../../context/AppContext";
 import "./ProjectOverview.scss";
+import Button from "../../reusable/button/button";
 
 export default class ProjectOverview extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ export default class ProjectOverview extends Component {
           
 
           <div className="tabs_section">
-            <span
+            {/* <span
               onClick={() =>
                 this.setState({ tab: "project_plan" }, () =>
                   this.context.set_page("Project Overview")
@@ -70,20 +71,16 @@ export default class ProjectOverview extends Component {
               ) : (
                 <span className="inactive_project_plan">PROJECT PLANES</span>
               )}
-            </span>
-            <span
-              onClick={() =>
+            </span> */}
+            <Button fun={() =>
                 this.setState({ tab: "project_updates" }, () =>
                   this.context.set_page("Write Update")
-                )
-              }
-            >
-              {this.state.tab === "project_updates" ? (
-                <span className="active_project_plan">PROJECT UPDATES</span>
-              ) : (
-                <span className="inactive_project_plan">PROJECT UPDATES</span>
-              )}
-            </span>
+                )}
+                title="Update"
+                color="#e41e26" 
+                  width= "128.4px"
+                />
+           
           </div>
         </div>
         {/* Render Child Components on the basis of above conditions */}

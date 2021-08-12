@@ -55,10 +55,11 @@
 
 @media screen and (min-width: 600px) {
   .tabs_section {
-    @include flexalign(space-between);
-    width: 24%;
+    @include flexalign(flex-end);
+    width: 90%;
     padding: 10px;
     margin: 10px;
+    
 
     span {
       cursor: pointer;

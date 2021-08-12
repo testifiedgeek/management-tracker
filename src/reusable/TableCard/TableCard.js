@@ -201,7 +201,14 @@ export default class TableCard extends Component {
     } else {
       return (
         <table className="user_container">
-          <caption id="table_caption">{TableTitle}</caption>
+          <caption id="table_caption">
+          <span> 
+          {TableTitle}
+            <button>
+              {table_status}
+            </button>
+            </span>
+          </caption>
           <thead>
             <tr className="table_row" id="heading">
               {TableHeading.map((head, key) => {
@@ -217,22 +224,76 @@ export default class TableCard extends Component {
             {TableData.map((val, key) => {
               return (
                 <tr className="table_row" key={key}>
+                  
                   {TableRow.map((newVal, id) => {
+                    // let assigned_to = this.context.state.members.filter(
+                    //   (users) => {
+                    //     if (users.emp_id === val[newVal]) {
+                    //       return (
+                    //         <GenarateName
+                    //           name={users.first_name + " " + users.last_name}
+                    //         />
+                    //       );
+                    //     }
+                    //   }
+                    // );
+
                     if (newVal === "name") {
                       return (
                         <td key={id} className="table_heading">
                           {" "}
-                          <GenarateName name={val[newVal]} />
+                          <GenarateName name={val["project_name"]} />
                         </td>
                       );
-                    } else {
+                    }else if (newVal === "name" && this.props.fullName==="false") {
                       return (
                         <td key={id} className="table_heading">
-                          {val[newVal]}
+                          <GenarateName name={val[newVal]} /> 
+                        </td>
+                      );
+                    } 
+                    else if (newVal === "name" && this.props.viewTeam==="true") {
+                      return (
+                        <td key={id} className="table_heading">
+                          <ViewTeam info={TableData} /> 
+                        </td>
+                      );
+                    } else{
+                      return (
+                        <td key={id} className="table_heading">
+                          {newVal === "final_status" ? (
+                            <StatusBtn
+                              userId={this.context.state.user.employeeid}
+                              task={val}
+                              fun={this.props.handleClickTaskStatus}
+                            />
+                          ) : newVal === "start_date" ? (
+                            val[newVal].split("T")[0]
+                          ) : newVal === "completion_date" ? (
+                            this.checkDeadLine(val[newVal].split("T")[0])
+                          ) : newVal === "project_name" ? (
+                            this.renderProjectView(val[newVal], val)
+                          ) : newVal === "task_name" ? (
+                            this.renderTaskView(val[newVal], val)
+                          ) : newVal === "created_by" ||
+                            newVal === "assigned_to" ? (
+                            <GenarateNameForId id={val[newVal]} />
+                          ) : newVal === "work_place_id" ? (
+                            this.returnWorkspace(val[newVal])
+                          ) : newVal === "task_percentage" ? (
+                            window.parseInt(val[newVal]) + "%"
+                          ) : newVal === "completion_date" ? (
+                            this.checkDeadLine(val[newVal])
+                          ) : (
+                            val[newVal]
+                          )}
                         </td>
                       );
                     }
                   })}
+
+                  {this.renderViewTask(val)}
+                  {this.renderViewButton()}
                 </tr>
               );
             })}

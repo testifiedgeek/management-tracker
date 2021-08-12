@@ -51,7 +51,9 @@ export default class TodoItem extends Component {
                     <button onClick={() => this.props.fooDelete(this.props.todo.id)}>Delete</button>
                 </td> */}
         <td>
-          <button onClick={this.handleEditing}>:</button>
+          <span onClick={this.handleEditing}>
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+          </span>
         </td>
         <div>
           {this.state.seen ? <Popup 

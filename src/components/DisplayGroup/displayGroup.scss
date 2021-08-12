@@ -55,32 +55,62 @@
 // Web Screen
 
 @media screen and (min-width: 600px) {
-  .tabs_section {
-    @include flexalign(space-between);
-    width: 24%;
-    padding: 10px;
-    margin: 10px;
+  // .tabs_section {
+  //   @include flexalign(flex-end);
+  //   width: 90%;
+  //   padding: 10px;
+  //   margin: 10px;
 
-    span {
-      cursor: pointer;
-      font-size: $mediumfontsize;
+  //   span {
+  //     cursor: pointer;
+  //     font-size: $mediumfontsize;
 
-      .active_group_chat {
-        color: black;
-        font-weight: bold;
-        font-size: $mediumfontsize;
-      }
+  //     .active_group_chat {
+  //       color: black;
+  //       font-weight: bold;
+  //       font-size: $mediumfontsize;
+  //     }
 
-      .inactive_group_chat {
-        color: lightgrey;
-        font-weight: medium;
-        font-size: $mediumfontsize;
+  //     .inactive_group_chat {
+  //       color: lightgrey;
+  //       font-weight: medium;
+  //       font-size: $mediumfontsize;
+  //     }
+  //   }
+  //   :hover {
+  //     color: black;
+  //     font-weight: bold;
+  //     font-size: $mediumfontsize;
+  //   }
+  // }
+  .task_view_grid_system{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(auto-fit, 3);
+    grid-template-areas: 
+    "sidebar button"
+    "sidebar details"
+    "sidebar updates";
+
+    .action_button{
+      grid-area: button;
+      width: 90%;
+      margin-bottom: 20px;
+      span{
+        float: right;
       }
     }
-    :hover {
-      color: black;
-      font-weight: bold;
-      font-size: $mediumfontsize;
+
+    .task_details{
+      grid-area: details;
+    }
+
+    .task_updates{
+      grid-area: updates;
+    }
+
+    .sidebar_subtask{
+      grid-area: sidebar;
     }
   }
 }

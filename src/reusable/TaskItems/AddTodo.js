@@ -39,7 +39,7 @@ export default class AddTodo extends Component {
           onChange={this.handleChange}
         />
         <div className="input-group-append">
-          <img onClick={this.addTodo} src={PlusIcon} />
+        <ion-icon name="add"></ion-icon>
         </div>
       </div>
     );

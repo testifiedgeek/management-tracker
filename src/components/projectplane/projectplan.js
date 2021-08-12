@@ -13,6 +13,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import RepresentData from "../../reusable/textinfo/textdata.js";
 import DescriptionCard from "../../reusable/projectdesc/projectdesc";
+import StatsCard from "../../reusable/StatisticsCard/statisticsCard";
 
 
 let divide = {};
@@ -48,11 +49,15 @@ export default class Projectplan extends Component {
         user_token: token,
       };
       let result = await Fetch_function(all_project_data);
+      console.log(result);
       if (result.status) {
         if (result.data.msg === "successful") {
           this.props.set_project_plane_data_cats(
             result.data.data[0].categoriesDetails
           );
+          this.context.set_categories(
+            result.data.data[0].categoriesDetails
+            );
           this.props.set_project_plane_data_admin(
             result.data.data[0].projectAdminDetails
           );
@@ -83,6 +88,7 @@ export default class Projectplan extends Component {
       if (result2.status) {
         if (result2.data.msg === "successful") {
           this.props.set_project_plane_data(result2.data.data);
+          this.context.setall_tasks(result2.data.data);
         }
       } else {
         this.context.set_warning(
@@ -192,12 +198,14 @@ export default class Projectplan extends Component {
     this.calculate_work_status();
   };
 
+  
+
   render() {
     return (
       <div>
         <div className="respersent_data_container">
           <div className="stats_represantation">
-            <ShowStats
+            <StatsCard
               navigation={{
                 state: "push",
                 path: "/project-overview",
@@ -253,11 +261,11 @@ export default class Projectplan extends Component {
                   </Tabs>
                 </Paper>
             </div>
-            {this.checkAdminStatus() ? (
+            {/* {this.checkAdminStatus() ? (
               <Button title="Create Task" fun={this.create_task} />
             ) : (
               <div></div>
-            )}
+            )} */}
           </div>
         )}
 
@@ -266,6 +274,7 @@ export default class Projectplan extends Component {
         <div className="plane_table_data_webview">
           {this.state.divide.map((items) => {
             if (items.tasks.length !== 0) {
+              console.log(this.props.project_plan_data);
               return (
                 <div className="project_table_subcontainer">
                   <TableCard
@@ -280,7 +289,8 @@ export default class Projectplan extends Component {
                     handleClickTaskStatus={this.handleClickTaskStatus}
                     handleViewTask={this.handleTask}
                     headings={["Task", "Assigned To", "Target Date", "Status"]}
-                    serial="true"
+                    serial="false"
+                    table_status="Completed"
                   />
                 </div>
               );

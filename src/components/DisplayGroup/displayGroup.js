@@ -8,6 +8,9 @@ import Taskplane from "../../components/taskoverview/taskoverveiw";
 import Taskupdates from "../../components/taskupdate/taskupdate";
 import complete from "../../assets/complete.svg";
 import start from "../../assets/complete.svg";
+import TaskDesc from "../../reusable/taskdescription/taskdesc";
+import Button from "../../reusable/button/button";
+import TaskSidebar from "../../reusable/TaskSidebar/taskSidebar";
 
 export default class DisplayGroup extends Component {
   constructor(props) {
@@ -25,12 +28,13 @@ export default class DisplayGroup extends Component {
     });
   };
 
+
   render() {
     return (
-      <div>
-        <div className="project_overview_container">
-          <div className="represent_data">
-            <RepresentData
+      <div className="task_view_grid_system">
+        {/* <div className="project_overview_container">
+          <div className="represent_data"> 
+             <RepresentData
               infodata={{
                 title: this.context.state.task_overview_details.task_name,
                 desc: this.context.state.task_overview_details.task_description,
@@ -38,18 +42,18 @@ export default class DisplayGroup extends Component {
                 endDate:
                   this.context.state.task_overview_details.completion_date,
               }}
-            />
-            {/* {this.context.state.task_overview_details.is_active === 2 ?
+            /> 
+             {this.context.state.task_overview_details.is_active === 2 ?
             <img src={start} />
              :
              (this.context.state.task_overview_details.is_active === 1 ?
              <img src={start} />
               :
               <img src={complete} />
-             )}  */}
-          </div>
+             )}  
+           </div> 
 
-          {/* <div className="tabs_section">
+           <div className="tabs_section">
                 <span
                   onClick={() =>
                     this.setState({ tab: "group_chat" }, () =>
@@ -76,15 +80,41 @@ export default class DisplayGroup extends Component {
                     <span className="inactive_group_chat">Task</span>
                   )}
                 </span>
-              </div> */}
-        </div>
+              </div> 
+        </div> */}
         {/* Render Child Components on the basis of above conditions */}
         {/* <Projectplan history={this.props.history} /> */}
-        <Taskplane history={this.props.history} />
+        <div className="action_button">
+          <span>
+          <Button 
+            color="#e41e26"
+            width="128.4px"
+            title="Accept"
+          />
+          </span>
+          
+        </div>
+        <div className="task_details">
+        <TaskDesc infodata={{
+                title: this.context.state.task_overview_details.task_name,
+                desc: this.context.state.task_overview_details.task_description,
+                startDate: this.context.state.task_overview_details.start_date,
+                endDate:
+                  this.context.state.task_overview_details.completion_date,
+              }}/>
+        </div>
+        <div className="task_updates">
         <Taskupdates
           set_task_update_data={this.set_task_update_data}
           task_update_data={this.state.task_update_data}
         />
+        </div>
+        <div className="sidebar_subtask">
+          <TaskSidebar />
+        </div>
+        
+        {/* <Taskplane history={this.props.history} /> */}
+       
       </div>
     );
   }

@@ -19,7 +19,7 @@ class DescriptionCard extends Component{
                 <div>
                     <span>{this.context.state.project_overview_details.project_name}</span>
                     <p>{this.context.state.project_overview_details
-                    .project_decription}</p>
+                    .project_description}</p>
                 </div>
               
             ) : (

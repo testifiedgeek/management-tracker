@@ -1,0 +1,66 @@
+.side_container{
+
+    width: 70%;
+    height: 100%;
+    background-color:white;
+    
+    .side_top{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+
+        .side_title{
+            color: #e41e26;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .side_add{
+            margin: 10px;
+            margin-right: 20px;
+            ion-icon{
+                color: #e41e26;
+                font-size: 32px;
+            }
+        }
+    }
+
+    .side_content{
+
+        tr{
+            border-collapse: collapse;
+            .side_task_items{
+                display: flex;
+                align-items: center;
+                margin-left: 25px;
+                border-bottom: 1px solid rgba(136, 136, 136, 0.11);
+
+                .side_task_item1{
+                    align-self: center;
+                    margin-top: 10px;
+                    ion-icon{
+                        font-size: 26px;
+                        color: #e41e26;
+                        
+                    }
+                }
+                
+                .side_task_item2{
+                    padding: 10px;
+                    margin-left: -10px;
+                    text-align: left;
+                    padding-left: 50px;
+                    width: 150px;
+                    font-size: 12px;
+                    
+                }
+            }
+        }
+            
+        
+    }
+
+
+}
+
